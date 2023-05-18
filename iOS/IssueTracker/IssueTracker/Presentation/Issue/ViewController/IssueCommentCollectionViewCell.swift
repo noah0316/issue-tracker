@@ -7,11 +7,5 @@
 
 import UIKit
 
-class IssueCommentCollectionViewCell: UICollectionViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
+final class IssueCommentCollectionViewCell: UICollectionViewCell {
 }
