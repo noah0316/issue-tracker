@@ -172,6 +172,7 @@
 		4F46D22E2A1670370003AEDD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4F46D2482A1671BA0003AEDD /* MilestoneCollectionViewCell.swift */,
 				4F46D2492A1671BA0003AEDD /* MilestoneCollectionViewCell.xib */,
 			);
 			path = View;
@@ -180,7 +181,6 @@
 		4F46D22F2A16703C0003AEDD /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				4F46D2482A1671BA0003AEDD /* MilestoneCollectionViewCell.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -188,6 +188,7 @@
 		4F46D2302A16704D0003AEDD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4F46D2442A16719A0003AEDD /* LabelCollectionViewCell.swift */,
 				4F46D2452A16719A0003AEDD /* LabelCollectionViewCell.xib */,
 			);
 			path = View;
@@ -196,7 +197,6 @@
 		4F46D2312A1670550003AEDD /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				4F46D2442A16719A0003AEDD /* LabelCollectionViewCell.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
