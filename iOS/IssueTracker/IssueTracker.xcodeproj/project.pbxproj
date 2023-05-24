@@ -32,6 +32,7 @@
 		4F99BDBF2A17ECB6008AE8D1 /* UICollectionReusableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F99BDBE2A17ECB6008AE8D1 /* UICollectionReusableView+Extension.swift */; };
 		4FC1714E2A1C5BD40090D4B0 /* NibFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1714D2A1C5BD40090D4B0 /* NibFactory.swift */; };
 		4FC171582A1DCA640090D4B0 /* LoadingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171572A1DCA640090D4B0 /* LoadingStatus.swift */; };
+		4FC1715B2A1DCF870090D4B0 /* IssueListUseCaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1715A2A1DCF870090D4B0 /* IssueListUseCaseType.swift */; };
 		4FC1715F2A1DDBBA0090D4B0 /* IssueCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1715E2A1DDBBA0090D4B0 /* IssueCollection.swift */; };
 		4FC1716B2A1DDF1B0090D4B0 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1716A2A1DDF1B0090D4B0 /* Milestone.swift */; };
 		4FD5C9772A0C91890096F53D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 4FD5C9762A0C91890096F53D /* .swiftlint.yml */; };
@@ -71,6 +72,7 @@
 		4F99BDBE2A17ECB6008AE8D1 /* UICollectionReusableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionReusableView+Extension.swift"; sourceTree = "<group>"; };
 		4FC1714D2A1C5BD40090D4B0 /* NibFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibFactory.swift; sourceTree = "<group>"; };
 		4FC171572A1DCA640090D4B0 /* LoadingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStatus.swift; sourceTree = "<group>"; };
+		4FC1715A2A1DCF870090D4B0 /* IssueListUseCaseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListUseCaseType.swift; sourceTree = "<group>"; };
 		4FC1715E2A1DDBBA0090D4B0 /* IssueCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollection.swift; sourceTree = "<group>"; };
 		4FC1716A2A1DDF1B0090D4B0 /* Milestone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
 		4FD5C9762A0C91890096F53D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -321,6 +323,14 @@
 			path = Factory;
 			sourceTree = "<group>";
 		};
+		4FC171592A1DCF6F0090D4B0 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				4FC1715A2A1DCF870090D4B0 /* IssueListUseCaseType.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		4FC171662A1DDE550090D4B0 /* Milestone */ = {
 			isa = PBXGroup;
 			children = (
@@ -504,6 +514,7 @@
 				4F46D2422A16717A0003AEDD /* IssueCommentCollectionViewCell.swift in Sources */,
 				4F3819FA2A0BA1320046B94D /* IssueTrackerTabBarController.swift in Sources */,
 				4F3819F62A0BA1320046B94D /* AppDelegate.swift in Sources */,
+				4FC1715B2A1DCF870090D4B0 /* IssueListUseCaseType.swift in Sources */,
 				4FC1714E2A1C5BD40090D4B0 /* NibFactory.swift in Sources */,
 				4FC171582A1DCA640090D4B0 /* LoadingStatus.swift in Sources */,
 				4FF650C72A0D702900A9B220 /* ComponentStyle.swift in Sources */,
