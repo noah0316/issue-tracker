@@ -21,7 +21,7 @@ final class LabelTag: UILabel {
         self.init()
         self.text = name
         self.font = FontStyle.label
-        self.setLabelTagBackgroundColor("#c2b9a9")
+        self.setLabelTagBackgroundColor(hexString: "#dbd9d9")
         self.setLabelTagTextColor()
         self.sizeToFit()
     }
@@ -36,33 +36,17 @@ final class LabelTag: UILabel {
         self.layer.masksToBounds = true
     }
     
-    func setLabelTagBackgroundColor(_ backgroundColor: String) {
-        self.backgroundColor = UIColor().setBackgroundColorFromHex(backgroundColor)
+    func setLabelTagBackgroundColor(hexString: String) {
+        self.backgroundColor = HexConverter.toUIColor(hexString)
     }
     
     func setLabelTagTextColor() {
         let rgb = self.backgroundColor?.cgColor.components?.dropLast() ?? [0, 0, 0]
-        let multipliedRgb = rgb.map { $0 * 255 }
-        if (multipliedRgb[0] * 0.299 + multipliedRgb[1] * 0.587 + multipliedRgb[2] * 0.114) > 186 {
-            self.textColor = .black
-        } else { self.textColor = .white }
-    }
-}
-
-extension UIColor {
-    func setBackgroundColorFromHex(_ hex: String) -> UIColor? {
-        var hexString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-        
-        if hexString.hasPrefix("#") {
-            hexString.remove(at: hexString.startIndex)
-        }
-        
-        var rgb: UInt32 = 0
-        Scanner(string: hexString).scanHexInt32(&rgb)
-        
-        return UIColor(red: CGFloat((rgb & 0xFF0000) >> 16) / 255.0,
-                       green: CGFloat((rgb & 0x00FF00) >> 8) / 255.0,
-                       blue: CGFloat(rgb & 0x0000FF) / 255.0,
-                       alpha: 1.0)
+        let multipliedRgb = rgb.map { $0 * Rgb.deNormalization }
+        let weightedRed = multipliedRgb[0] * Rgb.red
+        let weightedGreen = multipliedRgb[1] * Rgb.green
+        let weightedBlue = multipliedRgb[2] * Rgb.blue
+        let labelTextColorFormula = weightedRed + weightedGreen + weightedBlue
+        self.textColor = labelTextColorFormula > Rgb.threshold ? .black : .white
     }
 }
