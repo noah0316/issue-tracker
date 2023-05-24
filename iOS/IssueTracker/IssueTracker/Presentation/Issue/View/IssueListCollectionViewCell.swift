@@ -8,4 +8,37 @@
 import UIKit
 
 final class IssueListCollectionViewCell: UICollectionViewCell {
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var milestoneLabel: UILabel!
+    @IBOutlet private weak var tagLabelStackView: UIStackView!
+    
+    func setupUIAppearance() {
+        self.setupTitleLabelUIAppearance()
+        self.setupDescriptionLabelUIAppearance()
+        self.setupMilestoneLabelUIAppearance()
+    }
+    
+    func update(with issue: Issue) {
+        self.titleLabel.text = issue.title
+        self.descriptionLabel.text = issue.description
+        self.milestoneLabel.text = issue.milestone.title
+    }
+}
+
+extension IssueListCollectionViewCell {
+    private func setupTitleLabelUIAppearance() {
+        self.titleLabel.font = FontStyle.title
+        self.titleLabel.textColor = ColorStyle.gray900
+    }
+    
+    private func setupDescriptionLabelUIAppearance() {
+        self.descriptionLabel.font = FontStyle.body
+        self.descriptionLabel.textColor = ColorStyle.gray800
+    }
+    
+    private func setupMilestoneLabelUIAppearance() {
+        self.milestoneLabel.font = FontStyle.body
+        self.milestoneLabel.textColor = ColorStyle.gray800
+    }
 }
