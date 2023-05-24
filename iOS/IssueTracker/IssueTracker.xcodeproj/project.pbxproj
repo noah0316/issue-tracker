@@ -32,6 +32,7 @@
 		4F99BDBF2A17ECB6008AE8D1 /* UICollectionReusableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F99BDBE2A17ECB6008AE8D1 /* UICollectionReusableView+Extension.swift */; };
 		4FC1714E2A1C5BD40090D4B0 /* NibFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1714D2A1C5BD40090D4B0 /* NibFactory.swift */; };
 		4FC171582A1DCA640090D4B0 /* LoadingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171572A1DCA640090D4B0 /* LoadingStatus.swift */; };
+		4FC1715F2A1DDBBA0090D4B0 /* IssueCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1715E2A1DDBBA0090D4B0 /* IssueCollection.swift */; };
 		4FC1716B2A1DDF1B0090D4B0 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1716A2A1DDF1B0090D4B0 /* Milestone.swift */; };
 		4FD5C9772A0C91890096F53D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 4FD5C9762A0C91890096F53D /* .swiftlint.yml */; };
 		4FDA41CF2A16837B00340387 /* IssueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA41CE2A16837B00340387 /* IssueListViewController.swift */; };
@@ -70,6 +71,7 @@
 		4F99BDBE2A17ECB6008AE8D1 /* UICollectionReusableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionReusableView+Extension.swift"; sourceTree = "<group>"; };
 		4FC1714D2A1C5BD40090D4B0 /* NibFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibFactory.swift; sourceTree = "<group>"; };
 		4FC171572A1DCA640090D4B0 /* LoadingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStatus.swift; sourceTree = "<group>"; };
+		4FC1715E2A1DDBBA0090D4B0 /* IssueCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollection.swift; sourceTree = "<group>"; };
 		4FC1716A2A1DDF1B0090D4B0 /* Milestone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
 		4FD5C9762A0C91890096F53D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		4FDA41CE2A16837B00340387 /* IssueListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewController.swift; sourceTree = "<group>"; };
@@ -513,6 +515,7 @@
 				4FC5A20C2A1B68430001393B /* LabelTag.swift in Sources */,
 				4FF650C32A0D6A3800A9B220 /* ColorStyle.swift in Sources */,
 				4FC5A2122A1DA4FC0001393B /* HexConverter.swift in Sources */,
+				4FC1715F2A1DDBBA0090D4B0 /* IssueCollection.swift in Sources */,
 				4F99BDBF2A17ECB6008AE8D1 /* UICollectionReusableView+Extension.swift in Sources */,
 				4F021B392A1754F700595114 /* User.swift in Sources */,
 				4F46D2462A16719A0003AEDD /* LabelCollectionViewCell.swift in Sources */,
