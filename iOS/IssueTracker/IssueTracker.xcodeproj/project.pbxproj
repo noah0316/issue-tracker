@@ -31,6 +31,7 @@
 		4FC5A2122A1DA4FC0001393B /* HexConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC5A2112A1DA4FC0001393B /* HexConverter.swift */; };
 		4F99BDBF2A17ECB6008AE8D1 /* UICollectionReusableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F99BDBE2A17ECB6008AE8D1 /* UICollectionReusableView+Extension.swift */; };
 		4FC1714E2A1C5BD40090D4B0 /* NibFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1714D2A1C5BD40090D4B0 /* NibFactory.swift */; };
+		4FC171562A1DBDC80090D4B0 /* IssueListViewModelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171552A1DBDC80090D4B0 /* IssueListViewModelable.swift */; };
 		4FC171582A1DCA640090D4B0 /* LoadingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171572A1DCA640090D4B0 /* LoadingStatus.swift */; };
 		4FC1715B2A1DCF870090D4B0 /* IssueListUseCaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1715A2A1DCF870090D4B0 /* IssueListUseCaseType.swift */; };
 		4FC1715F2A1DDBBA0090D4B0 /* IssueCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1715E2A1DDBBA0090D4B0 /* IssueCollection.swift */; };
@@ -71,6 +72,7 @@
 		4FC5A2112A1DA4FC0001393B /* HexConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexConverter.swift; sourceTree = "<group>"; };
 		4F99BDBE2A17ECB6008AE8D1 /* UICollectionReusableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionReusableView+Extension.swift"; sourceTree = "<group>"; };
 		4FC1714D2A1C5BD40090D4B0 /* NibFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibFactory.swift; sourceTree = "<group>"; };
+		4FC171552A1DBDC80090D4B0 /* IssueListViewModelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewModelable.swift; sourceTree = "<group>"; };
 		4FC171572A1DCA640090D4B0 /* LoadingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStatus.swift; sourceTree = "<group>"; };
 		4FC1715A2A1DCF870090D4B0 /* IssueListUseCaseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListUseCaseType.swift; sourceTree = "<group>"; };
 		4FC1715E2A1DDBBA0090D4B0 /* IssueCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollection.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 		4F46D22A2A1670110003AEDD /* Issue */ = {
 			isa = PBXGroup;
 			children = (
+				4FC171542A1DBCD60090D4B0 /* Protocol */,
 				4F99BDB92A17EAC7008AE8D1 /* ViewController */,
 				4F46D2332A16706D0003AEDD /* View */,
 			);
@@ -321,6 +324,14 @@
 				4FC1714D2A1C5BD40090D4B0 /* NibFactory.swift */,
 			);
 			path = Factory;
+			sourceTree = "<group>";
+		};
+		4FC171542A1DBCD60090D4B0 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				4FC171552A1DBDC80090D4B0 /* IssueListViewModelable.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		4FC171592A1DCF6F0090D4B0 /* Protocol */ = {
@@ -516,6 +527,7 @@
 				4F3819F62A0BA1320046B94D /* AppDelegate.swift in Sources */,
 				4FC1715B2A1DCF870090D4B0 /* IssueListUseCaseType.swift in Sources */,
 				4FC1714E2A1C5BD40090D4B0 /* NibFactory.swift in Sources */,
+				4FC171562A1DBDC80090D4B0 /* IssueListViewModelable.swift in Sources */,
 				4FC171582A1DCA640090D4B0 /* LoadingStatus.swift in Sources */,
 				4FF650C72A0D702900A9B220 /* ComponentStyle.swift in Sources */,
 				4FFC81742A0D51D0008C2575 /* FontStyle.swift in Sources */,
