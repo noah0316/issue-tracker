@@ -26,6 +26,7 @@
 		4FC5A20C2A1B68430001393B /* LabelTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC5A20B2A1B68430001393B /* LabelTag.swift */; };
 		4FC5A2102A1DA3410001393B /* Rgb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC5A20F2A1DA3410001393B /* Rgb.swift */; };
 		4FC5A2122A1DA4FC0001393B /* HexConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC5A2112A1DA4FC0001393B /* HexConverter.swift */; };
+		4F99BDBF2A17ECB6008AE8D1 /* UICollectionReusableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F99BDBE2A17ECB6008AE8D1 /* UICollectionReusableView+Extension.swift */; };
 		4FD5C9772A0C91890096F53D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 4FD5C9762A0C91890096F53D /* .swiftlint.yml */; };
 		4FDA41CF2A16837B00340387 /* IssueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA41CE2A16837B00340387 /* IssueListViewController.swift */; };
 		4FDA41D12A16850500340387 /* Issue.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FDA41D02A16850500340387 /* Issue.storyboard */; };
@@ -57,6 +58,7 @@
 		4FC5A20B2A1B68430001393B /* LabelTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelTag.swift; sourceTree = "<group>"; };
 		4FC5A20F2A1DA3410001393B /* Rgb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rgb.swift; sourceTree = "<group>"; };
 		4FC5A2112A1DA4FC0001393B /* HexConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexConverter.swift; sourceTree = "<group>"; };
+		4F99BDBE2A17ECB6008AE8D1 /* UICollectionReusableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionReusableView+Extension.swift"; sourceTree = "<group>"; };
 		4FD5C9762A0C91890096F53D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		4FDA41CE2A16837B00340387 /* IssueListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewController.swift; sourceTree = "<group>"; };
 		4FDA41D02A16850500340387 /* Issue.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Issue.storyboard; sourceTree = "<group>"; };
@@ -234,6 +236,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		4FDA41D22A1695CC00340387 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4F99BDBE2A17ECB6008AE8D1 /* UICollectionReusableView+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		4FFC81572A0C80F5008C2575 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,6 +272,7 @@
 		4FFC81702A0D51B1008C2575 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				4FDA41D22A1695CC00340387 /* Extension */,
 				4FFC81712A0D51B8008C2575 /* Literal */,
 			);
 			path = Global;
@@ -398,6 +409,7 @@
 				4FC5A20C2A1B68430001393B /* LabelTag.swift in Sources */,
 				4FF650C32A0D6A3800A9B220 /* ColorStyle.swift in Sources */,
 				4FC5A2122A1DA4FC0001393B /* HexConverter.swift in Sources */,
+				4F99BDBF2A17ECB6008AE8D1 /* UICollectionReusableView+Extension.swift in Sources */,
 				4F46D2462A16719A0003AEDD /* LabelCollectionViewCell.swift in Sources */,
 				4FDA41CF2A16837B00340387 /* IssueListViewController.swift in Sources */,
 			);
