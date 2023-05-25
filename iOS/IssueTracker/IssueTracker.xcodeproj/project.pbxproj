@@ -272,7 +272,6 @@
 		4F46D22B2A1670180003AEDD /* Label */ = {
 			isa = PBXGroup;
 			children = (
-				4F46D2312A1670550003AEDD /* ViewController */,
 				4F46D2302A16704D0003AEDD /* View */,
 			);
 			path = Label;
@@ -281,7 +280,6 @@
 		4F46D22C2A1670250003AEDD /* Milestone */ = {
 			isa = PBXGroup;
 			children = (
-				4F46D22F2A16703C0003AEDD /* ViewController */,
 				4F46D22E2A1670370003AEDD /* View */,
 			);
 			path = Milestone;
@@ -296,13 +294,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		4F46D22F2A16703C0003AEDD /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
 		4F46D2302A16704D0003AEDD /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,13 +301,6 @@
 				4F46D2452A16719A0003AEDD /* LabelCollectionViewCell.xib */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		4F46D2312A1670550003AEDD /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		4F46D2332A16706D0003AEDD /* View */ = {
