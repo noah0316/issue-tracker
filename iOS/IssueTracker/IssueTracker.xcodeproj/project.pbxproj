@@ -44,10 +44,12 @@
 		4FC171882A1DF22E0090D4B0 /* IssueListViewModelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171552A1DBDC80090D4B0 /* IssueListViewModelable.swift */; };
 		4FC171892A1DFABF0090D4B0 /* LoadingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171572A1DCA640090D4B0 /* LoadingStatus.swift */; };
 		4FC171942A1F2A2D0090D4B0 /* ViewControllerMakable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171932A1F2A2D0090D4B0 /* ViewControllerMakable.swift */; };
+		4FC171982A1F2ECA0090D4B0 /* IssueListViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171972A1F2ECA0090D4B0 /* IssueListViewControllerFactory.swift */; };
 		4FC1719B2A1F2F9A0090D4B0 /* StoryBoardLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1719A2A1F2F9A0090D4B0 /* StoryBoardLiteral.swift */; };
 		4FD5C9772A0C91890096F53D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 4FD5C9762A0C91890096F53D /* .swiftlint.yml */; };
 		4FDA41CF2A16837B00340387 /* IssueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA41CE2A16837B00340387 /* IssueListViewController.swift */; };
 		4FDA41D12A16850500340387 /* Issue.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FDA41D02A16850500340387 /* Issue.storyboard */; };
+		4FDCA39A2A205A5200AF282A /* IssueListViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171972A1F2ECA0090D4B0 /* IssueListViewControllerFactory.swift */; };
 		4FDCA39B2A205A6E00AF282A /* ViewControllerMakable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171932A1F2A2D0090D4B0 /* ViewControllerMakable.swift */; };
 		4FDCA39C2A205A7300AF282A /* StoryBoardLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1719A2A1F2F9A0090D4B0 /* StoryBoardLiteral.swift */; };
 		4FDCA39F2A205AA300AF282A /* StringLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1719C2A1F51870090D4B0 /* StringLiteral.swift */; };
@@ -101,6 +103,7 @@
 		4FC1717E2A1DE5780090D4B0 /* IssueListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewModelTest.swift; sourceTree = "<group>"; };
 		4FC171812A1DE62C0090D4B0 /* MockIssueListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockIssueListUseCase.swift; sourceTree = "<group>"; };
 		4FC171932A1F2A2D0090D4B0 /* ViewControllerMakable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMakable.swift; sourceTree = "<group>"; };
+		4FC171972A1F2ECA0090D4B0 /* IssueListViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewControllerFactory.swift; sourceTree = "<group>"; };
 		4FC1719A2A1F2F9A0090D4B0 /* StoryBoardLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryBoardLiteral.swift; sourceTree = "<group>"; };
 		4FC1719C2A1F51870090D4B0 /* StringLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiteral.swift; sourceTree = "<group>"; };
 		4FD5C9762A0C91890096F53D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -340,7 +343,9 @@
 		4FC1714C2A1C5B8B0090D4B0 /* Factory */ = {
 			isa = PBXGroup;
 			children = (
+				4FC171922A1F2A0F0090D4B0 /* Protocol */,
 				4FC1714D2A1C5BD40090D4B0 /* NibFactory.swift */,
+				4FC171972A1F2ECA0090D4B0 /* IssueListViewControllerFactory.swift */,
 			);
 			path = Factory;
 			sourceTree = "<group>";
@@ -645,6 +650,7 @@
 				4FC1715F2A1DDBBA0090D4B0 /* IssueCollection.swift in Sources */,
 				4F99BDBF2A17ECB6008AE8D1 /* UICollectionReusableView+Extension.swift in Sources */,
 				4F021B392A1754F700595114 /* User.swift in Sources */,
+				4FC171982A1F2ECA0090D4B0 /* IssueListViewControllerFactory.swift in Sources */,
 				4F46D2462A16719A0003AEDD /* LabelCollectionViewCell.swift in Sources */,
 				4FDA41CF2A16837B00340387 /* IssueListViewController.swift in Sources */,
 				4FC1716B2A1DDF1B0090D4B0 /* Milestone.swift in Sources */,
@@ -663,6 +669,7 @@
 				4FC171822A1DE62C0090D4B0 /* MockIssueListUseCase.swift in Sources */,
 				4FDCA39B2A205A6E00AF282A /* ViewControllerMakable.swift in Sources */,
 				4FC171872A1DE67A0090D4B0 /* User.swift in Sources */,
+				4FDCA39A2A205A5200AF282A /* IssueListViewControllerFactory.swift in Sources */,
 				4FDCA39F2A205AA300AF282A /* StringLiteral.swift in Sources */,
 				4FC171842A1DE6620090D4B0 /* IssueCollection.swift in Sources */,
 				4FC171892A1DFABF0090D4B0 /* LoadingStatus.swift in Sources */,
