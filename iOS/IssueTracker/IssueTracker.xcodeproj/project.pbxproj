@@ -11,7 +11,6 @@
 		4F021B352A17544B00595114 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F021B342A17544B00595114 /* Issue.swift */; };
 		4F021B392A1754F700595114 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F021B382A1754F700595114 /* User.swift */; };
 		4F3819F62A0BA1320046B94D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3819F52A0BA1320046B94D /* AppDelegate.swift */; };
-		4F3819F82A0BA1320046B94D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3819F72A0BA1320046B94D /* SceneDelegate.swift */; };
 		4F3819FA2A0BA1320046B94D /* IssueTrackerTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3819F92A0BA1320046B94D /* IssueTrackerTabBarController.swift */; };
 		4F3819FF2A0BA1350046B94D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3819FE2A0BA1350046B94D /* Assets.xcassets */; };
 		4F381A022A0BA1350046B94D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F381A002A0BA1350046B94D /* LaunchScreen.storyboard */; };
@@ -75,9 +74,7 @@
 		4F021B382A1754F700595114 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4F3819F22A0BA1320046B94D /* IssueTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IssueTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F3819F52A0BA1320046B94D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4F3819F72A0BA1320046B94D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4F3819F92A0BA1320046B94D /* IssueTrackerTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTrackerTabBarController.swift; sourceTree = "<group>"; };
-		4F3819FC2A0BA1320046B94D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/IssueTrackerTabBar.storyboard; sourceTree = "<group>"; };
 		4F3819FE2A0BA1350046B94D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F381A012A0BA1350046B94D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F381A032A0BA1350046B94D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -638,7 +635,6 @@
 				4FC171582A1DCA640090D4B0 /* LoadingStatus.swift in Sources */,
 				4FF650C72A0D702900A9B220 /* ComponentStyle.swift in Sources */,
 				4FFC81742A0D51D0008C2575 /* FontStyle.swift in Sources */,
-				4F3819F82A0BA1320046B94D /* SceneDelegate.swift in Sources */,
 				4F46D23E2A16716C0003AEDD /* IssueHeaderCollectionViewCell.swift in Sources */,
 				4FC5A2102A1DA3410001393B /* Rgb.swift in Sources */,
 				4FC1719D2A1F51870090D4B0 /* StringLiteral.swift in Sources */,
