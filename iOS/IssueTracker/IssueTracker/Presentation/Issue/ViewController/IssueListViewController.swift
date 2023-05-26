@@ -29,11 +29,20 @@ final class IssueListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.bindViewModel()
+        self.setUIAppearance()
         self.viewModel?.input.viewDidLoad()
     }
 }
 
 extension IssueListViewController {
+    private func setUIAppearance() {
+        self.enableLargeTitles()
+    }
+    
+    private func enableLargeTitles() {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
     private func updateIssueListLoadingStatusUI(for loadingStatus: LoadingStatus) {
         switch loadingStatus {
         case .done:
