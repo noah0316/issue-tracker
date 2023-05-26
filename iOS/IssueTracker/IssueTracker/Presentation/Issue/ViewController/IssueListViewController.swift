@@ -48,11 +48,14 @@ extension IssueListViewController {
         case .done:
             self.issueListLoadingIndicatorView.stopAnimating()
             self.issueListView.isHidden = false
+            self.issueListLoadingIndicatorView.isHidden = true
         case .loading:
             self.issueListLoadingIndicatorView.startAnimating()
             self.issueListView.isHidden = true
+            self.issueListLoadingIndicatorView.isHidden = false
         }
     }
+    
 }
 
 extension IssueListViewController {
