@@ -42,12 +42,16 @@
 		4FC171872A1DE67A0090D4B0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F021B382A1754F700595114 /* User.swift */; };
 		4FC171882A1DF22E0090D4B0 /* IssueListViewModelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171552A1DBDC80090D4B0 /* IssueListViewModelable.swift */; };
 		4FC171892A1DFABF0090D4B0 /* LoadingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171572A1DCA640090D4B0 /* LoadingStatus.swift */; };
+		4FC1718F2A1F284E0090D4B0 /* CompositionRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1718E2A1F284E0090D4B0 /* CompositionRoot.swift */; };
 		4FC171942A1F2A2D0090D4B0 /* ViewControllerMakable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171932A1F2A2D0090D4B0 /* ViewControllerMakable.swift */; };
 		4FC171982A1F2ECA0090D4B0 /* IssueListViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171972A1F2ECA0090D4B0 /* IssueListViewControllerFactory.swift */; };
 		4FC1719B2A1F2F9A0090D4B0 /* StoryBoardLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1719A2A1F2F9A0090D4B0 /* StoryBoardLiteral.swift */; };
 		4FD5C9772A0C91890096F53D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 4FD5C9762A0C91890096F53D /* .swiftlint.yml */; };
 		4FDA41CF2A16837B00340387 /* IssueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA41CE2A16837B00340387 /* IssueListViewController.swift */; };
 		4FDA41D12A16850500340387 /* Issue.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FDA41D02A16850500340387 /* Issue.storyboard */; };
+		4FDCA3962A20584100AF282A /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCA3952A20584100AF282A /* AppDependency.swift */; };
+		4FDCA3972A20584E00AF282A /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCA3952A20584100AF282A /* AppDependency.swift */; };
+		4FDCA3982A205A2900AF282A /* CompositionRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1718E2A1F284E0090D4B0 /* CompositionRoot.swift */; };
 		4FDCA39A2A205A5200AF282A /* IssueListViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171972A1F2ECA0090D4B0 /* IssueListViewControllerFactory.swift */; };
 		4FDCA39B2A205A6E00AF282A /* ViewControllerMakable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171932A1F2A2D0090D4B0 /* ViewControllerMakable.swift */; };
 		4FDCA39C2A205A7300AF282A /* StoryBoardLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1719A2A1F2F9A0090D4B0 /* StoryBoardLiteral.swift */; };
@@ -99,6 +103,7 @@
 		4FC171702A1DE4C00090D4B0 /* IssueTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IssueTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FC1717E2A1DE5780090D4B0 /* IssueListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewModelTest.swift; sourceTree = "<group>"; };
 		4FC171812A1DE62C0090D4B0 /* MockIssueListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockIssueListUseCase.swift; sourceTree = "<group>"; };
+		4FC1718E2A1F284E0090D4B0 /* CompositionRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionRoot.swift; sourceTree = "<group>"; };
 		4FC171932A1F2A2D0090D4B0 /* ViewControllerMakable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMakable.swift; sourceTree = "<group>"; };
 		4FC171972A1F2ECA0090D4B0 /* IssueListViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewControllerFactory.swift; sourceTree = "<group>"; };
 		4FC1719A2A1F2F9A0090D4B0 /* StoryBoardLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryBoardLiteral.swift; sourceTree = "<group>"; };
@@ -106,6 +111,7 @@
 		4FD5C9762A0C91890096F53D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		4FDA41CE2A16837B00340387 /* IssueListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewController.swift; sourceTree = "<group>"; };
 		4FDA41D02A16850500340387 /* Issue.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Issue.storyboard; sourceTree = "<group>"; };
+		4FDCA3952A20584100AF282A /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		4FF650C22A0D6A3800A9B220 /* ColorStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStyle.swift; sourceTree = "<group>"; };
 		4FF650C62A0D702900A9B220 /* ComponentStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentStyle.swift; sourceTree = "<group>"; };
 		4FF650C82A0DDA0700A9B220 /* ImageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMapper.swift; sourceTree = "<group>"; };
@@ -218,6 +224,8 @@
 			children = (
 				4F3819F52A0BA1320046B94D /* AppDelegate.swift */,
 				4F3819F72A0BA1320046B94D /* SceneDelegate.swift */,
+				4FC1718E2A1F284E0090D4B0 /* CompositionRoot.swift */,
+				4FDCA3952A20584100AF282A /* AppDependency.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -629,6 +637,7 @@
 				4F3819F62A0BA1320046B94D /* AppDelegate.swift in Sources */,
 				4FC1715B2A1DCF870090D4B0 /* IssueListUseCaseType.swift in Sources */,
 				4FC1714E2A1C5BD40090D4B0 /* NibFactory.swift in Sources */,
+				4FC1718F2A1F284E0090D4B0 /* CompositionRoot.swift in Sources */,
 				4FC171532A1DBC210090D4B0 /* IssueListViewModel.swift in Sources */,
 				4FC171942A1F2A2D0090D4B0 /* ViewControllerMakable.swift in Sources */,
 				4FC171562A1DBDC80090D4B0 /* IssueListViewModelable.swift in Sources */,
@@ -648,6 +657,7 @@
 				4F021B392A1754F700595114 /* User.swift in Sources */,
 				4FC171982A1F2ECA0090D4B0 /* IssueListViewControllerFactory.swift in Sources */,
 				4F46D2462A16719A0003AEDD /* LabelCollectionViewCell.swift in Sources */,
+				4FDCA3962A20584100AF282A /* AppDependency.swift in Sources */,
 				4FDA41CF2A16837B00340387 /* IssueListViewController.swift in Sources */,
 				4FC1716B2A1DDF1B0090D4B0 /* Milestone.swift in Sources */,
 				4F021B352A17544B00595114 /* Issue.swift in Sources */,
@@ -665,7 +675,9 @@
 				4FC171822A1DE62C0090D4B0 /* MockIssueListUseCase.swift in Sources */,
 				4FDCA39B2A205A6E00AF282A /* ViewControllerMakable.swift in Sources */,
 				4FC171872A1DE67A0090D4B0 /* User.swift in Sources */,
+				4FDCA3972A20584E00AF282A /* AppDependency.swift in Sources */,
 				4FDCA39A2A205A5200AF282A /* IssueListViewControllerFactory.swift in Sources */,
+				4FDCA3982A205A2900AF282A /* CompositionRoot.swift in Sources */,
 				4FDCA39F2A205AA300AF282A /* StringLiteral.swift in Sources */,
 				4FC171842A1DE6620090D4B0 /* IssueCollection.swift in Sources */,
 				4FC171892A1DFABF0090D4B0 /* LoadingStatus.swift in Sources */,
