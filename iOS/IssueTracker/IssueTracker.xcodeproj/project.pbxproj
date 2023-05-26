@@ -43,9 +43,11 @@
 		4FC171872A1DE67A0090D4B0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F021B382A1754F700595114 /* User.swift */; };
 		4FC171882A1DF22E0090D4B0 /* IssueListViewModelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171552A1DBDC80090D4B0 /* IssueListViewModelable.swift */; };
 		4FC171892A1DFABF0090D4B0 /* LoadingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171572A1DCA640090D4B0 /* LoadingStatus.swift */; };
+		4FC171942A1F2A2D0090D4B0 /* ViewControllerMakable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171932A1F2A2D0090D4B0 /* ViewControllerMakable.swift */; };
 		4FD5C9772A0C91890096F53D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 4FD5C9762A0C91890096F53D /* .swiftlint.yml */; };
 		4FDA41CF2A16837B00340387 /* IssueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA41CE2A16837B00340387 /* IssueListViewController.swift */; };
 		4FDA41D12A16850500340387 /* Issue.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FDA41D02A16850500340387 /* Issue.storyboard */; };
+		4FDCA39B2A205A6E00AF282A /* ViewControllerMakable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171932A1F2A2D0090D4B0 /* ViewControllerMakable.swift */; };
 		4FF650C32A0D6A3800A9B220 /* ColorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF650C22A0D6A3800A9B220 /* ColorStyle.swift */; };
 		4FF650C72A0D702900A9B220 /* ComponentStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF650C62A0D702900A9B220 /* ComponentStyle.swift */; };
 		4FF650C92A0DDA0700A9B220 /* ImageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF650C82A0DDA0700A9B220 /* ImageMapper.swift */; };
@@ -95,6 +97,7 @@
 		4FC171702A1DE4C00090D4B0 /* IssueTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IssueTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FC1717E2A1DE5780090D4B0 /* IssueListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewModelTest.swift; sourceTree = "<group>"; };
 		4FC171812A1DE62C0090D4B0 /* MockIssueListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockIssueListUseCase.swift; sourceTree = "<group>"; };
+		4FC171932A1F2A2D0090D4B0 /* ViewControllerMakable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMakable.swift; sourceTree = "<group>"; };
 		4FD5C9762A0C91890096F53D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		4FDA41CE2A16837B00340387 /* IssueListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewController.swift; sourceTree = "<group>"; };
 		4FDA41D02A16850500340387 /* Issue.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Issue.storyboard; sourceTree = "<group>"; };
@@ -410,6 +413,14 @@
 			path = Mock;
 			sourceTree = "<group>";
 		};
+		4FC171922A1F2A0F0090D4B0 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				4FC171932A1F2A2D0090D4B0 /* ViewControllerMakable.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		4FDA41D22A1695CC00340387 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -610,6 +621,7 @@
 				4FC1715B2A1DCF870090D4B0 /* IssueListUseCaseType.swift in Sources */,
 				4FC1714E2A1C5BD40090D4B0 /* NibFactory.swift in Sources */,
 				4FC171532A1DBC210090D4B0 /* IssueListViewModel.swift in Sources */,
+				4FC171942A1F2A2D0090D4B0 /* ViewControllerMakable.swift in Sources */,
 				4FC171562A1DBDC80090D4B0 /* IssueListViewModelable.swift in Sources */,
 				4FC171582A1DCA640090D4B0 /* LoadingStatus.swift in Sources */,
 				4FF650C72A0D702900A9B220 /* ComponentStyle.swift in Sources */,
@@ -639,6 +651,7 @@
 				4FC171832A1DE6540090D4B0 /* IssueListUseCaseType.swift in Sources */,
 				4FC1717F2A1DE5780090D4B0 /* IssueListViewModelTest.swift in Sources */,
 				4FC171822A1DE62C0090D4B0 /* MockIssueListUseCase.swift in Sources */,
+				4FDCA39B2A205A6E00AF282A /* ViewControllerMakable.swift in Sources */,
 				4FC171872A1DE67A0090D4B0 /* User.swift in Sources */,
 				4FC171842A1DE6620090D4B0 /* IssueCollection.swift in Sources */,
 				4FC171892A1DFABF0090D4B0 /* LoadingStatus.swift in Sources */,
