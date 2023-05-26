@@ -50,6 +50,7 @@
 		4FDA41D12A16850500340387 /* Issue.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FDA41D02A16850500340387 /* Issue.storyboard */; };
 		4FDCA39B2A205A6E00AF282A /* ViewControllerMakable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171932A1F2A2D0090D4B0 /* ViewControllerMakable.swift */; };
 		4FDCA39C2A205A7300AF282A /* StoryBoardLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1719A2A1F2F9A0090D4B0 /* StoryBoardLiteral.swift */; };
+		4FDCA39F2A205AA300AF282A /* StringLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1719C2A1F51870090D4B0 /* StringLiteral.swift */; };
 		4FF650C32A0D6A3800A9B220 /* ColorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF650C22A0D6A3800A9B220 /* ColorStyle.swift */; };
 		4FF650C72A0D702900A9B220 /* ComponentStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF650C62A0D702900A9B220 /* ComponentStyle.swift */; };
 		4FF650C92A0DDA0700A9B220 /* ImageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF650C82A0DDA0700A9B220 /* ImageMapper.swift */; };
@@ -101,6 +102,7 @@
 		4FC171812A1DE62C0090D4B0 /* MockIssueListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockIssueListUseCase.swift; sourceTree = "<group>"; };
 		4FC171932A1F2A2D0090D4B0 /* ViewControllerMakable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMakable.swift; sourceTree = "<group>"; };
 		4FC1719A2A1F2F9A0090D4B0 /* StoryBoardLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryBoardLiteral.swift; sourceTree = "<group>"; };
+		4FC1719C2A1F51870090D4B0 /* StringLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiteral.swift; sourceTree = "<group>"; };
 		4FD5C9762A0C91890096F53D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		4FDA41CE2A16837B00340387 /* IssueListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewController.swift; sourceTree = "<group>"; };
 		4FDA41D02A16850500340387 /* Issue.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Issue.storyboard; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 				4FC5A20F2A1DA3410001393B /* Rgb.swift */,
 				4FC171572A1DCA640090D4B0 /* LoadingStatus.swift */,
 				4FC1719A2A1F2F9A0090D4B0 /* StoryBoardLiteral.swift */,
+				4FC1719C2A1F51870090D4B0 /* StringLiteral.swift */,
 			);
 			path = Literal;
 			sourceTree = "<group>";
@@ -633,6 +636,7 @@
 				4F3819F82A0BA1320046B94D /* SceneDelegate.swift in Sources */,
 				4F46D23E2A16716C0003AEDD /* IssueHeaderCollectionViewCell.swift in Sources */,
 				4FC5A2102A1DA3410001393B /* Rgb.swift in Sources */,
+				4FC1719D2A1F51870090D4B0 /* StringLiteral.swift in Sources */,
 				4F46D24A2A1671BA0003AEDD /* MilestoneCollectionViewCell.swift in Sources */,
 				4FC5A20C2A1B68430001393B /* LabelTag.swift in Sources */,
 				4FC1719B2A1F2F9A0090D4B0 /* StoryBoardLiteral.swift in Sources */,
@@ -659,6 +663,7 @@
 				4FC171822A1DE62C0090D4B0 /* MockIssueListUseCase.swift in Sources */,
 				4FDCA39B2A205A6E00AF282A /* ViewControllerMakable.swift in Sources */,
 				4FC171872A1DE67A0090D4B0 /* User.swift in Sources */,
+				4FDCA39F2A205AA300AF282A /* StringLiteral.swift in Sources */,
 				4FC171842A1DE6620090D4B0 /* IssueCollection.swift in Sources */,
 				4FC171892A1DFABF0090D4B0 /* LoadingStatus.swift in Sources */,
 				4FC171882A1DF22E0090D4B0 /* IssueListViewModelable.swift in Sources */,
