@@ -18,7 +18,7 @@ final class IssueListView: UICollectionView {
     func update(with issues: IssueCollection) {
         var snapshot = IssueListViewSnapshot()
         snapshot.appendSections([.main])
-        snapshot.appendItems(issues.getAll())
+        snapshot.appendItems(issues.allIssues())
         self.issueListViewDataSource.apply(snapshot)
     }
 }

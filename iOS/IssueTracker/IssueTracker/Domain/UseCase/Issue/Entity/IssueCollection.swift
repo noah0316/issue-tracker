@@ -35,7 +35,7 @@ final class IssueCollection {
     }
     
     /// - Returns: 컬렉션에 있는 모든 Issue 객체를 반환합니다.
-    func getAll() -> [Issue] {
+    func allIssues() -> [Issue] {
         return self.issues
     }
 }
