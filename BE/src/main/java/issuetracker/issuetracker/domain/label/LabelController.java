@@ -5,6 +5,8 @@ import issuetracker.issuetracker.domain.label.dto.LabelFilterDTO;
 import issuetracker.issuetracker.domain.label.dto.LabelListDTO;
 import issuetracker.issuetracker.domain.label.dto.PostingLabelDTO;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ import java.util.List;
 public class LabelController {
 
     private final LabelService labelService;
+    private final Logger log = LoggerFactory.getLogger(LabelController.class);
 
     @GetMapping
     public List<LabelListDTO> showLabelList() {
@@ -32,18 +35,21 @@ public class LabelController {
     @PostMapping
     public void postLabel(@RequestBody PostingLabelDTO label) {
         // TODO 등록 로직 작성
-
-
-        // redirection 하기
+        log.debug("라벨 저장");
+        labelService.save(label);
     }
 
     @DeleteMapping("/{labelId}")
-    public void deleteLabel(@RequestParam Long labelId) {
-        // TODO 라벨 삭제
+    public void deleteLabel(@PathVariable Long labelId) {
+        // TODO 라벨 삭제 라벨 삭제 권한이 있어야 할 것같다.
+        log.debug("라벨 삭제");
+        labelService.delete(labelId);
     }
 
     @PutMapping("/{labelId}")
-    public void updateLabel(@RequestParam Long labelId, @RequestBody PostingLabelDTO label) {
+    public void updateLabel(@PathVariable Long labelId, @RequestBody PostingLabelDTO label) {
         // TODO 라벨 수정
+        log.debug("라벨 수정");
+        labelService.update(labelId, label);
     }
 }
