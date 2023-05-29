@@ -4,8 +4,13 @@ package issuetracker.issuetracker.domain.issue.repository;
 import issuetracker.issuetracker.domain.issue.Assignee;
 import issuetracker.issuetracker.domain.issue.Issue;
 import issuetracker.issuetracker.domain.issue.IssueAttachedLabel;
+import issuetracker.issuetracker.domain.issue.service.IssueService;
+import issuetracker.issuetracker.domain.label.Label;
+import issuetracker.issuetracker.domain.label.LabelRepository;
+import issuetracker.issuetracker.domain.label.dto.PostingLabelDTO;
 import issuetracker.issuetracker.domain.milestone.Milestone;
 import issuetracker.issuetracker.domain.user.Member;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
@@ -16,12 +21,21 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 @DataJdbcTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class IssueRepositoryTest {
 
+    private IssueRepository issueRepository;
+
+    private LabelRepository labelRepository;
+
     @Autowired
-    private IssueRepository repository;
+    public IssueRepositoryTest(IssueRepository issueRepository, LabelRepository labelRepository) {
+        this.issueRepository = issueRepository;
+        this.labelRepository = labelRepository;
+    }
 
     private final AggregateReference<Milestone, Long> mileId = AggregateReference.to(1L);
     private final AggregateReference<Member, Long> userId = AggregateReference.to(1L);
@@ -72,26 +86,57 @@ public class IssueRepositoryTest {
         Issue issue = this.issues.get(0);
 
         // when
-        Issue actual = this.repository.save(issue);
+        Issue actual = this.issueRepository.save(issue);
 
         // then
         System.out.println(actual);
-//        assertThat(issue.getVersion()).isEqualTo(1L);
-//        assertThat(issue.getContent()).isSameAs(actual.getContent());
-//
-//        assertThat(issue.getAttachedLabels().get(0)).isSameAs(actual.getAttachedLabels().get(0));
-//        assertThat(issue.getAttachedLabels().get(1)).isSameAs(actual.getAttachedLabels().get(1));
-//
-//        Optional<Issue> load = this.sut.findById(issue.getId());
-//        assertThat(load).isPresent();
-//        assertThat(load.get().getId()).isEqualTo(issue.getId());
-//        assertThat(load.get().getVersion()).isEqualTo(1L);
-//        assertThat(load.get().getRepoId()).isEqualTo(this.repoId);
-//        assertThat(load.get().getStatus()).isEqualTo(Status.OPEN);
-//        assertThat(load.get().getTitle()).isEqualTo("issue 1");
-//        assertThat(load.get().getContent().getBody()).isEqualTo("content 1");
-//        assertThat(load.get().getContent().getMimeType()).isEqualTo("text/plain");
-//        assertThat(load.get().getCreatedBy()).isEqualTo(this.creatorId);
+        assertEquals(actual.getId(), issue.getId());
+        assertEquals(actual.getTitle(), issue.getTitle());
+        assertEquals(actual.getAuthor(), issue.getAuthor());
+        assertEquals(actual.getIsOpen(), issue.getIsOpen());
+        assertEquals(actual.getMilestoneId(), issue.getMilestoneId());
+        assertEquals(actual.getAttachedLabels(), issue.getAttachedLabels());
+        assertEquals(actual.getAssignees(), issue.getAssignees());
+
+        assertEquals(actual.getAttachedLabels().get(0), issue.getAttachedLabels().get(0));
+        assertEquals(actual.getAssignees().get(0), issue.getAssignees().get(0));
     }
 
+    @Test
+    @DisplayName("이슈 라벨 삭제")
+    void deleteLabelFromIssues() {
+
+        Label label = labelRepository.findById(1L).get();
+        System.out.println("label = " + label);
+        //TODO 이슈에있는 라벨도 삭제해야함.
+        // Remove the label from all issues
+
+        labelRepository.delete(label);
+    }
+
+    @Test
+    @DisplayName("이슈 라벨 업데이트")
+    void updateLabelFromIssues() {
+        // Given
+        //라벨찾고
+        Label label = labelRepository.findById(1L).get();
+        System.out.println("label" + label.getTitle());
+
+        // When
+        //모든 이슈 이슈를 뒤지면서 라벨이 바뀐걸 update
+        Label new_title = label.update(new PostingLabelDTO("New Title", "", ""));
+        Label save = labelRepository.save(new_title);
+        System.out.println("IssueRepositoryTest.updateLabelFromIssues" + save.getTitle());
+        // Then
+        Iterable<Issue> afterAll = issueRepository.findAll();
+        for (Issue issue : afterAll) {
+            List<IssueAttachedLabel> attachedLabels = issue.getAttachedLabels();
+            for (IssueAttachedLabel attachedLabel : attachedLabels) {
+                if (attachedLabel.getId() == 1L) {
+                    System.out.println("title = " + issue.getTitle());
+                }
+            }
+        }
+        System.out.println("afterAll = " + afterAll);
+    }
 }

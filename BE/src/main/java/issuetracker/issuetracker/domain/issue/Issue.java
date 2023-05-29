@@ -53,8 +53,7 @@ public class Issue {
     @Builder.Default
     private List<IssueAttachedLabel> attachedLabels = new ArrayList<>();
 
-    @MappedCollection(idColumn = "issue_id", keyColumn = "assignee_id")
-    @Builder.Default
+     @Builder.Default
     private List<Assignee> assignees = new ArrayList<>();
 
     public List<IssueAttachedLabel> getAttachedLabels() {

@@ -19,6 +19,7 @@ import issuetracker.issuetracker.domain.user.MemberService;
 import issuetracker.issuetracker.domain.user.dto.AssigneeDTO;
 import issuetracker.issuetracker.domain.user.dto.AuthorDTO;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class IssueService {
 
     private final IssueRepository issueRepository;
@@ -128,5 +129,13 @@ public class IssueService {
     public void deleteIssue(Long issueId) {
         Issue issue = issueRepository.findIssueById(issueId);
         issueRepository.delete(issue);
+    }
+
+    public List<Issue> getIssues() {
+        List<Issue> issues = new ArrayList<>();
+        for (Issue issue : issueRepository.findAll()) {
+            issues.add(issue);
+        }
+        return issues;
     }
 }
