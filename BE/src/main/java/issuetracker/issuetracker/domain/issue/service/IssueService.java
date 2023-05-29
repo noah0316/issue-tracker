@@ -39,21 +39,12 @@ public class IssueService {
     private final Logger log = LoggerFactory.getLogger(IssueController.class);
 
     public Long save(PostingIssueDTO postingIssueDTO) {
-
-        Issue issue = Issue.builder()
-                //.id(null)
-                .title(postingIssueDTO.getTitle())
-                //  .contents(postingIssueDTO.getContents())
-                //  .fileUrl(postingIssueDTO.getFileUrl())
-                .author(AggregateReference.to(postingIssueDTO.getId().getId()))
-                .milestoneId(AggregateReference.to(postingIssueDTO.getMilestone().getId()))
-                .assignees(null)
-                .attachedLabels(null)
-                .build();
-
+        log.debug("postingIssueDTO = {}", postingIssueDTO);
+        Issue issue = Issue.create(postingIssueDTO);
         //TODO 로그인한 사용자 ID 차후 수정필요
+        log.debug("Issue DTO 로 issue생성 = {}", issue);
         Issue save = issueRepository.save(issue);
-        log.debug("saveIssue = {}", save);
+        log.debug("save = {}", save);
         return save.getId();
     }
 
@@ -62,31 +53,15 @@ public class IssueService {
         log.debug("byId = {}", issue);
         log.debug("issue = {}", issue);
         //라벨 n관계
-
-
-        List<IssueAttachedLabel> attachedLabels = issue.getAttachedLabels();
-        List<LabelDTO> labels = new ArrayList<>();
-
-        for (IssueAttachedLabel attachedLabel : attachedLabels) {
-            AggregateReference<Label, Long> labelId = attachedLabel.getLabelId();
-            Label label = labelRepository.findById(labelId.getId()).get();
-
-            LabelDTO labelInIssueDTO = LabelDTO.builder()
-                    .id(label.getId())
-                    .labelName(label.getTitle())
-                    .fontColor(label.getFontColor())
-                    .backgroundColor(label.getBackgroundColor())
-                    .build();
-            labels.add(labelInIssueDTO);
-        }
+        List<LabelDTO> labels = getLabelsByIssueId(id);
 
         //담당자 n관계
         List<Assignee> assigneeList = issue.getAssignees();
         List<AssigneeDTO> assignees = new ArrayList<>();
 
         for (Assignee assignee : assigneeList) {
-            AggregateReference<Member, Long> labelId = assignee.getMemberId();
-            Member member = memberRepository.findById(labelId.getId()).get();
+            Long labelId = assignee.getId();
+            Member member = memberRepository.findById(labelId).get();
             log.debug("member ={}", member);
             AssigneeDTO assigneeDTO = AssigneeDTO.builder()
                     .id(member.getMemberId())
@@ -100,6 +75,7 @@ public class IssueService {
         log.debug("이슈 작성자 번호 = {}", issue.getAuthor());
         AuthorDTO author = userService.findByAuthor(issue.getAuthor());
         log.debug("author = {}", author);
+
         // 마일스톤 1관계
         MileStoneDTO milestone = mileStoneService.findMilestoneInIssue(issue.getMilestoneId());
 
@@ -116,6 +92,27 @@ public class IssueService {
                 .build();
 
         return issueDetailDTO;
+    }
+
+    public List<LabelDTO> getLabelsByIssueId(final Long issueId) {
+        Issue issue = issueRepository.findById(issueId).get();
+        List<IssueAttachedLabel> attachedLabels = issue.getAttachedLabels();
+        List<LabelDTO> labels = new ArrayList<>();
+
+        for (IssueAttachedLabel attachedLabel : attachedLabels) {
+            AggregateReference<Label, Long> labelId = attachedLabel.getLabelId();
+            Label label = labelRepository.findById(labelId.getId()).get();
+
+            LabelDTO labelInIssueDTO = LabelDTO.builder()
+                    .id(label.getId())
+                    .labelName(label.getTitle())
+                    .fontColor(label.getFontColor())
+                    .backgroundColor(label.getBackgroundColor())
+                    .build();
+            labels.add(labelInIssueDTO);
+        }
+
+        return labels;
     }
 
     //TODO 수정필요
