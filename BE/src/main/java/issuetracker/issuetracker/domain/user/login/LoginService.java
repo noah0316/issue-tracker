@@ -17,7 +17,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-// TODO : userProfiel과 userEmail 가져오는 코드의 중복이 대부분인데, profile과 email은 요청을 두 번 보내야 하는 부분을 어떻게 해결해야 할 지 고민
 @Slf4j
 @Service
 public class LoginService {
@@ -50,6 +49,7 @@ public class LoginService {
     }
 
 
+    // TODO: email의 경우 socpe 설정 해주어도 나오지 않기 때문에, api 요청을 두번 보내고 있는데, 개선 방안 찾아보기
     public UserProfileResponse getUserProfile(String accessToken) {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + accessToken);
@@ -57,42 +57,37 @@ public class LoginService {
 
         HttpEntity<?> requestEntity = new HttpEntity<>(headers);
 
-        ResponseEntity<UserProfileResponse> response = new RestTemplate().exchange(
+        // profile 에 대한 정보 (로그인 아이디, 이름, 프로필 url)
+        ResponseEntity<UserProfileResponse> profileResponse = new RestTemplate().exchange(
                 OAuthConst.PROFILE_URL,
                 HttpMethod.GET,
                 requestEntity,
                 UserProfileResponse.class
         );
 
-        return response.getBody();
-    }
-
-    // TODO : email 여러개 중 primary만 주는 것이 괜찮을지, orElse로 null을 주는 것이 괜찮을지
-    public String getUserEmail(String accessToken) {
-        return getUserEmails(accessToken).stream()
-                .filter(email -> email.isPrimary())
-                .findAny()
-                .orElse(null)
-                .getEmail();
-    }
-
-    private List<UserEmailResponse> getUserEmails(String accessToken) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", "Bearer " + accessToken);
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        HttpEntity<?> requestEntity = new HttpEntity<>(headers);
-
-        ResponseEntity<UserEmailResponse[]> response = new RestTemplate().exchange(
+        // 사용자가 등록한 여러 email 중 primary email을 userProfileResponse 에 등록
+        ResponseEntity<UserEmailResponse[]> emailResponse = new RestTemplate().exchange(
                 OAuthConst.EMAIL_URL,
                 HttpMethod.GET,
                 requestEntity,
                 UserEmailResponse[].class
         );
 
-        return Arrays.asList(response.getBody());
+        UserProfileResponse userProfile = profileResponse.getBody();
+        List<UserEmailResponse> emails = Arrays.asList(emailResponse.getBody());
+        userProfile.setEmail(getUserEmail(emails));
+
+
+        return profileResponse.getBody();
     }
 
-
+    // TODO : email 여러개 중 primary만 주는 것이 괜찮을지, orElse로 null을 주는 것이 괜찮을지
+    private String getUserEmail(List<UserEmailResponse> emails) {
+        return emails.stream()
+                .filter(email -> email.isPrimary())
+                .findAny()
+                .orElse(null)
+                .getEmail();
+    }
 
 }
