@@ -1,10 +1,13 @@
 package issuetracker.issuetracker.domain.milestone;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import issuetracker.issuetracker.domain.issue.IssueController;
 import issuetracker.issuetracker.domain.milestone.dto.MilestoneFilterDTO;
 import issuetracker.issuetracker.domain.milestone.dto.MilestoneListDTO;
 import issuetracker.issuetracker.domain.milestone.dto.MilestonePostDTO;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -17,7 +20,9 @@ import java.util.List;
 @RestController
 public class MilestoneController {
 
-    private final MileRepository repository;
+    private final MilestoneService service;
+    private final MilestoneRepository repository;
+    private final Logger log = LoggerFactory.getLogger(IssueController.class);
 
     @GetMapping
     public List<MilestoneListDTO> showMilestoneList() {
@@ -26,8 +31,9 @@ public class MilestoneController {
     }
 
     @PostMapping
-    public void postMilestone(@ModelAttribute MilestonePostDTO milestone) {
+    public void postMilestone(@RequestBody MilestonePostDTO milestone) {
         // TODO 마일스톤 등록
+        service.save(milestone);
     }
 
     @DeleteMapping("/{milestoneId}")
