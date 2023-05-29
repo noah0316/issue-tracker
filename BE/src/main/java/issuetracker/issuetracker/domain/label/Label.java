@@ -8,6 +8,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.util.Arrays;
+
 @Getter
 @AllArgsConstructor
 @Table("label")
@@ -22,6 +24,17 @@ public class Label {
     //추가
     private boolean isDelete;
     private String backgroundColor;
+
+    public static Label create(PostingLabelDTO labelDTO) {
+        return Label.builder()
+                .id(null)
+                .title(labelDTO.getTitle())
+                .backgroundColor(labelDTO.getBackgroundColor())
+                .description(labelDTO.getDescription())
+                .fontColor("#FFFF")
+                .isDelete(false)
+                .build();
+    }
 
     public Label update(PostingLabelDTO newLabelLine) {
         this.title = newLabelLine.getTitle();
