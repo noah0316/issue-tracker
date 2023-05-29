@@ -1,6 +1,7 @@
 package issuetracker.issuetracker.domain.user.login;
 
 import issuetracker.issuetracker.domain.user.login.dto.GithubToken;
+import issuetracker.issuetracker.domain.user.login.dto.JWTResponse;
 import issuetracker.issuetracker.domain.user.login.dto.UserProfileResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,15 +20,21 @@ public class LoginController {
     private final JwtUtil jwtUtil;
 
     @GetMapping("/githublogin")
-    public ResponseEntity<String> githubLogin(String code, HttpServletResponse response) {
+    public ResponseEntity<JWTResponse> githubLogin(String code, HttpServletResponse response) {
         GithubToken githubToken = loginService.getAccessToken(code);
-        response.setHeader("Authorization", githubToken.getAuthorizationValue());
+        response.setHeader("Authorization", "application/json");
 
         UserProfileResponse userProfile = loginService.getUserProfile(githubToken.getAccessToken());
-        String email = loginService.getUserEmail(githubToken.getAccessToken());
 
-        String token = jwtUtil.createToken(userProfile.getLogin(), userProfile.getName(), email, userProfile.getAvatarUrl());
+        String token = jwtUtil.createToken(userProfile);
 
-        return ResponseEntity.ok(token);
+        return ResponseEntity.ok(makeJWT(token));
+    }
+
+    private JWTResponse makeJWT(String token) {
+        if (token == null) {
+            throw new IllegalArgumentException();
+        }
+        return new JWTResponse("login success", token);
     }
 }

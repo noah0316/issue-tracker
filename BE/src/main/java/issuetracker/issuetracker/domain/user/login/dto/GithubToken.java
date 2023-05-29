@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 public class GithubToken {
+
     @JsonProperty("access_token")
     private String accessToken;
     @JsonProperty("token_type")
@@ -16,8 +17,4 @@ public class GithubToken {
     @JsonProperty("scope")
     private String scope;
 
-
-    public String getAuthorizationValue() {
-        return this.tokenType + " " + this.accessToken;
-    }
 }
