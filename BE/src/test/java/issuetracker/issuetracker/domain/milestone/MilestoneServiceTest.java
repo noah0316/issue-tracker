@@ -22,14 +22,6 @@ class MilestoneServiceTest {
     private MilestoneService service;
     private MilestoneRepository repository;
 
-
-    @Autowired
-    private WebApplicationContext context;
-
-    @InjectSoftAssertions
-    private SoftAssertions softly;
-
-    private MockMvc mockMvc;
     @Test
     @DisplayName("설명")
     @Transactional
