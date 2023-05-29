@@ -16,7 +16,7 @@ export const IssueList = () => {
   const [issues, setIssues] = useState([]);
   const initData = async () => {
     try {
-      const response = await fetchData('/issues');
+      const response = await fetchData('http://13.209.232.172:8080/Issues');
       setIssues(response);
     } catch (err) {
       console.err(err);
