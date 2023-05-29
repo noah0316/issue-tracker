@@ -33,5 +33,3 @@ VALUES (1, 1),
        (2, 2),
        (3, 2);
 
-
-SELECT member.member_id AS id, member.member_name AS name, member.profile_url AS profileUrl FROM  member WHERE member.member_id = ?
