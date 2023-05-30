@@ -1,5 +1,9 @@
 package issuetracker.issuetracker.domain.label;
 
+import issuetracker.issuetracker.domain.issue.Assignee;
+import issuetracker.issuetracker.domain.issue.Issue;
+import issuetracker.issuetracker.domain.issue.IssueAttachedLabel;
+import issuetracker.issuetracker.domain.issue.service.IssueService;
 import issuetracker.issuetracker.domain.label.dto.LabelListDTO;
 import issuetracker.issuetracker.domain.label.dto.PostingLabelDTO;
 import org.junit.jupiter.api.DisplayName;
@@ -7,8 +11,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.data.jdbc.core.mapping.AggregateReference;
 
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -19,12 +25,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class LabelRepositoryTest {
 
-    LabelRepository repository;
-
     @Autowired
-    LabelRepositoryTest(LabelRepository repository) {
-        this.repository = repository;
-    }
+    LabelRepository repository;
+    @Autowired
+    IssueService issueService;
+
 
     @Test
     @DisplayName("모든 라벨출력")
@@ -104,5 +109,11 @@ class LabelRepositoryTest {
 
         Label findLabel = repository.findById(label.getId()).get();
         assertEquals("고구마 라벨", findLabel.getTitle());
+    }
+
+    @Test
+    @DisplayName("이슈 에있는 라벨 삭제")
+    void issueDeleteLabel() {
+
     }
 }

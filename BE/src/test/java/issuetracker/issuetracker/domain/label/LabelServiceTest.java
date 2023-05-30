@@ -5,6 +5,7 @@ import issuetracker.issuetracker.domain.issue.Assignee;
 import issuetracker.issuetracker.domain.issue.Issue;
 import issuetracker.issuetracker.domain.issue.IssueAttachedLabel;
 import issuetracker.issuetracker.domain.issue.repository.IssueRepository;
+import issuetracker.issuetracker.domain.issue.service.IssueService;
 import issuetracker.issuetracker.domain.label.dto.LabelDTO;
 import issuetracker.issuetracker.domain.label.dto.LabelFilterDTO;
 import issuetracker.issuetracker.domain.milestone.Milestone;
@@ -13,6 +14,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
 import org.springframework.http.MediaType;
@@ -25,13 +28,14 @@ import java.util.List;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
+@DataJdbcTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class LabelServiceTest {
 
     @Autowired
     private LabelService labelService;
     private LabelRepository repository;
-    private IssueRepository issueRepository;
+    private IssueService issueService;
 
 
     private final AggregateReference<Milestone, Long> mileId = AggregateReference.to(1L);
@@ -76,6 +80,7 @@ class LabelServiceTest {
                     .author(userId)
                     .build()
     );
+
     // TODO: DB 변경 후 테스트 수정할 것
     @Test
     @DisplayName("라벨 필터 팝업 데이터는 4개가 저장되어 있으므로, 4개가 나와야 한다.")
@@ -104,16 +109,34 @@ class LabelServiceTest {
     @Transactional
     @DisplayName("라벨 삭제, 이슈가 가지고있는 라벨 삭제")
     void delete() {
-//        Label label = repository.findById(labelId).get();
-//        //TODO 이슈에있는 라벨도 삭제해야함.
-//        List<Issue> issues = issueRepository.findByLabels(label);
-//        log.debug("라벨 id 에 해당하는 issue 리스트 출력 = {}", issues);
-//        for (Issue issue : issues) {
-//            issue.getAttachedLabels().remove(label);
-//        }
-//
-//        issueRepository.saveAll(issues);
-//        repository.delete(label);
+        Label label = Label.builder()
+                .id(null)
+                .title("감자 라벨")
+                .backgroundColor("black")
+                .fontColor("yellow")
+                .description("이슈1")
+                .build();
+
+        Issue.builder()
+                .id(1L)
+                .title("issue 1")
+                .isDelete(false)
+                .isOpen(true)
+                .createTime(LocalDateTime.now())
+                .updateTime(LocalDateTime.now())
+                .attachedLabels(new ArrayList<>(List.of(
+                        IssueAttachedLabel.builder()
+                                .labelId(AggregateReference.to(label.getId()))
+                                .build()
+                )))
+                .milestoneId(null)
+                .author(AggregateReference.to(1L))
+                .build();
+
+
+        issueService.getIssues().stream()
+                .filter(issue -> issue.getAttachedLabels().contains(label))
+                .forEach(issue -> issue.getAttachedLabels().remove(label));
     }
 
 }

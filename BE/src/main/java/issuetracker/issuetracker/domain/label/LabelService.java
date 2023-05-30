@@ -1,5 +1,6 @@
 package issuetracker.issuetracker.domain.label;
 
+import issuetracker.issuetracker.domain.issue.IssueAttachedLabel;
 import issuetracker.issuetracker.domain.issue.IssueController;
 import issuetracker.issuetracker.domain.issue.service.IssueService;
 import issuetracker.issuetracker.domain.label.dto.LabelFilterDTO;
@@ -11,46 +12,52 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class LabelService {
 
-    private final LabelRepository repository;
+    private final LabelRepository labelRepository;
     private final IssueService issueService;
     private final Logger log = LoggerFactory.getLogger(IssueController.class);
 
     public List<LabelListDTO> getLabelList() {
-        return repository.getLabelList();
+        return labelRepository.getLabelList();
     }
 
     @Transactional(readOnly = true)
     public List<LabelFilterDTO> getLabelFilter() {
-        return repository.getLabelFilter();
+        return labelRepository.getLabelFilter();
     }
 
     public void save(PostingLabelDTO labelDTO) {
         Label label = Label.create(labelDTO);
-        repository.save(label);
+        labelRepository.save(label);
     }
 
     public void delete(Long labelId) {
-        Label label = repository.findById(labelId).get();
-
+        Label label = labelRepository.findById(labelId).get();
         //TODO 이슈에있는 라벨도 삭제해야함.
         // Remove the label from all issues
-        issueService.getIssues().forEach(issue -> issue.getAttachedLabels().removeIf(attachedLabel -> attachedLabel.getLabelId().equals(labelId)));
-        repository.delete(label);
+
+        issueService.getIssues().stream()
+                .filter(issue -> issue.getAttachedLabels().contains(label))
+                .forEach(issue -> issue.getAttachedLabels().remove(label));
+
+        labelRepository.delete(label);
     }
 
     public void update(Long labelId, PostingLabelDTO newLabelLine) {
-        Label label = repository.findById(labelId).get();
-        //TODO 이슈에있는 라벨도 업데이트 해줘야함.
+        Label label = labelRepository.findById(labelId).get();
+        labelRepository.save(label.update(newLabelLine));
+    }
 
-//        label.getIssues().stream()
-//                .map(issue -> issue.deleteLabel(label))
-//                .forEach(this::synchronizeIssue);
-        repository.save(label.update(newLabelLine));
+    public List<Label> findByAll(List<Long> labelIds) {
+        Iterable<Label> allById = labelRepository.findAllById(labelIds);
+        List<Label> labels = new ArrayList<>((Collection) allById);
+        return labels;
     }
 }

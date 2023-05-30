@@ -7,6 +7,7 @@ import issuetracker.issuetracker.domain.label.dto.LabelListDTO;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -29,8 +30,4 @@ public interface LabelRepository extends CrudRepository<Label, Long> {
             "label.background_color AS background_color " +
             "FROM label")
     List<LabelFilterDTO> getLabelFilter();
-
-
-    @Query("SELECT label FROM IssueAttachedLabel WHERE labelId = :labelId")
-    List<AggregateReference<IssueAttachedLabel, Long>> findLabelsByName(Long labelId);
 }
