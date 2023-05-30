@@ -30,4 +30,10 @@ public interface LabelRepository extends CrudRepository<Label, Long> {
             "label.background_color AS background_color " +
             "FROM label")
     List<LabelFilterDTO> getLabelFilter();
+
+    @Query("SELECT l.* " +
+            "FROM label l " +
+            "JOIN label_list ll  " +
+            "ON ll.issue_id = :id")
+    List<Label> findAllAttachedLabelByIssues(@Param("id") Long id);
 }
