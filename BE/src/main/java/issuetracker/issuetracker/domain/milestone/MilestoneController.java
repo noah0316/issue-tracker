@@ -27,7 +27,7 @@ public class MilestoneController {
     @GetMapping
     public List<MilestoneListDTO> showMilestoneList() {
         // TODO 마일스톤 전체 목록 조회
-        return new ArrayList<>();
+        return service.findAll();
     }
 
     @PostMapping
@@ -39,11 +39,13 @@ public class MilestoneController {
     @DeleteMapping("/{milestoneId}")
     public void deleteMilestone(@RequestParam Long milestoneId) {
         //TODO 마일스톤 삭제
+        service.delete(milestoneId);
     }
 
     @PutMapping("/{milestoneId}")
     public void updateMilestone(@RequestParam Long milestoneId, @RequestBody MilestonePostDTO milestone) {
         //TODO 마일스톤 업데이트
+        service.update(milestoneId, milestone);
     }
 
     @GetMapping("/filter")

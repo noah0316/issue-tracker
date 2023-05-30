@@ -36,4 +36,10 @@ public class Milestone {
                 .isDelete(false)
                 .build();
     }
+
+    public void update(MilestonePostDTO milestonePostDTO) {
+        this.title = milestonePostDTO.getTitle();
+        this.createTime = milestonePostDTO.getCompleteDate();
+        this.description = milestonePostDTO.getDescription();
+    }
 }

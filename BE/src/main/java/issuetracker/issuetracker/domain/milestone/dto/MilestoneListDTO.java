@@ -1,5 +1,6 @@
 package issuetracker.issuetracker.domain.milestone.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@Builder
 public class MilestoneListDTO {
 
 
