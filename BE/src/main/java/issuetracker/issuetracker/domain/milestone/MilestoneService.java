@@ -1,16 +1,12 @@
 package issuetracker.issuetracker.domain.milestone;
 
-import issuetracker.issuetracker.domain.issue.Assignee;
 import issuetracker.issuetracker.domain.issue.Issue;
 import issuetracker.issuetracker.domain.issue.IssueController;
 import issuetracker.issuetracker.domain.issue.service.IssueService;
-import issuetracker.issuetracker.domain.label.dto.LabelDTO;
 import issuetracker.issuetracker.domain.milestone.dto.MileStoneDTO;
 import issuetracker.issuetracker.domain.milestone.dto.MilestoneFilterDTO;
 import issuetracker.issuetracker.domain.milestone.dto.MilestoneListDTO;
 import issuetracker.issuetracker.domain.milestone.dto.MilestonePostDTO;
-import issuetracker.issuetracker.domain.user.Member;
-import issuetracker.issuetracker.domain.user.dto.AssigneeDTO;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
