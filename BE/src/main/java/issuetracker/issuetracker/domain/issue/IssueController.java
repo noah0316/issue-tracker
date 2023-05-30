@@ -5,11 +5,13 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import issuetracker.issuetracker.domain.issue.comment.dto.CommentInIssueDTO;
 import issuetracker.issuetracker.domain.issue.comment.dto.CommentPostDTO;
 import issuetracker.issuetracker.domain.issue.dto.IssueDetailDTO;
+import issuetracker.issuetracker.domain.issue.dto.IssueDetailLabelDto;
 import issuetracker.issuetracker.domain.issue.dto.Request.IssueTitleDTO;
 import issuetracker.issuetracker.domain.issue.dto.Request.PostingIssueDTO;
 import issuetracker.issuetracker.domain.issue.dto.IssueDTO;
 import issuetracker.issuetracker.domain.issue.repository.IssueMybatisRepository;
 import issuetracker.issuetracker.domain.issue.service.IssueService;
+import issuetracker.issuetracker.domain.label.Label;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,10 +76,17 @@ public class IssueController {
         log.debug("이슈 담당자 편집");
     }
 
-    @DeleteMapping()
+    @DeleteMapping("/{issueId}")
     public void deleteIssue(@PathVariable Long issueId) {
         log.debug("이슈의 삭제");
         issueService.deleteIssue(issueId);
+    }
+
+    //TODO 이슈에 있는 라벨 삭제..
+    @PutMapping("/{issueId}/remove")
+    public IssueDetailLabelDto deleteAttachedLabels(@PathVariable Long issueId, @RequestBody Label label) {
+        log.debug("이슈에 있는 라벨삭제");
+        return issueService.removeAttachedLabels(issueId, label);
     }
 
     @GetMapping("/{issueId}/comments")

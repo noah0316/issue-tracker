@@ -4,6 +4,7 @@ package issuetracker.issuetracker.domain.issue.repository;
 import issuetracker.issuetracker.domain.issue.Assignee;
 import issuetracker.issuetracker.domain.issue.Issue;
 import issuetracker.issuetracker.domain.issue.IssueAttachedLabel;
+import issuetracker.issuetracker.domain.issue.dto.IssueDetailLabelDto;
 import issuetracker.issuetracker.domain.issue.service.IssueService;
 import issuetracker.issuetracker.domain.label.Label;
 import issuetracker.issuetracker.domain.label.LabelRepository;
@@ -138,5 +139,43 @@ public class IssueRepositoryTest {
             }
         }
         System.out.println("afterAll = " + afterAll);
+    }
+
+
+    @Test
+    @DisplayName("이슈 라벨 업데이트")
+    void updateLabelFromIssue() {
+        // Given
+        //라벨찾고
+        Label label = Label.builder()
+                .id(null)
+                .title("감자 라벨")
+                .backgroundColor("black")
+                .fontColor("yellow")
+                .description("이슈1")
+                .build();
+        labelRepository.save(label);
+
+        Issue issue = Issue.builder()
+                .id(null)
+                .title("issue 1")
+                .isDelete(false)
+                .isOpen(true)
+                .createTime(LocalDateTime.now())
+                .updateTime(LocalDateTime.now())
+                .attachedLabels(new ArrayList<>(List.of(
+                        IssueAttachedLabel.builder()
+                                .labelId(AggregateReference.to(label.getId()))
+                                .build()
+                )))
+                .milestoneId(null)
+                .author(AggregateReference.to(1L))
+                .build();
+        issueRepository.save(issue);
+        Issue findIssue = issueRepository.findById(issue.getId()).get();
+        findIssue.removeAttachedLabels(label);
+        Issue newIssue = issueRepository.save(findIssue);
+        List<Label> newAttachedLabel = labelRepository.findAllAttachedLabelByIssues(newIssue.getId());
+        assertEquals(newAttachedLabel.size(), 0);
     }
 }

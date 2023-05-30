@@ -5,6 +5,7 @@ import issuetracker.issuetracker.domain.issue.Issue;
 import issuetracker.issuetracker.domain.issue.IssueAttachedLabel;
 import issuetracker.issuetracker.domain.issue.IssueController;
 import issuetracker.issuetracker.domain.issue.dto.IssueDetailDTO;
+import issuetracker.issuetracker.domain.issue.dto.IssueDetailLabelDto;
 import issuetracker.issuetracker.domain.issue.dto.Request.IssueTitleDTO;
 import issuetracker.issuetracker.domain.issue.dto.Request.PostingIssueDTO;
 import issuetracker.issuetracker.domain.issue.repository.IssueRepository;
@@ -36,7 +37,6 @@ public class IssueService {
     private final IssueRepository issueRepository;
     private final MilestoneService mileStoneService;
     private final LabelRepository labelRepository;
-    private final LabelService labelService;
     private final MemberService userService;
     private final MemberRepository memberRepository;
     private final Logger log = LoggerFactory.getLogger(IssueController.class);
@@ -173,7 +173,14 @@ public class IssueService {
     public void updateLabels(Long issueId, PostingIssueDTO issueDto) {
         Issue issue = issueRepository.findById(issueId).get();
         List<Long> labels = issueDto.getLabels();
-        issue.updateLabels(labelService.findByAll(labels));
         issueRepository.save(issue);
+    }
+
+    public IssueDetailLabelDto removeAttachedLabels(Long issueId, Label label) {
+        Issue issue = issueRepository.findById(issueId).get();
+        issue.removeAttachedLabels(label);
+        Issue newIssue = issueRepository.save(issue);
+        List<Label> newAttachedLabel = labelRepository.findAllAttachedLabelByIssues(newIssue.getId());
+        return new IssueDetailLabelDto(newIssue, newAttachedLabel);
     }
 }

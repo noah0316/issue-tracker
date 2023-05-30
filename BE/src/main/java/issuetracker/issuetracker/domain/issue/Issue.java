@@ -1,5 +1,6 @@
 package issuetracker.issuetracker.domain.issue;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import issuetracker.issuetracker.domain.issue.dto.Request.IssueTitleDTO;
 import issuetracker.issuetracker.domain.issue.dto.Request.PostingIssueDTO;
 import issuetracker.issuetracker.domain.label.Label;
@@ -50,6 +51,8 @@ public class Issue {
 
     @Column("author")
     private AggregateReference<Member, @NotNull Long> author;
+
+    @JsonIgnore
     @MappedCollection(idColumn = "issue_id", keyColumn = "label_list_id")
     @Builder.Default
     private List<IssueAttachedLabel> attachedLabels = new ArrayList<>();
@@ -58,13 +61,6 @@ public class Issue {
     @Builder.Default
     private List<Assignee> assignees = new ArrayList<>();
 
-    public List<IssueAttachedLabel> getAttachedLabels() {
-        return Collections.unmodifiableList(this.attachedLabels);
-    }
-
-    public List<Assignee> getAssignees() {
-        return Collections.unmodifiableList(this.assignees);
-    }
 
     public static Issue create(PostingIssueDTO postingIssueDTO) {
         return Issue.builder()
@@ -102,7 +98,20 @@ public class Issue {
         return this;
     }
 
-    public void updateLabels(List<IssueAttachedLabel> labels) {
-        this.attachedLabels = labels;
+
+    public List<IssueAttachedLabel> getAttachedLabels() {
+        return Collections.unmodifiableList(this.attachedLabels);
+    }
+
+    public List<Assignee> getAssignees() {
+        return Collections.unmodifiableList(this.assignees);
+    }
+
+    public void addAttachedLabels(Label label) {
+        this.attachedLabels.add(new IssueAttachedLabel(label.getId(), AggregateReference.to(label.getId())));
+    }
+
+    public void removeAttachedLabels(Label label) {
+        this.attachedLabels.removeIf(attachedLabel -> attachedLabel.labelId.getId() == label.getId());
     }
 }
