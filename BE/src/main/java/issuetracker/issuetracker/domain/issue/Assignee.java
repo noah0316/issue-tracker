@@ -12,7 +12,6 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import javax.validation.constraints.NotNull;
 
-@Value
 @AllArgsConstructor
 @Table("assignee")
 @Getter

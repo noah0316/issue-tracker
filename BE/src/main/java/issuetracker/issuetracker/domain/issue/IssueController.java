@@ -59,6 +59,7 @@ public class IssueController {
     public void updateLabels(@PathVariable Long issueId, @RequestBody PostingIssueDTO issue) {
         // 수정하는 메서드 생성
         log.debug("이슈 레이블 편집");
+        issueService.updateLabels(issueId, issue);
     }
 
     @PatchMapping("/{issueId}/comments")
@@ -97,7 +98,8 @@ public class IssueController {
     }
 
     @DeleteMapping("/{issueId}/comments/{commentId}")
-    public void deleteComment(@RequestParam Long issueId, @RequestParam Long commentId) {
+    public void deleteComment(@PathVariable Long userId, @PathVariable Long issueId, @RequestParam Long commentId) {
         // TODO 댓글 삭제하기 구현
+        issueService.deleteCommnet(userId, issueId, commentId);
     }
 }

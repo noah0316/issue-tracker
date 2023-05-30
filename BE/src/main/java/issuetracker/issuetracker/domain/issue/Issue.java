@@ -2,6 +2,7 @@ package issuetracker.issuetracker.domain.issue;
 
 import issuetracker.issuetracker.domain.issue.dto.Request.IssueTitleDTO;
 import issuetracker.issuetracker.domain.issue.dto.Request.PostingIssueDTO;
+import issuetracker.issuetracker.domain.label.Label;
 import issuetracker.issuetracker.domain.milestone.Milestone;
 import issuetracker.issuetracker.domain.user.Member;
 import lombok.*;
@@ -44,7 +45,7 @@ public class Issue {
     @Column("is_delete")
     private Boolean isDelete;
 
-   // @Column("milestone_id")
+    // @Column("milestone_id")
     private AggregateReference<Milestone, @NotNull Long> milestoneId;
 
     @Column("author")
@@ -53,7 +54,8 @@ public class Issue {
     @Builder.Default
     private List<IssueAttachedLabel> attachedLabels = new ArrayList<>();
 
-     @Builder.Default
+    @MappedCollection(idColumn = "issue_id", keyColumn = "assignee_id")
+    @Builder.Default
     private List<Assignee> assignees = new ArrayList<>();
 
     public List<IssueAttachedLabel> getAttachedLabels() {
@@ -93,5 +95,14 @@ public class Issue {
     public Issue update(IssueTitleDTO issueTitleDTO) {
         this.title = issueTitleDTO.getTitle();
         return this;
+    }
+
+    public Issue deleteMilestone() {
+        this.milestoneId = null;
+        return this;
+    }
+
+    public void updateLabels(List<IssueAttachedLabel> labels) {
+        this.attachedLabels = labels;
     }
 }

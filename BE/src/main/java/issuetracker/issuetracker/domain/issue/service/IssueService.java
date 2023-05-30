@@ -10,6 +10,7 @@ import issuetracker.issuetracker.domain.issue.dto.Request.PostingIssueDTO;
 import issuetracker.issuetracker.domain.issue.repository.IssueRepository;
 import issuetracker.issuetracker.domain.label.Label;
 import issuetracker.issuetracker.domain.label.LabelRepository;
+import issuetracker.issuetracker.domain.label.LabelService;
 import issuetracker.issuetracker.domain.label.dto.LabelDTO;
 import issuetracker.issuetracker.domain.milestone.MilestoneService;
 import issuetracker.issuetracker.domain.milestone.dto.MileStoneDTO;
@@ -18,7 +19,6 @@ import issuetracker.issuetracker.domain.user.MemberRepository;
 import issuetracker.issuetracker.domain.user.MemberService;
 import issuetracker.issuetracker.domain.user.dto.AssigneeDTO;
 import issuetracker.issuetracker.domain.user.dto.AuthorDTO;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +27,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -35,6 +36,7 @@ public class IssueService {
     private final IssueRepository issueRepository;
     private final MilestoneService mileStoneService;
     private final LabelRepository labelRepository;
+    private final LabelService labelService;
     private final MemberService userService;
     private final MemberRepository memberRepository;
     private final Logger log = LoggerFactory.getLogger(IssueController.class);
@@ -137,5 +139,41 @@ public class IssueService {
             issues.add(issue);
         }
         return issues;
+    }
+
+    public Long findByIsOpen(Long milestoneId) {
+        Iterable<Issue> all = issueRepository.findAll();
+        Long count = 0L;
+        for (Issue issue : all) {
+            if (issue.getMilestoneId().getId() == milestoneId) {
+                if (issue.getIsOpen() == true) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    public Long count() {
+        return issueRepository.count();
+    }
+
+    public Issue update(Issue issue) {
+        return Issue.builder()
+                .id(issue.getId())
+                .author(issue.getAuthor())
+                .assignees(issue.getAssignees())
+                .attachedLabels(issue.getAttachedLabels())
+                .build();
+    }
+
+    public void deleteCommnet(Long userId, Long issueId, Long commentId) {
+    }
+
+    public void updateLabels(Long issueId, PostingIssueDTO issueDto) {
+        Issue issue = issueRepository.findById(issueId).get();
+        List<Long> labels = issueDto.getLabels();
+        issue.updateLabels(labelService.findByAll(labels));
+        issueRepository.save(issue);
     }
 }
