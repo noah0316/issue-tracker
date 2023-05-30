@@ -8,9 +8,8 @@ import lombok.Setter;
 @Setter
 public class UserProfileResponse {
 
-    private String login;
+    private Long id;
     private String name;
-    private String email;
     @JsonProperty("avatar_url")
     private String avatarUrl;
 }

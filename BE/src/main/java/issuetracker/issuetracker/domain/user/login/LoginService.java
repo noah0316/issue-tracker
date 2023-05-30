@@ -2,7 +2,6 @@ package issuetracker.issuetracker.domain.user.login;
 
 
 import issuetracker.issuetracker.domain.user.login.dto.GithubToken;
-import issuetracker.issuetracker.domain.user.login.dto.UserEmailResponse;
 import issuetracker.issuetracker.domain.user.login.dto.UserProfileResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,9 +11,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -48,8 +45,6 @@ public class LoginService {
         return (GithubToken) response.getBody();
     }
 
-
-    // TODO: email의 경우 socpe 설정 해주어도 나오지 않기 때문에, api 요청을 두번 보내고 있는데, 개선 방안 찾아보기
     public UserProfileResponse getUserProfile(String accessToken) {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + accessToken);
@@ -57,37 +52,13 @@ public class LoginService {
 
         HttpEntity<?> requestEntity = new HttpEntity<>(headers);
 
-        // profile 에 대한 정보 (로그인 아이디, 이름, 프로필 url)
-        ResponseEntity<UserProfileResponse> profileResponse = new RestTemplate().exchange(
+        return new RestTemplate().exchange(
                 OAuthConst.PROFILE_URL,
                 HttpMethod.GET,
                 requestEntity,
-                UserProfileResponse.class
-        );
-
-        // 사용자가 등록한 여러 email 중 primary email을 userProfileResponse 에 등록
-        ResponseEntity<UserEmailResponse[]> emailResponse = new RestTemplate().exchange(
-                OAuthConst.EMAIL_URL,
-                HttpMethod.GET,
-                requestEntity,
-                UserEmailResponse[].class
-        );
-
-        UserProfileResponse userProfile = profileResponse.getBody();
-        List<UserEmailResponse> emails = Arrays.asList(emailResponse.getBody());
-        userProfile.setEmail(getUserEmail(emails));
-
-
-        return profileResponse.getBody();
+                UserProfileResponse.class)
+                .getBody();
     }
 
-    // TODO : email 여러개 중 primary만 주는 것이 괜찮을지, orElse로 null을 주는 것이 괜찮을지
-    private String getUserEmail(List<UserEmailResponse> emails) {
-        return emails.stream()
-                .filter(email -> email.isPrimary())
-                .findAny()
-                .orElse(null)
-                .getEmail();
-    }
 
 }
