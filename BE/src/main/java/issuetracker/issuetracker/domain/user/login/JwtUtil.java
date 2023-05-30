@@ -16,12 +16,9 @@ public class JwtUtil {
 
     public String createToken(UserProfileResponse userProfile) {
         return Jwts.builder()
-                .claim("loginId", userProfile.getLogin()) // 아이디를 설정-> db에 저장한 후 db의 pk를 가져오는 식으로 , 혹은 claim 없이
-                .claim("name", userProfile.getName()) // 이름을 설정
-                .claim("email", userProfile.getEmail()) // 이메일을 설정
-                .claim("profileUrl", userProfile.getAvatarUrl()) // 프로필 URL을 설정
-                .setIssuedAt(new Date()) // 토큰의 발행일을 설정
                 .setHeaderParam("typ", "JWT")
+                .setSubject("login_member")
+                .claim("userProfile", userProfile)
                 .setExpiration(new Date((new Date()).getTime() + 3600000)) // 토큰의 만료일을 설정 : 현재 1시간
                 .signWith(SignatureAlgorithm.HS256, secret) // HS256 알고리즘과 시크릿 키를 사용하여 서명
                 .compact(); // 토큰을 생성하세요.

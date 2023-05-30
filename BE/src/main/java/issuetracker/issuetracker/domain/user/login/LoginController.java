@@ -1,10 +1,11 @@
 package issuetracker.issuetracker.domain.user.login;
 
 import issuetracker.issuetracker.domain.user.login.dto.GithubToken;
-import issuetracker.issuetracker.domain.user.login.dto.JWTResponse;
 import issuetracker.issuetracker.domain.user.login.dto.UserProfileResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,7 @@ public class LoginController {
     private final JwtUtil jwtUtil;
 
     @GetMapping("/githublogin")
-    public ResponseEntity<JWTResponse> githubLogin(String code, HttpServletResponse response) {
+    public ResponseEntity<String> githubLogin(String code, HttpServletResponse response) {
         GithubToken githubToken = loginService.getAccessToken(code);
         response.setHeader("Authorization", "application/json");
 
@@ -28,13 +29,12 @@ public class LoginController {
 
         String token = jwtUtil.createToken(userProfile);
 
-        return ResponseEntity.ok(makeJWT(token));
-    }
+        HttpHeaders header = new HttpHeaders();
+        header.set("Authorization", "Bearer " + token);
+        header.setContentType(MediaType.APPLICATION_JSON);
 
-    private JWTResponse makeJWT(String token) {
-        if (token == null) {
-            throw new IllegalArgumentException();
-        }
-        return new JWTResponse("login success", token);
+        return ResponseEntity.ok()
+                .headers(header)
+                .body("login success");
     }
 }
