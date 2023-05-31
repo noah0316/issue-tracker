@@ -14,11 +14,14 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class Member {
     @Id
-    private Long memberId;
+    @Column("member_id")
+    private Long id;
 
     @NotBlank
-    private String memberName;
+    @Column("member_name")
+    private String name;
 
     @Column("profile_url")
     private String profileUrl;
+
 }
