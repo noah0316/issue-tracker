@@ -20,3 +20,4 @@ export { ReactComponent as chevronDown } from '../svgs/chevronDown.svg';
 export { ReactComponent as roundImage } from '../svgs/roundImage.svg';
 export { ReactComponent as grip } from '../svgs/grip.svg';
 export { ReactComponent as trash } from '../svgs/trash.svg';
+export { ReactComponent as refreshCcw } from '../svgs/refreshCcw.svg';

@@ -14,6 +14,9 @@ export const Auth = () => {
     const getToken = async () => {
       try {
         const response = await fetchData(`${AUTH_URI}?code=${queryCode}`);
+        const token = response.token;
+        localStorage.setItem('jwtToken', token);
+        console.log(jwt.decode(token));
         // console.log(response);
 
         // navigate('/issues');
