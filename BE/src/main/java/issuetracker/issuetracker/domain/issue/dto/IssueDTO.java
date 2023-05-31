@@ -30,7 +30,6 @@ public class IssueDTO {
     @NotNull
     private Boolean isOpen;
 
-
     private MileStoneDTO milestone;
     @NotNull
     private AuthorDTO author;

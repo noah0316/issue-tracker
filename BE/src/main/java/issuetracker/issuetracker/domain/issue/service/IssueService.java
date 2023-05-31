@@ -35,17 +35,20 @@ import java.util.stream.Collectors;
 public class IssueService {
 
     private final IssueRepository issueRepository;
-    private final MilestoneService mileStoneService;
     private final LabelRepository labelRepository;
-    private final MemberService userService;
     private final MemberRepository memberRepository;
-    private final Logger log = LoggerFactory.getLogger(IssueController.class);
+    private final MemberService userService;
+    private final MilestoneService mileStoneService;
+    private final Logger log = LoggerFactory.getLogger(IssueService.class);
 
     public Long save(PostingIssueDTO postingIssueDTO) {
         log.debug("postingIssueDTO = {}", postingIssueDTO);
         Issue issue = Issue.create(postingIssueDTO);
         //TODO 로그인한 사용자 ID 차후 수정필요
         log.debug("Issue DTO 로 issue생성 = {}", issue);
+        log.debug("Issue DTO 로 issue생성 = {}", issue.getAuthor());
+        log.debug("Issue assignee", issue.getAssignees());
+        log.debug("Issue label", issue.getAttachedLabels());
         Issue save = issueRepository.save(issue);
         log.debug("save = {}", save);
         return save.getId();
@@ -59,7 +62,7 @@ public class IssueService {
         List<LabelDTO> labels = getLabelsByIssueId(id);
 
         //담당자 n관계
-        List<Assignee> assigneeList = issue.getAssignees();
+        List<Assignee> assigneeList = new ArrayList<>(issue.getAssignees());
         List<AssigneeDTO> assignees = new ArrayList<>();
 
         for (Assignee assignee : assigneeList) {
@@ -99,7 +102,7 @@ public class IssueService {
 
     public List<LabelDTO> getLabelsByIssueId(final Long issueId) {
         Issue issue = issueRepository.findById(issueId).get();
-        List<IssueAttachedLabel> attachedLabels = issue.getAttachedLabels();
+        List<IssueAttachedLabel> attachedLabels = new ArrayList<>(issue.getAttachedLabels());
         List<LabelDTO> labels = new ArrayList<>();
 
         for (IssueAttachedLabel attachedLabel : attachedLabels) {
@@ -133,14 +136,6 @@ public class IssueService {
         issueRepository.delete(issue);
     }
 
-    public List<Issue> getIssues() {
-        List<Issue> issues = new ArrayList<>();
-        for (Issue issue : issueRepository.findAll()) {
-            issues.add(issue);
-        }
-        return issues;
-    }
-
     public Long findByIsOpen(Long milestoneId) {
         Iterable<Issue> all = issueRepository.findAll();
         Long count = 0L;
@@ -154,9 +149,6 @@ public class IssueService {
         return count;
     }
 
-    public Long count() {
-        return issueRepository.count();
-    }
 
     public Issue update(Issue issue) {
         return Issue.builder()

@@ -14,10 +14,10 @@ import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
 import javax.validation.constraints.NotNull;
+import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Getter
@@ -46,7 +46,7 @@ public class Issue {
     @Column("is_delete")
     private Boolean isDelete;
 
-    // @Column("milestone_id")
+    @Column("milestone_id")
     private AggregateReference<Milestone, @NotNull Long> milestoneId;
 
     @Column("author")
@@ -55,14 +55,21 @@ public class Issue {
     @JsonIgnore
     @MappedCollection(idColumn = "issue_id", keyColumn = "label_list_id")
     @Builder.Default
-    private List<IssueAttachedLabel> attachedLabels = new ArrayList<>();
+    private Set<IssueAttachedLabel> attachedLabels = new HashSet<>();
 
     @MappedCollection(idColumn = "issue_id", keyColumn = "assignee_id")
     @Builder.Default
-    private List<Assignee> assignees = new ArrayList<>();
+    private Set<Assignee> assignees = new HashSet<>();
 
 
     public static Issue create(PostingIssueDTO postingIssueDTO) {
+        Set<Assignee> assigneeSet = new HashSet<>();
+        postingIssueDTO.getAssignees().stream().map(e -> new Assignee(e.longValue()))
+                .forEach(a -> assigneeSet.add(a));
+
+        Set<IssueAttachedLabel> attacheSet = new HashSet<>();
+        postingIssueDTO.getLabels().stream().map(e -> new IssueAttachedLabel(e.longValue()))
+                .forEach(a -> attacheSet.add(a));
         return Issue.builder()
                 .id(null)
                 .createTime(LocalDateTime.now())
@@ -72,21 +79,13 @@ public class Issue {
                 .title(postingIssueDTO.getTitle())
                 //TODO 사용자 id넣어야함
                 .author(AggregateReference.to(postingIssueDTO.getTokenuser().getId()))
-                //     .milestoneId(AggregateReference.to(postingIssueDTO.getMilestoneId()))
+                .milestoneId(AggregateReference.to(postingIssueDTO.getMilestoneId()))
                 .milestoneId(null)
-                .attachedLabels(postingIssueDTO.getLabels().stream().map(label ->
-                        IssueAttachedLabel.builder()
-                                .id(label)
-                                .labelId(AggregateReference.to(label))
-                                .build()
-                ).collect(Collectors.toList()))
-                .assignees(postingIssueDTO.getAssignees().stream().map(assignee ->
-                        Assignee.builder()
-                                .id(assignee)
-                                .build()
-                ).collect(Collectors.toList()))
+                .attachedLabels(attacheSet)
+                .assignees(assigneeSet)
                 .build();
     }
+
 
     public Issue update(IssueTitleDTO issueTitleDTO) {
         this.title = issueTitleDTO.getTitle();
@@ -98,13 +97,12 @@ public class Issue {
         return this;
     }
 
-
-    public List<IssueAttachedLabel> getAttachedLabels() {
-        return Collections.unmodifiableList(this.attachedLabels);
+    public Set<IssueAttachedLabel> getAttachedLabels() {
+        return Collections.unmodifiableSet(this.attachedLabels);
     }
 
-    public List<Assignee> getAssignees() {
-        return Collections.unmodifiableList(this.assignees);
+    public Set<Assignee> getAssignees() {
+        return Collections.unmodifiableSet(this.assignees);
     }
 
     public void addAttachedLabels(Label label) {
@@ -114,4 +112,6 @@ public class Issue {
     public void removeAttachedLabels(Label label) {
         this.attachedLabels.removeIf(attachedLabel -> attachedLabel.labelId.getId() == label.getId());
     }
+
+
 }

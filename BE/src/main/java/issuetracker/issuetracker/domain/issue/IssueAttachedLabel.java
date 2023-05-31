@@ -1,6 +1,7 @@
 package issuetracker.issuetracker.domain.issue;
 
 import issuetracker.issuetracker.domain.label.Label;
+import issuetracker.issuetracker.domain.user.Member;
 import jdk.jshell.Snippet;
 import lombok.*;
 
@@ -12,9 +13,8 @@ import org.springframework.data.relational.core.mapping.Table;
 import javax.validation.constraints.NotNull;
 
 @Table("label_list")
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@AllArgsConstructor
 @Getter
 @ToString
 public class IssueAttachedLabel {
@@ -24,4 +24,7 @@ public class IssueAttachedLabel {
 
     AggregateReference<Label, @NotNull Long> labelId;
 
+    public IssueAttachedLabel(Long index) {
+        this.labelId = AggregateReference.to(index);
+    }
 }
