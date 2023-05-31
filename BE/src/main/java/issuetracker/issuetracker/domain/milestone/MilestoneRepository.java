@@ -26,5 +26,4 @@ public interface MilestoneRepository extends CrudRepository<Milestone, Long> {
             "FROM milestone " +
             "WHERE milestone.milestone_id = :id")
     MileStoneDTO findByMilestoneInIssue(@Param("id") @NotNull Long id);
-
 }

@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -21,12 +20,12 @@ import java.util.List;
 public class MilestoneController {
 
     private final MilestoneService service;
-    private final MilestoneRepository repository;
-    private final Logger log = LoggerFactory.getLogger(IssueController.class);
+    private final Logger log = LoggerFactory.getLogger(MilestoneController.class);
 
     @GetMapping
     public List<MilestoneListDTO> showMilestoneList() {
         // TODO 마일스톤 전체 목록 조회
+        log.debug("모든 마일스톤 조회");
         return service.findAll();
     }
 
@@ -37,20 +36,19 @@ public class MilestoneController {
     }
 
     @DeleteMapping("/{milestoneId}")
-    public void deleteMilestone(@RequestParam Long milestoneId) {
+    public void deleteMilestone(@PathVariable long milestoneId) {
         //TODO 마일스톤 삭제
         service.delete(milestoneId);
     }
 
     @PutMapping("/{milestoneId}")
-    public void updateMilestone(@RequestParam Long milestoneId, @RequestBody MilestonePostDTO milestone) {
+    public void updateMilestone(@PathVariable long milestoneId, @RequestBody MilestonePostDTO milestone) {
         //TODO 마일스톤 업데이트
         service.update(milestoneId, milestone);
     }
 
     @GetMapping("/filter")
     public List<MilestoneFilterDTO> getMilestoneFilter() {
-        return repository.getMilestoneFilter();
+        return service.getMilestoneFilter();
     }
-
 }

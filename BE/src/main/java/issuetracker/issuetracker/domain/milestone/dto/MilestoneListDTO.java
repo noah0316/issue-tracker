@@ -1,5 +1,6 @@
 package issuetracker.issuetracker.domain.milestone.dto;
 
+import issuetracker.issuetracker.domain.milestone.Milestone;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +22,17 @@ public class MilestoneListDTO {
     private String title;
     private String description;
     private LocalDateTime completeDate;
-    private Long openIssueCount;
-    private Long closeIssueCount;
+    private long openIssueCount;
+    private long closeIssueCount;
+
+    public static MilestoneListDTO of(Milestone milestone, Long openedIssues, Long closedIssues) {
+        return MilestoneListDTO.builder()
+                .id(milestone.getMilestoneId())
+                .title(milestone.getTitle())
+                .description(milestone.getDescription())
+                .completeDate(milestone.getCreateTime())
+                .openIssueCount(openedIssues)
+                .closeIssueCount(closedIssues)
+                .build();
+    }
 }
