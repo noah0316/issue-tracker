@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 
 import styled from 'styled-components';
 
@@ -14,32 +14,31 @@ export const IssueDetailHeader = () => {
   const [isEdit, setIsEdit] = useState(false);
   const [isClose, setIsClose] = useState(false);
   const [titleData, setTitleData] = useState(null);
-  const [completeTitleData, setcompleteTitleData] = useState(null);
-  const handleEdit = () => {
-    setIsEdit(true);
-    setTitleData(`${issue?.title}`)
-
-  useEffect(() => {
-    setTitleData(issueSubInfo?.title);
-  }, [issueSubInfo?.title]);
-
-  const handleEdit = () => {
-    setIsEdit(true);
-  };
+  const [completeTitleData, setCompleteTitleData] = useState(null);
 
   const handleNotEdit = () => {
     setIsEdit(false);
+    setTitleData(completeTitleData);
   };
   const handleCloseIssue = () => {
     setIsClose(true);
   };
-
   const handleSubmit = () => {
     setIsEdit(false);
+    setCompleteTitleData(titleData);
+  };
+  const handleEdit = () => {
+    setIsEdit(true);
+    setTitleData(`${issue?.title}`);
   };
 
+  useEffect(() => {
+    setTitleData(issue?.title);
+    setCompleteTitleData(issue?.title);
+  }, [issue?.title]);
+
   const pageHeaderInfo = {
-    leftChild: issue?.title,
+    leftChild: titleData,
     middleChild: `#${issue?.issueId}`,
     value: isEdit
   };

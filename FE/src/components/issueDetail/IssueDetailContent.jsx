@@ -17,7 +17,6 @@ export const IssueDetailContent = () => {
     value: comment,
     setValue: SetComment
   };
-
   const addComment = {
     size: 's',
     color: 'containerBlue',
@@ -28,13 +27,12 @@ export const IssueDetailContent = () => {
     disabled: comment?.length < 1,
     isLeftPosition: true
   };
-
   return (
     <MyIssueDetailContent>
       {comments &&
-        comments.map((comment) => (
+        comments.map((comment, index) => (
           <CommentElements
-            key={comment.userId}
+            key={index}
             authorInfo={{
               id: issue.author.id,
               name: issue.author.name

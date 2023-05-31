@@ -53,14 +53,11 @@ export const TextArea = React.memo(
           ref={inputRef}
           value={value}
         />
-        {isEdit
-          || (
-            <label className={textAreaValue && 'filled'}>{label}</label>
-          )}
-        <TextCount isFocus={isTextAreaFocus} isEidt={isEdit}>
-          {isCount && <span>{`띄어쓰기 포함 ${textAreaValue?.length}자`}</span>}
+        {isEdit || <label className={value && 'filled'}>{label}</label>}
+        <MyTextCount isFocus={isTextAreaFocus} isEidt={isEdit}>
+          {isCount && <span>{`띄어쓰기 포함 ${value?.length}자`}</span>}
           <Icon iconType={'grip'} />
-        </TextCount>
+        </MyTextCount>
         <MyFileArea
           isFocus={isTextAreaFocus}
           isEdit={isEdit}
@@ -116,18 +113,20 @@ const MyTextArea = styled.form`
   align-items: center;
   width: 938px;
   border-radius: 11px;
-
+  background: ${({ isFocus, isEdit }) =>
+    isEdit
+      ? `${colors.gray50}`
+      : isFocus
+        ? `${colors.gray50}`
+        : `${colors.gray200}`};
   box-shadow: ${({ isFocus, isEdit }) =>
     isEdit ? null : isFocus ? `0 0 0 1px ${colors.blue}` : null};
-
   &: focus-within label {
     transform: translate(0, 12px) scale(0.8);
   }
-
   &: filled {
     transform: translate(0, 12px) scale(0.8);
   }
-
   & label {
     position: absolute;
     ${({ value }) =>
@@ -143,7 +142,6 @@ const MyTextArea = styled.form`
     left: 16px;
     top: 3px;
   }
-
   & textarea {
     ${({ areaSize }) => areaSize};
     border-radius: ${({ isEdit }) => (isEdit ? '0px' : '11px 11px 0px 0px')};
@@ -182,7 +180,6 @@ const MyFileArea = styled.div`
         : `${colors.gray200}`};
   border-top: ${({ isFocus }) =>
     isFocus ? `1px dashed ${colors.blue}` : `1px dashed ${colors.gray300}`};
-
   > div {
     padding: 0px 20px 0px 0px;
   }
@@ -192,7 +189,7 @@ const MyFileArea = styled.div`
   }
 `;
 
-const TextCount = styled.div`
+const MyTextCount = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
@@ -200,10 +197,5 @@ const TextCount = styled.div`
   color: ${colors.gray600};
   ${fontSize.S};
   ${fontType.REGULAR};
-  background: ${({ isFocus, isEdit }) =>
-    isEdit
-      ? `${colors.gray50}`
-      : isFocus
-        ? `${colors.gray50}`
-        : `${colors.gray200}`};
+  background: transparent;
 `;

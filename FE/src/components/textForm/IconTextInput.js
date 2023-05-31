@@ -2,12 +2,11 @@ import { useState } from 'react';
 
 import styled from 'styled-components';
 
-import { Icon } from '../../assets/Icon';
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
+
 export const IconTextInput = ({ inputValue, inputSetValue, label }) => {
   const [isFocus, setIsFocus] = useState(false);
-
   return (
     <MyInputPageHeader isFocus={isFocus}>
       <label>{label}</label>
