@@ -17,9 +17,7 @@ public interface MemberRepository extends CrudRepository<Member, Long> {
             "member.member_id AS id, " +
             "member.member_name AS name, " +
             "member.profile_url " +
-            "FROM member " +
-            "WHERE " +
-            "member.member_id IN (SELECT issue.author FROM issue)")
+            "FROM member")
     List<AuthorDTO> getMemberFilter();
 
 
