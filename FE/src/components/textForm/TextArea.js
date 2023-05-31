@@ -7,7 +7,6 @@ import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 import { Button } from '../button/Button';
 
-// uncontrolled components
 export const TextArea = React.memo(
   ({ label, size, value, setValue, inputRef, isEdit }) => {
     const areaSize = areaSizes[size];
@@ -53,12 +52,9 @@ export const TextArea = React.memo(
           ref={inputRef}
           value={value}
         />
-        {isEdit
-          || (
-            <label className={textAreaValue && 'filled'}>{label}</label>
-          )}
+        {isEdit || <label className={value && 'filled'}>{label}</label>}
         <TextCount isFocus={isTextAreaFocus} isEidt={isEdit}>
-          {isCount && <span>{`띄어쓰기 포함 ${textAreaValue?.length}자`}</span>}
+          {isCount && <span>{`띄어쓰기 포함 ${value?.length}자`}</span>}
           <Icon iconType={'grip'} />
         </TextCount>
         <MyFileArea

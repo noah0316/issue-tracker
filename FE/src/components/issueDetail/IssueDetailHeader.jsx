@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 
 import styled from 'styled-components';
 
@@ -17,15 +17,12 @@ export const IssueDetailHeader = () => {
   const [completeTitleData, setcompleteTitleData] = useState(null);
   const handleEdit = () => {
     setIsEdit(true);
-    setTitleData(`${issue?.title}`)
+    setTitleData(`${issue?.title}`);
+  };
 
   useEffect(() => {
-    setTitleData(issueSubInfo?.title);
-  }, [issueSubInfo?.title]);
-
-  const handleEdit = () => {
-    setIsEdit(true);
-  };
+    setTitleData(issue?.title);
+  }, [issue?.title]);
 
   const handleNotEdit = () => {
     setIsEdit(false);
