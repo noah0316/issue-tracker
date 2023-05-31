@@ -26,6 +26,7 @@ export const IssueDetail = () => {
       console.log(err);
     }
   };
+
   useEffect(() => {
     initData();
   }, [issueId]);

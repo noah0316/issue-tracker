@@ -16,7 +16,7 @@ export const IssueDetailHeader = () => {
   const [titleData, setTitleData] = useState(null);
   const [completeTitleData, setCompleteTitleData] = useState(null);
   
- const handleNotEdit = () => {
+  const handleNotEdit = () => {
     setIsEdit(false);
     setTitleData(completeTitleData);
   };

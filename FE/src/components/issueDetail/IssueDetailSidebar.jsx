@@ -14,6 +14,7 @@ export const IssueDetailSidebar = () => {
   const [milestone, setMilestone] = useState(null);
   const [selectedSideBarMenu, setselectedSideBarMenu] = useState({});
   const navigate = useNavigate();
+
   const btnInfo = {
     size: 'xs',
     color: 'ghostRed',

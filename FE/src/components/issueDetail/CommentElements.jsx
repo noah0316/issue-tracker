@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -37,6 +37,7 @@ export const CommentElements = ({
     setIsEditComment(false);
     setIsCompleteComment(comment);
   };
+
   const emojiOptions = {
     size: 'xs',
     color: 'ghostGray',
@@ -46,7 +47,6 @@ export const CommentElements = ({
     buttonText: '반응',
     isLeftPosition: true
   };
-
   const editOption = {
     size: 'xs',
     color: 'ghostGray',
@@ -57,7 +57,6 @@ export const CommentElements = ({
     isLeftPosition: true,
     onClick: handleEditCommnet
   };
-
   const labelTagInfo = {
     tagType: 'labels',
     hasIcon: false,
@@ -66,16 +65,14 @@ export const CommentElements = ({
     fontColor: colors.gray600,
     borderColor: colors.gray300
   };
-
   const commentInput = {
     size: 's',
     value: completeComment,
     setValue: setIsCompleteComment,
     isEdit: isEditComment
   };
-
-  const editComment = [
-    {
+  const editComment = {
+    cancle: {
       id: 1,
       size: 's',
       color: 'outlineBlue',
@@ -86,7 +83,7 @@ export const CommentElements = ({
       buttonText: '편집 취소',
       onClick: handleCanelEditComment
     },
-    {
+    complete: {
       id: 2,
       size: 's',
       color: 'outlineBlue',
@@ -97,7 +94,7 @@ export const CommentElements = ({
       buttonText: '편집 완료',
       onClick: handleCompleteEditComment
     }
-  ];
+  };
 
   return (
     <>
@@ -128,17 +125,12 @@ export const CommentElements = ({
             <MyComments>{comment}</MyComments>
           )}
       </MyCommentElements>
-      {isEditComment
-        ? (
-          <MyEditCommentBtn>
-            {editComment.map((edit) => (
-              <>
-                <Button key={edit.id} {...edit} />
-              </>
-            ))}
-          </MyEditCommentBtn>
-        )
-        : null}
+      {isEditComment && (
+        <MyEditCommentBtn>
+          <Button {...editComment.cancle} />
+          <Button {...editComment.complete} />
+        </MyEditCommentBtn>
+      )}
     </>
   );
 };
