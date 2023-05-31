@@ -17,11 +17,8 @@ CREATE TABLE `milestone`
 
 CREATE TABLE `member`
 (
-    `member_id`   INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `login_id`    VARCHAR(45)  NOT NULL UNIQUE,
+    `member_id`   INT          NOT NULL PRIMARY KEY,
     `member_name` VARCHAR(45)  NOT NULL,
-    `password`    VARCHAR(45)  NOT NULL,
-    `email`       VARCHAR(45)  NOT NULL,
     `profile_url` VARCHAR(300) NULL
 );
 

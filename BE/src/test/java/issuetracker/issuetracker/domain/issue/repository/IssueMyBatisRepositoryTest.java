@@ -17,7 +17,7 @@ import java.util.List;
 class IssueMyBatisRepositoryTest {
 
     @Autowired
-    private IssueMyBatisRepository repository;
+    private IssueMybatisRepository repository;
 
     // TODO: 서버와 동일한 DB를 사용해서 테스트가 너무 제한적 -> 테스트용 DB로 교체 예정
     @Test

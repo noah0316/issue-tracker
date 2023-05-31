@@ -1,27 +1,45 @@
 package issuetracker.issuetracker.domain.milestone;
 
-import issuetracker.issuetracker.domain.issue.Issue;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import nonapi.io.github.classgraph.json.Id;
-import org.springframework.data.relational.core.mapping.MappedCollection;
+import issuetracker.issuetracker.domain.milestone.dto.MilestonePostDTO;
+import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Getter
-@Setter
 @AllArgsConstructor
 @Table("milestone")
+@Builder
+@ToString
 public class Milestone {
 
     @Id
-    private Integer milestoneId;
+    //    @Column("milestone_id")
+    private Long milestoneId;
+    @Column("title")
     private String title;
+    @Column("description")
     private String description;
-    private LocalDate datetime;
-    @MappedCollection(idColumn = "user_id", keyColumn = "id")
-    private List<Issue> issueId;
+    @Column("create_time")
+    private LocalDateTime createTime;
+    @Column("is_delete")
+    private boolean isDelete;
+
+    public static Milestone create(MilestonePostDTO postingIssueDTO) {
+        return Milestone.builder()
+                .milestoneId(null)
+                .title(postingIssueDTO.getTitle())
+                .description(postingIssueDTO.getDescription())
+                .createTime(LocalDateTime.now())
+                .isDelete(false)
+                .build();
+    }
+
+    public void update(MilestonePostDTO milestonePostDTO) {
+        this.title = milestonePostDTO.getTitle();
+        this.createTime = milestonePostDTO.getCompleteDate();
+        this.description = milestonePostDTO.getDescription();
+    }
 }

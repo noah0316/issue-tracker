@@ -73,7 +73,10 @@
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
         <result property="isOpen" column="is_open"/>
-        <result property="milestone" column="milestone"/>
+        <association property="milestone" column="milestone_id" javaType="issuetracker.issuetracker.domain.milestone.dto.MileStoneDTO">
+            <id property="id" column="milestone_id"/>
+            <result property="title" column="title"/>
+        </association>
         <association property="author" column="author_id" javaType="issuetracker.issuetracker.domain.user.dto.AuthorDTO">
             <id property="id" column="author_id"/>
             <result property="name" column="author_name"/>

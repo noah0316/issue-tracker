@@ -5,11 +5,13 @@ import issuetracker.issuetracker.domain.milestone.dto.MilestoneFilterDTO;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-public interface MileRepository extends CrudRepository<Milestone, Long> {
+@Repository
+public interface MilestoneRepository extends CrudRepository<Milestone, Long> {
 
     @Query("SELECT " +
             "milestone.milestone_id AS id, " +

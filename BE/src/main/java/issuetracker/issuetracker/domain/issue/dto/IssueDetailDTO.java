@@ -1,5 +1,7 @@
 package issuetracker.issuetracker.domain.issue.dto;
 
+import issuetracker.issuetracker.domain.issue.Issue;
+import issuetracker.issuetracker.domain.issue.IssueAttachedLabel;
 import issuetracker.issuetracker.domain.label.dto.LabelDTO;
 import issuetracker.issuetracker.domain.milestone.Milestone;
 import issuetracker.issuetracker.domain.milestone.dto.MileStoneDTO;
@@ -30,5 +32,6 @@ public class IssueDetailDTO {
     private final MileStoneDTO milestone;
     private final List<AssigneeDTO> assignees;
     private final List<LabelDTO> labels;
+
     //지워야 할수도
 }

@@ -1,10 +1,7 @@
 package issuetracker.issuetracker.domain.issue.dto.Request;
 
-import issuetracker.issuetracker.domain.issue.Assignee;
-import issuetracker.issuetracker.domain.label.dto.LabelDTO;
 import issuetracker.issuetracker.domain.milestone.dto.MileStoneDTO;
 import issuetracker.issuetracker.domain.user.TokenUser;
-import issuetracker.issuetracker.domain.user.dto.AssigneeDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,9 +19,10 @@ public class PostingIssueDTO {
     private String title;
     private String contents;
     private String fileUrl;
-    private List<Assignee> assignee;
-    private List<LabelDTO> label;
-    private MileStoneDTO milestone;
+    private List<Long> assignees;
+    private List<Long> labels;
+    private Long milestoneId;
     //TODO 로그인 한 사용자 아이디
-    private TokenUser id;
+    private TokenUser tokenuser;
+
 }
