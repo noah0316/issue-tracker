@@ -27,16 +27,7 @@ public class Member {
     private Long memberId;
 
     @NotBlank
-    private String loginId;
-
-    @NotBlank
     private String memberName;
-
-    @NotBlank
-    private String password;
-
-    @NotBlank
-    private String email;
 
     @Column("profile_url")
     private String profileUrl;
