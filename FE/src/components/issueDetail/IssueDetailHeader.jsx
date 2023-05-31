@@ -10,29 +10,31 @@ import { LabelTag } from '../LabelTag';
 import { PageHeader } from '../PageHeader';
 
 export const IssueDetailHeader = () => {
-  const { issue } = useContext(IssueDetailContext);
+  const { issue, comments } = useContext(IssueDetailContext);
   const [isEdit, setIsEdit] = useState(false);
   const [isClose, setIsClose] = useState(false);
   const [titleData, setTitleData] = useState(null);
-  const [completeTitleData, setcompleteTitleData] = useState(null);
+  const [completeTitleData, setCompleteTitleData] = useState(null);
+
+  useEffect(() => {
+    setTitleData(issue?.title);
+    setCompleteTitleData(issue?.title);
+  }, [issue?.title]);
+
   const handleEdit = () => {
     setIsEdit(true);
     setTitleData(`${issue?.title}`);
   };
-
-  useEffect(() => {
-    setTitleData(issue?.title);
-  }, [issue?.title]);
-
   const handleNotEdit = () => {
     setIsEdit(false);
+    setTitleData(completeTitleData);
   };
   const handleCloseIssue = () => {
     setIsClose(true);
   };
-
   const handleSubmit = () => {
     setIsEdit(false);
+    setCompleteTitleData(titleData);
   };
 
   const pageHeaderInfo = {
@@ -76,17 +78,7 @@ export const IssueDetailHeader = () => {
         rigthChild={
           <>
             {editBtn.map((edit) => (
-              <Button
-                key={edit.id}
-                size={edit.size}
-                color={edit.color}
-                iconType={edit.iconType}
-                iconWidth={edit.iconWidth}
-                isIcon
-                buttonText={edit.buttonText}
-                isLeftPosition
-                onClick={edit.onClick}
-              />
+              <Button key={edit.id} {...edit} />
             ))}
           </>
         }
@@ -94,13 +86,13 @@ export const IssueDetailHeader = () => {
         inputValue={titleData}
         inputSetValue={setTitleData}
       />
-      <SubHeader>
+      <MySubHeader>
         <LabelTag {...labelTagBtn} />
         <p>
           이 이슈가 {getTimeElapsed(issue?.createTime)}에 {issue.author?.name}
-          님에 의해 열렸습니다. * 코멘트 {issue.commentAuthors?.length}개
+          님에 의해 열렸습니다. * 코멘트 {comments.length}개
         </p>
-      </SubHeader>
+      </MySubHeader>
     </MyIssueDetailHeader>
   );
 };
@@ -111,7 +103,7 @@ const MyIssueDetailHeader = styled.div`
   border-bottom: 1px solid ${colors.gray400};
   padding-bottom: 25px;
 `;
-const SubHeader = styled.div`
+const MySubHeader = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;

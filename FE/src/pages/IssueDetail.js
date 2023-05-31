@@ -14,6 +14,7 @@ export const IssueDetail = () => {
   const [issue, setIssue] = useState([]);
   const [comments, setComments] = useState([]);
   const { issueId } = useParams();
+
   const initData = async () => {
     try {
       const [issue, comment] = await fetchAll(

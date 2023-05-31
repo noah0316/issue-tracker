@@ -96,16 +96,16 @@ export const issueList = [
       id: 0,
       name: 'First Milestone'
     },
-    commentAuthors: [2],
+    commentAuthors: [0, 3],
     author: {
-      id: 0,
+      id: 3,
       name: 'GamJa',
       profileUrl:
         'https://github.com/bread1022/TIL/assets/107349637/e3d247fa-47b0-4d13-8dc5-a3cae495d732'
     },
     assignees: [
       {
-        id: 1,
+        id: 0,
         name: 'Nani',
         profileUrl:
           'https://github.com/bread1022/TIL/assets/107349637/db753467-76aa-493d-9875-6aff6fc6c656'
@@ -136,16 +136,16 @@ export const issueList = [
       id: 1,
       name: 'Second Milestone'
     },
-    commentAuthors: [1, 3],
+    commentAuthors: [0, 3],
     author: {
-      id: 2,
+      id: 5,
       name: 'Demian',
       profileUrl:
         'https://github.com/bread1022/TIL/assets/107349637/a981d3b0-77ec-4402-a658-ca6a41ed41de'
     },
     assignees: [
       {
-        id: 0,
+        id: 3,
         name: 'GamJa',
         profileUrl:
           'https://github.com/bread1022/TIL/assets/107349637/e3d247fa-47b0-4d13-8dc5-a3cae495d732'
@@ -173,9 +173,9 @@ export const issueList = [
     commentAuthors: [2, 4],
     author: {
       id: 3,
-      name: 'Birdie',
+      name: 'GamJa',
       profileUrl:
-        'https://github.com/bread1022/TIL/assets/107349637/bacc531d-a512-4a54-9c5c-5e22d7425900'
+        'https://github.com/bread1022/TIL/assets/107349637/e3d247fa-47b0-4d13-8dc5-a3cae495d732'
     },
     assignees: [
       {
@@ -183,12 +183,6 @@ export const issueList = [
         name: 'Noah',
         profileUrl:
           'https://github.com/bread1022/TIL/assets/107349637/6094efe1-d378-43bc-9d5e-e6cf5e792e3d'
-      },
-      {
-        id: 1,
-        name: 'GamJa',
-        profileUrl:
-          'https://github.com/bread1022/TIL/assets/107349637/e3d247fa-47b0-4d13-8dc5-a3cae495d732'
       }
     ],
     labels: [
@@ -212,7 +206,7 @@ export const issueList = [
     },
     commentAuthors: [1, 2, 3],
     author: {
-      id: 5,
+      id: 1,
       name: 'Water',
       profileUrl:
         'https://github.com/bread1022/TIL/assets/107349637/e675d61f-2884-4084-b7db-604ad238fc87'
@@ -247,6 +241,17 @@ export const commentData = [
           'https://github.com/bread1022/TIL/assets/107349637/db753467-76aa-493d-9875-6aff6fc6c656',
         createTime: '2023-05-24T03:34:16.754Z',
         replyContents: '닫았음',
+        emojiShape: 'thumbs-up',
+        emojiCount: 5,
+        fileAttachmentUrl: 'https://example.com/files/1'
+      },
+      {
+        userId: 3,
+        userName: '감자',
+        userUrl:
+          'https://github.com/bread1022/TIL/assets/107349637/e3d247fa-47b0-4d13-8dc5-a3cae495d732',
+        createTime: '2023-05-24T03:34:16.754Z',
+        replyContents: '잠시만요',
         emojiShape: 'thumbs-up',
         emojiCount: 5,
         fileAttachmentUrl: 'https://example.com/files/1'

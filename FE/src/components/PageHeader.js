@@ -56,8 +56,6 @@ const MyLeftPageHeader = styled.div`
   >div: last-child {
     color: ${colors.gray600};
   }
-
-  }
 `;
 const MyrightPageHeader = styled.div`
   display: flex;

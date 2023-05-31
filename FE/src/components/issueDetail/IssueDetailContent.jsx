@@ -1,8 +1,9 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import styled from 'styled-components';
 
 import { CommentElements } from './CommentElements';
+import { users } from '../../mocks/data';
 import { IssueDetailContext } from '../../pages/IssueDetail';
 import { fontSize } from '../../styles/font';
 import { Button } from '../button/Button';
@@ -10,12 +11,33 @@ import { TextArea } from '../textForm/TextArea';
 
 export const IssueDetailContent = () => {
   const { issue, comments } = useContext(IssueDetailContext);
-  const [comment, SetComment] = useState('');
+  const [comment, setComment] = useState('');
+  const [saveComment, setSaveComment] = useState([]);
+  // TODO: 유저정보 가져오기
+  const userData = users[3];
+
+  useEffect(() => {
+    setSaveComment(comments);
+  }, []);
+
+  const handleSaveComment = () => {
+    setSaveComment([
+      {
+        userId: userData?.id,
+        userName: userData?.name,
+        userUrl: userData?.profileUrl,
+        createTime: Date.now(),
+        replyContents: comment
+      },
+      ...saveComment
+    ]);
+    setComment('');
+  };
   const commentInput = {
     label: '코멘트를 입력하세요.',
     size: 's',
     value: comment,
-    setValue: SetComment
+    setValue: setComment
   };
 
   const addComment = {
@@ -25,19 +47,39 @@ export const IssueDetailContent = () => {
     iconWidth: 11,
     buttonText: '코멘트 작성',
     iconType: 'plus',
-    disabled: comment?.length < 1,
-    isLeftPosition: true
+    disabled: comment.length < 1,
+    isLeftPosition: true,
+    onClick: handleSaveComment
   };
 
   return (
     <MyIssueDetailContent>
+      {saveComment &&
+        saveComment.map(
+          ({ userId, userName, userUrl, createTime, replyContents }, index) => (
+            <CommentElements
+              key={index}
+              authorInfo={{
+                id: userData?.id,
+                name: userData?.name
+              }}
+              userInfo={{
+                id: userId,
+                name: userName,
+                profileUrl: userUrl
+              }}
+              createTime={createTime}
+              reply={replyContents}
+            />
+          )
+        )}
       {comments &&
-        comments.map((comment) => (
+        comments.map((comment, index) => (
           <CommentElements
-            key={comment.userId}
+            key={index}
             authorInfo={{
-              id: issue.author.id,
-              name: issue.author.name
+              id: userData?.id,
+              name: userData?.name
             }}
             userInfo={{
               id: comment.userId,
@@ -59,7 +101,6 @@ const MyIssueDetailContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-
   > button {
     justify-content: center;
     ${fontSize.S};
