@@ -21,9 +21,10 @@ public class MemberService {
     }
 
     public void checkLoginMember(UserProfileResponse userProfile) {
-        Optional<AuthorDTO> member = userRepository.findByAuthorDTO(userProfile.getId());
-        if (member.isEmpty()) {
-            userRepository.joinMember(userProfile);
+        Optional<Member> findMember = userRepository.findById(userProfile.getId());
+        if (findMember.isEmpty()) {
+            Member member = new Member(userProfile.getId(), userProfile.getName(), userProfile.getAvatarUrl());
+            userRepository.save(member);
         }
     }
 

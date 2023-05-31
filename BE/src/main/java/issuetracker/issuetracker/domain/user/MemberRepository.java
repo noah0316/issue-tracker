@@ -26,8 +26,4 @@ public interface MemberRepository extends CrudRepository<Member, Long> {
     @Query("SELECT member.member_id AS id, member.member_name AS name," +
             " member.profile_url AS profile_url FROM member WHERE member.member_id = :userId")
     Optional<AuthorDTO> findByAuthorDTO(@Param("userId") Long userId);
-
-//    @Modifying
-    @Query("INSERT INTO member (member_id, member_name, profile_url) VALUES (:#{#loginDTO.memberId}, :#{#loginDTO.memberName}, :#{#loginDTO.profileUrl})")
-    void joinMember(@Param("loginDTO") UserProfileResponse loginDTO);
 }

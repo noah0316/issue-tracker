@@ -70,8 +70,8 @@ public class IssueService {
             Member member = memberRepository.findById(labelId).get();
             log.debug("member ={}", member);
             AssigneeDTO assigneeDTO = AssigneeDTO.builder()
-                    .id(member.getMemberId())
-                    .name(member.getMemberName())
+                    .id(member.getId())
+                    .name(member.getName())
                     .profileUrl(member.getProfileUrl())
                     .build();
             assignees.add(assigneeDTO);
