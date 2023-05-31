@@ -8,5 +8,6 @@
 import UIKit
 
 protocol ViewControllerMakable {
-    static func make() -> UIViewController
+    associatedtype ViewControllerType: UIViewController
+    static func make() -> ViewControllerType
 }

@@ -10,7 +10,7 @@ import UIKit
 struct IssueListViewControllerFactory: ViewControllerMakable {
     private static let storyBoardRepresentation = StoryBoardLiteral.issue
     
-    static func make() -> UIViewController {
+    static func make() -> IssueListViewController {
         let viewModel = Self.makeViewModel()
         let storyBoard = Self.makeStoryboard()
         let issueListViewController = storyBoard.instantiateViewController(
