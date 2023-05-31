@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import { NewIssueFooter } from '../components/newIssue/NewIssueFooter';
-import { SideBar } from '../components/newIssue/SideBar';
+import { SideBar } from '../components/newIssue/Sidebar';
 import { PageHeader } from '../components/PageHeader';
 import { Profile } from '../components/Profile';
 import { TextArea } from '../components/textForm/TextArea';

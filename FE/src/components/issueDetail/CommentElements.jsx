@@ -16,7 +16,6 @@ export const CommentElements = ({
   createTime
 }) => {
   const [isEditComment, setIsEditComment] = useState(false);
-  const [isCompleteEdit, setIsCompleteEdit] = useState(false);
   const [comment, setComment] = useState('');
   const [completeComment, setIsCompleteComment] = useState(null);
 
@@ -31,13 +30,11 @@ export const CommentElements = ({
 
   const handleCompleteEditComment = () => {
     setIsEditComment(false);
-    setIsCompleteEdit(true);
     setComment(completeComment);
   };
 
   const handleCanelEditComment = () => {
     setIsEditComment(false);
-    setIsCompleteEdit(false);
     setIsCompleteComment(comment);
   };
   const emojiOptions = {
