@@ -6,6 +6,7 @@ import issuetracker.issuetracker.domain.issue.Issue;
 import issuetracker.issuetracker.domain.issue.IssueAttachedLabel;
 import issuetracker.issuetracker.domain.issue.repository.IssueRepository;
 import issuetracker.issuetracker.domain.issue.service.IssueService;
+import issuetracker.issuetracker.domain.issue.service.IssueUtilService;
 import issuetracker.issuetracker.domain.label.dto.LabelDTO;
 import issuetracker.issuetracker.domain.label.dto.LabelFilterDTO;
 import issuetracker.issuetracker.domain.milestone.Milestone;
@@ -35,7 +36,7 @@ class LabelServiceTest {
     @Autowired
     private LabelService labelService;
     private LabelRepository repository;
-    private IssueService issueService;
+    private IssueUtilService issueService;
 
 
     private final AggregateReference<Milestone, Long> mileId = AggregateReference.to(1L);
@@ -60,22 +61,6 @@ class LabelServiceTest {
                     .isOpen(true)
                     .createTime(LocalDateTime.now())
                     .updateTime(LocalDateTime.now())
-                    .attachedLabels(new ArrayList<>(List.of(
-                            IssueAttachedLabel.builder()
-                                    .labelId(AggregateReference.to(labelIds.get(0)))
-                                    .build(),
-                            IssueAttachedLabel.builder()
-                                    .labelId(AggregateReference.to(labelIds.get(1)))
-                                    .build()
-                    )))
-                    .assignees(new ArrayList<>(List.of(
-                            Assignee.builder()
-                                    .memberId(AggregateReference.to(assigneesIds.get(0)))
-                                    .build(),
-                            Assignee.builder()
-                                    .memberId(AggregateReference.to(assigneesIds.get(1)))
-                                    .build()
-                    )))
                     .milestoneId(mileId)
                     .author(userId)
                     .build()
@@ -124,11 +109,11 @@ class LabelServiceTest {
                 .isOpen(true)
                 .createTime(LocalDateTime.now())
                 .updateTime(LocalDateTime.now())
-                .attachedLabels(new ArrayList<>(List.of(
-                        IssueAttachedLabel.builder()
-                                .labelId(AggregateReference.to(label.getId()))
-                                .build()
-                )))
+//                .attachedLabels(new ArrayList<>(List.of(
+//                        IssueAttachedLabel.builder()
+//                                .labelId(AggregateReference.to(label.getId()))
+//                                .build()
+//                )))
                 .milestoneId(null)
                 .author(AggregateReference.to(1L))
                 .build();

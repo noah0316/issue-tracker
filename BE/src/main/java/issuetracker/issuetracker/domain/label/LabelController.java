@@ -60,7 +60,7 @@ public class LabelController {
             description = "."
     )
     @DeleteMapping("/{labelId}")
-    public void deleteLabel(@PathVariable Long labelId) {
+    public void deleteLabel(@PathVariable long labelId) {
         // TODO 라벨 삭제 라벨 삭제 권한이 있어야 할 것같다.
         log.debug("라벨 삭제");
         labelService.delete(labelId);
@@ -72,7 +72,7 @@ public class LabelController {
             description = "."
     )
     @PutMapping("/{labelId}")
-    public void updateLabel(@PathVariable Long labelId, @RequestBody PostingLabelDTO label) {
+    public void updateLabel(@PathVariable long labelId, @RequestBody PostingLabelDTO label) {
         // TODO 라벨 수정
         log.debug("라벨 수정");
         labelService.update(labelId, label);
