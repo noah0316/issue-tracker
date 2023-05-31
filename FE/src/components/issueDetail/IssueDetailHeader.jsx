@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -36,12 +36,6 @@ export const IssueDetailHeader = () => {
     setTitleData(issue?.title);
     setCompleteTitleData(issue?.title);
   }, [issue?.title]);
-
-  const pageHeaderInfo = {
-    leftChild: titleData,
-    middleChild: `#${issue?.issueId}`,
-    value: isEdit
-  };
 
   const editBtn = [
     {
