@@ -1,6 +1,7 @@
 package issuetracker.issuetracker.domain.user;
 
 import issuetracker.issuetracker.domain.user.dto.AssigneeDTO;
+import issuetracker.issuetracker.domain.user.dto.AuthorDTO;
 import issuetracker.issuetracker.domain.user.dto.AuthorFilterDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,14 +15,9 @@ public class MemberController {
 
     private final MemberRepository repository;
 
-    @GetMapping("/assignees")
-    public List<AssigneeDTO> getAssignees() {
-        return repository.findPopupAssignee();
-    }
-
-    @GetMapping("/authors")
-    public List<AuthorFilterDTO> getAuthorFilter() {
-        return repository.getAuthorFilter();
+    @GetMapping("/users")
+    public List<AuthorDTO> getAssignees() {
+        return repository.getMemberFilter();
     }
 
 }
