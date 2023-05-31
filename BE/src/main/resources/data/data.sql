@@ -1,35 +1,23 @@
--- milestone 테이블에 데이터 추가
-INSERT INTO milestone (title, description, create_time, is_delete)
-VALUES ('Milestone 1', 'First milestone description', CURRENT_TIMESTAMP, 0),
-       ('Milestone 2', 'Second milestone description', CURRENT_TIMESTAMP, 0),
-       ('Milestone 3', 'Third milestone description', CURRENT_TIMESTAMP, 0);
+INSERT INTO `milestone` (`title`, `description`) VALUES ('Milestone 1', 'Description for Milestone 1');
+INSERT INTO `milestone` (`title`, `description`) VALUES ('Milestone 2', 'Description for Milestone 2');
+INSERT INTO `milestone` (`title`, `description`) VALUES ('Milestone 3', 'Description for Milestone 3');
 
--- member 테이블에 데이터 추가
-INSERT INTO member (login_id, member_name, password, email, profile_url)
-VALUES ('john123', 'John Doe', 'password1', 'john@example.com', NULL),
-       ('jane456', 'Jane Smith', 'password2', 'jane@example.com', NULL),
-       ('mike789', 'Mike Johnson', 'password3', 'mike@example.com', NULL);
+INSERT INTO `member` (`member_id`, `member_name`, `profile_url`) VALUES (1, 'John', 'https://example.com/john');
+INSERT INTO `member` (`member_id`, `member_name`, `profile_url`) VALUES (2, 'Jane', 'https://example.com/jane');
+INSERT INTO `member` (`member_id`, `member_name`, `profile_url`) VALUES (3, 'Alice', 'https://example.com/alice');
 
--- issue 테이블에 데이터 추가
-INSERT INTO issue (title, create_time, update_time, is_open, is_delete, milestone_id, author)
-VALUES ('Issue 1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 0, 1, 1),
-       ('Issue 2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 0, 2, 2),
-       ('Issue 3', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 0, 3, 3);
+INSERT INTO `issue` (`title`, `milestone_id`, `author`) VALUES ('Issue 1', 1, 1);
+INSERT INTO `issue` (`title`, `milestone_id`, `author`) VALUES ('Issue 2', 2, 2);
+INSERT INTO `issue` (`title`, `milestone_id`, `author`) VALUES ('Issue 3', 3, 3);
 
--- label 테이블에 데이터 추가
-INSERT INTO label (title, font_color, description, is_delete, background_color)
-VALUES ('Label 1', '#FFFFFF', 'First label description', 0, '#ff0000'),
-       ('Label 2', '#FFFFFF', 'Second label description', 0, '#00ff00'),
-       ('Label 3', '#FFFFFF', 'Third label description', 0, '#0000ff');
+INSERT INTO `label` (`title`, `font_color`, `description`, `background_color`) VALUES ('Label 1', 'black', 'Description for Label 1', 'yellow');
+INSERT INTO `label` (`title`, `font_color`, `description`, `background_color`) VALUES ('Label 2', 'white', 'Description for Label 2', 'blue');
+INSERT INTO `label` (`title`, `font_color`, `description`, `background_color`) VALUES ('Label 3', 'black', 'Description for Label 3', 'green');
 
-INSERT INTO assignee (member_id, issue_id)
-VALUES (1, 1),
-       (2, 1),
-       (3, 2);
+INSERT INTO `comment` (`contents`, `issue_id`, `member_id`) VALUES ('Comment 1', 1, 1);
+INSERT INTO `comment` (`contents`, `issue_id`, `member_id`) VALUES ('Comment 2', 2, 2);
+INSERT INTO `comment` (`contents`, `issue_id`, `member_id`) VALUES ('Comment 3', 3, 3);
 
--- label_list 테이블에 데이터 추가
-INSERT INTO label_list (label_id, issue_id)
-VALUES (1, 1),
-       (2, 2),
-       (3, 2);
-
+INSERT INTO `label_list` (`label_id`, `issue_id`) VALUES (1, 1);
+INSERT INTO `label_list` (`label_id`, `issue_id`) VALUES (2, 1);
+INSERT INTO `label_list` (`label_id`, `issue_id`) VALUES (3, 2);

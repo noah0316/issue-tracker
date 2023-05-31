@@ -6,7 +6,7 @@ USE issue;
 
 CREATE TABLE `milestone`
 (
-    `milestone_id` BIGINT       NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `milestone_id` INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `title`        VARCHAR(45)  NOT NULL,
     `description`  VARCHAR(300) NULL,
     `create_time`  DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -17,11 +17,8 @@ CREATE TABLE `milestone`
 
 CREATE TABLE `member`
 (
-    `member_id`   INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `login_id`    VARCHAR(45)  NOT NULL UNIQUE,
+    `member_id`   INT          NOT NULL PRIMARY KEY,
     `member_name` VARCHAR(45)  NOT NULL,
-    `password`    VARCHAR(45)  NOT NULL,
-    `email`       VARCHAR(45)  NOT NULL,
     `profile_url` VARCHAR(300) NULL
 );
 
@@ -35,7 +32,7 @@ CREATE TABLE `issue`
     `update_time`  DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `is_open`      BIT         NOT NULL DEFAULT 1,
     `is_delete`    BIT         NOT NULL DEFAULT 0,
-    `milestone_id` BIGINT      NULL,
+    `milestone_id` INT         NULL,
     `author`       INT         NOT NULL,
 
     CONSTRAINT `fk_Issue_Milestone1`
@@ -91,9 +88,9 @@ CREATE TABLE `comment`
 
 CREATE TABLE `label_list`
 (
-    `label_list_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `label_id`      INT NOT NULL,
-    `issue_id`      INT NOT NULL,
+    `label_list_id`  INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `label_id` INT NOT NULL,
+    `issue_id` INT NOT NULL,
 
     CONSTRAINT `fk_Label_has_Issue_Label1`
         FOREIGN KEY (`label_id`)
@@ -111,9 +108,9 @@ CREATE TABLE `label_list`
 
 CREATE TABLE `assignee`
 (
-    `assignee_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `member_id`   INT NOT NULL,
-    `issue_id`    INT NOT NULL,
+    `assignee_id`  INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `member_id` INT NOT NULL,
+    `issue_id`  INT NOT NULL,
 
     CONSTRAINT `fk_User_has_Issue_User1`
         FOREIGN KEY (`member_id`)
