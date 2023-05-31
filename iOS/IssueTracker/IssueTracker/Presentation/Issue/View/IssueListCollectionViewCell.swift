@@ -13,10 +13,14 @@ final class IssueListCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var milestoneLabel: UILabel!
     @IBOutlet private weak var tagLabelStackView: UIStackView!
     
-    func setupUIAppearance() {
-        self.setupTitleLabelUIAppearance()
-        self.setupDescriptionLabelUIAppearance()
-        self.setupMilestoneLabelUIAppearance()
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.setupUIAppearance()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.setupUIAppearance()
     }
     
     func update(with issue: Issue) {
@@ -27,6 +31,12 @@ final class IssueListCollectionViewCell: UICollectionViewCell {
 }
 
 extension IssueListCollectionViewCell {
+    private func setupUIAppearance() {
+        self.setupTitleLabelUIAppearance()
+        self.setupDescriptionLabelUIAppearance()
+        self.setupMilestoneLabelUIAppearance()
+    }
+    
     private func setupTitleLabelUIAppearance() {
         self.titleLabel.font = FontStyle.title
         self.titleLabel.textColor = ColorStyle.gray900

@@ -39,7 +39,6 @@ extension IssueListView {
                 withReuseIdentifier: IssueListCollectionViewCell.identifier,
                 for: indexPath
             ) as? IssueListCollectionViewCell
-            issueListCollectionViewCell?.setupUIAppearance()
             issueListCollectionViewCell?.update(with: issue)
             issueListCollectionViewCell?.sizeToFit()
             
