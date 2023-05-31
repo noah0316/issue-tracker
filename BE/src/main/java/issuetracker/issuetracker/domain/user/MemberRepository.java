@@ -18,21 +18,11 @@ public interface MemberRepository extends CrudRepository<Member, Long> {
     @Query("SELECT " +
             "member.member_id AS id, " +
             "member.member_name AS name, " +
-            "member.profile_url AS profile_url " +
-            "FROM assignee " +
-            "JOIN member " +
-            "ON assignee.member_id = member.member_id")
-    List<AssigneeDTO> findPopupAssignee();
-
-
-    @Query("SELECT " +
-            "member.member_id AS id, " +
-            "member.member_name AS name, " +
             "member.profile_url " +
             "FROM member " +
             "WHERE " +
             "member.member_id IN (SELECT issue.author FROM issue)")
-    List<AuthorFilterDTO> getAuthorFilter();
+    List<AuthorDTO> getMemberFilter();
 
 
     @Query("SELECT member.member_id AS id, member.member_name AS name," +
