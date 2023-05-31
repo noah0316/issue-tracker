@@ -22,7 +22,7 @@ export const TextArea = React.memo(
 
     const handleChange = (e) => {
       setValue(
-        `![${e.target.files[0].name}](https://github.com/codesquad-members-2023/issue-tracker/assets/104904719/${e.target.files[0].name})`
+        `${value}\n![${e.target.files[0].name}](https://github.com/codesquad-members-2023/issue-tracker/assets/104904719/${e.target.files[0].name})`
       );
     };
 

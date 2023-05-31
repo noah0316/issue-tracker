@@ -22,14 +22,14 @@ export const IssueDetailContent = () => {
 
   const handleSaveComment = () => {
     setSaveComment([
+      ...saveComment,
       {
         userId: userData?.id,
         userName: userData?.name,
         userUrl: userData?.profileUrl,
         createTime: Date.now(),
         replyContents: comment
-      },
-      ...saveComment
+      }
     ]);
     setComment('');
   };
