@@ -18,8 +18,8 @@ export const IssueDetail = () => {
   const initData = async () => {
     try {
       const [issue, comment] = await fetchAll(
-        `/issueDetail/${issueId}`,
-        `/issues/${issueId}/comments`
+        `http://13.209.232.172:8080/issues/${issueId}`,
+        `http://13.209.232.172:8080/issues/issues/${issueId}/comments`
       );
       setIssue(issue);
       setComments(comment.comments);

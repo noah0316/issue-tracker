@@ -1,21 +1,49 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styled from 'styled-components';
 
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
+import { fetchPost } from '../../utils/fetch';
 import { Button } from '../button/Button';
 import { LabelTag } from '../LabelTag';
 import { IconTextInput } from '../textForm/IconTextInput';
 
-export const NewLabelSection = () => {
+export const NewLabelSection = ({ setValue, value }) => {
   const [labelName, setLabelName] = useState('레이블');
-  const [explain, setExplain] = useState('입력해주세요');
+  const [explain, setExplain] = useState(null);
   const [bgColor, setBgColor] = useState(colors.gray300);
   const [isDark, setIsDark] = useState(false);
 
   const randomColor = () => {
     return '#' + Math.random().toString(16).substring(2, 8);
+  };
+
+  const postLabel = async () => {
+    const url = 'http://13.209.232.172:8080/labels';
+    const labelData = {
+      title: labelName,
+      description: explain,
+      backgroundColor: bgColor
+    };
+
+    await fetchPost({ path: url, data: labelData });
+    saveLabel(labelData);
+    setLabelName('레이블');
+    setExplain('');
+    setBgColor(colors.gray300);
+  };
+
+  const saveLabel = (labelData) => {
+    setValue([
+      {
+        id: 22,
+        title: 'faker',
+        description: 'faker',
+        fontColor: null,
+        backgroundColor: '#7addfe'
+      }
+    ]);
   };
 
   const handleChangeColor = () => {
@@ -91,7 +119,7 @@ export const NewLabelSection = () => {
         </MyNewLabel>
       </MyLabel>
       <MyNewLabelContent>
-        <Button {...labelInfo.completeBtn} />
+        <Button {...labelInfo.completeBtn} onClick={postLabel} />
       </MyNewLabelContent>
     </MyNewLabelSection>
   );

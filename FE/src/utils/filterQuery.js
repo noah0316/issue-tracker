@@ -10,7 +10,7 @@ export const getFilterQueryString = ({
   commentedByMe
 }) => {
   return [
-    `isOpen=${isOpen}`,
+    `?isOpen=${isOpen}`,
     author && `&author=${author}`,
     labels && `&labels=${labels}`,
     milestone && `&milestone=${milestone}`,

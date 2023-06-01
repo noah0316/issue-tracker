@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 import { Button } from '../components/button/Button';
 import { NewLabelSection } from '../components/labelList/NewlabelSection';
 import { LabelTag } from '../components/LabelTag';
 import { colors } from '../styles/color';
 import { fontSize, fontType } from '../styles/font';
-import { fetchAll } from '../utils/fetch';
+import { fetchAll, fetchData, fetchDelete } from '../utils/fetch';
 
 export const LabelList = () => {
   const navigate = useNavigate();
@@ -17,17 +17,20 @@ export const LabelList = () => {
   const [isNewLabel, setIsNewLabel] = useState(false);
   const initData = async () => {
     try {
-      const [labelsInfo, countInfo] = await fetchAll('/labels', '/issues');
+      const [labelsInfo, countInfo] = await fetchAll(
+        'http://13.209.232.172:8080/labels',
+        'http://13.209.232.172:8080/issues/countInfo'
+      );
       setLabels(labelsInfo);
-      setCountInfo(countInfo.countInfo);
+      setCountInfo(countInfo);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
   useEffect(() => {
     initData();
-  }, []);
+  }, [labels.length]);
 
   const filterTabOptions = {
     labels: {
@@ -55,6 +58,20 @@ export const LabelList = () => {
       isLeftPosition: true
     }
   };
+
+  const handleDelete = async (id) => {
+    const url = `http://13.209.232.172:8080/labels/${id}`;
+    const idData = {
+      labelId: id
+    };
+    await fetchDelete({ path: url, data: idData });
+    handleRemove(id);
+  };
+
+  const handleRemove = (id) => {
+    setLabels(labels.filter((label) => label.id !== id));
+  };
+
   return (
     <MyLabelListPage>
       <MyPageTabButtons>
@@ -77,7 +94,7 @@ export const LabelList = () => {
           }
         />
       </MyPageTabButtons>
-      {isNewLabel && <NewLabelSection />}
+      {isNewLabel && <NewLabelSection setValue={setLabels} value={labels} />}
       <MyLabelList>
         <MyLabelListHeader>
           {countInfo.labelCount} 개의 레이블
@@ -90,7 +107,7 @@ export const LabelList = () => {
                   key={label.id}
                   tagType={'labels'}
                   hasIcon={false}
-                  text={label.name}
+                  text={label.title}
                   backgroundColor={label.backgroundColor}
                   fontColor={label.fontColor}
                 />
@@ -112,6 +129,7 @@ export const LabelList = () => {
                   isIcon
                   iconType={'trash'}
                   isLeftPosition
+                  onClick={() => handleDelete(label.id)}
                 />
               </MyLabelEditButtons>
             </MyLabelItem>
