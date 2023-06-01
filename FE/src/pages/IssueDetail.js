@@ -18,8 +18,8 @@ export const IssueDetail = () => {
   const initData = async () => {
     try {
       const [issue, comment] = await fetchAll(
-        `http://13.209.232.172:8080/issues/${issueId}`,
-        `http://13.209.232.172:8080/issues/issues/${issueId}/comments`
+        `${process.env.REACT_APP_BASE_URI}/issues/${issueId}`,
+        `${process.env.REACT_APP_BASE_URI}/issues/issues/${issueId}/comments`
       );
       setIssue(issue);
       setComments(comment.comments);
