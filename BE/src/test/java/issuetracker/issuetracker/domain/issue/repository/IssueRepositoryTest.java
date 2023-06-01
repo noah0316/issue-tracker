@@ -21,6 +21,7 @@ import org.springframework.data.jdbc.core.mapping.AggregateReference;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -115,7 +116,7 @@ public class IssueRepositoryTest {
         // Then
         Iterable<Issue> afterAll = issueRepository.findAll();
         for (Issue issue : afterAll) {
-            List<IssueAttachedLabel> attachedLabels = issue.getAttachedLabels();
+            Set<IssueAttachedLabel> attachedLabels = issue.getAttachedLabels();
             for (IssueAttachedLabel attachedLabel : attachedLabels) {
                 if (attachedLabel.getId() == 1L) {
                     System.out.println("title = " + issue.getTitle());
