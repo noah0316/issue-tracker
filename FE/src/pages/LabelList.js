@@ -4,42 +4,17 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Button } from '../components/button/Button';
+import { NewLabelSection } from '../components/labelList/NewlabelSection';
 import { LabelTag } from '../components/LabelTag';
 import { colors } from '../styles/color';
 import { fontSize, fontType } from '../styles/font';
 import { fetchAll } from '../utils/fetch';
 
-const filterTabOptions = {
-  labels: {
-    size: 's',
-    color: 'ghostGray',
-    iconType: 'label',
-    iconWidth: 16,
-    isIcon: true,
-    isLeftPosition: true
-  },
-  milestone: {
-    size: 's',
-    color: 'ghostGray',
-    iconType: 'milestone',
-    iconWidth: 16,
-    isIcon: true,
-    isLeftPosition: true
-  },
-  newIssue: {
-    size: 's',
-    color: 'containerBlue',
-    iconType: 'plus',
-    isIcon: true,
-    buttonText: '레이블 추가',
-    isLeftPosition: true
-  }
-};
-
 export const LabelList = () => {
   const navigate = useNavigate();
   const [labels, setLabels] = useState([]);
   const [countInfo, setCountInfo] = useState([]);
+  const [isNewLabel, setIsNewLabel] = useState(false);
   const initData = async () => {
     try {
       const [labelsInfo, countInfo] = await fetchAll('/labels', '/issues');
@@ -54,6 +29,32 @@ export const LabelList = () => {
     initData();
   }, []);
 
+  const filterTabOptions = {
+    labels: {
+      size: 's',
+      color: 'ghostGray',
+      iconType: 'label',
+      iconWidth: 16,
+      isIcon: true,
+      isLeftPosition: true
+    },
+    milestone: {
+      size: 's',
+      color: 'ghostGray',
+      iconType: 'milestone',
+      iconWidth: 16,
+      isIcon: true,
+      isLeftPosition: true
+    },
+    newIssue: {
+      size: 's',
+      color: isNewLabel ? 'outlineBlue' : 'containerBlue',
+      iconType: isNewLabel ? 'xSquare' : 'plus',
+      isIcon: true,
+      buttonText: isNewLabel ? '닫기' : '레이블 추가',
+      isLeftPosition: true
+    }
+  };
   return (
     <MyLabelListPage>
       <MyPageTabButtons>
@@ -71,9 +72,12 @@ export const LabelList = () => {
         </MyPageMoveBUttons>
         <Button
           {...filterTabOptions.newIssue}
-          onClick={() => navigate('/newIssue')}
+          onClick={() =>
+            isNewLabel ? setIsNewLabel(false) : setIsNewLabel(true)
+          }
         />
       </MyPageTabButtons>
+      {isNewLabel && <NewLabelSection />}
       <MyLabelList>
         <MyLabelListHeader>
           {countInfo.labelCount} 개의 레이블

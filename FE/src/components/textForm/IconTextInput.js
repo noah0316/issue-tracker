@@ -2,13 +2,24 @@ import { useState } from 'react';
 
 import styled from 'styled-components';
 
+import { Icon } from '../../assets/Icon';
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 
-export const IconTextInput = ({ inputValue, inputSetValue, label }) => {
+export const IconTextInput = ({
+  inputValue,
+  inputSetValue,
+  label,
+  inputWidth,
+  isIcon,
+  iconType,
+  iconFill,
+  iconWidth,
+  iconClick
+}) => {
   const [isFocus, setIsFocus] = useState(false);
   return (
-    <MyInputPageHeader isFocus={isFocus}>
+    <MyInputPageHeader isFocus={isFocus} inputWidth={inputWidth}>
       <label>{label}</label>
       <input
         type="text"
@@ -19,6 +30,14 @@ export const IconTextInput = ({ inputValue, inputSetValue, label }) => {
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
       />
+      {isIcon && (
+        <Icon
+          iconType={iconType}
+          fill={iconFill}
+          width={iconWidth}
+          onClick={iconClick}
+        />
+      )}
     </MyInputPageHeader>
   );
 };
@@ -27,7 +46,7 @@ const MyInputPageHeader = styled.form`
   display: flex;
   align-items: center;
   border-radius: 11px;
-  width: 900px;
+  width: ${({ inputWidth }) => inputWidth || `900px`};
   height: 40px;
   gap: 10px;
   padding: 0px 24px;

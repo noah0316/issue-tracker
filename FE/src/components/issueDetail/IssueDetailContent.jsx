@@ -47,11 +47,9 @@ export const IssueDetailContent = () => {
     iconWidth: 11,
     buttonText: '코멘트 작성',
     iconType: 'plus',
-    disabled: comment.length < 1,
+    disabled: comment?.length < 1,
     isLeftPosition: true,
     onClick: handleSaveComment
-    disabled: comment?.length < 1,
-    isLeftPosition: true
   };
   return (
     <MyIssueDetailContent>
