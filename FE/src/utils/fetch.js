@@ -1,5 +1,10 @@
 export const fetchData = async (path) => {
-  const response = await fetch(path);
+  const response = await fetch(path, {
+    method: 'GET',
+    header: {
+      Authorization: `Bearer ${localStorage.jwtToken}`
+    }
+  });
   const resData = await response.json();
   return resData;
 };
@@ -19,7 +24,7 @@ export const fetchPost = async ({ path, data }) => {
       body: JSON.stringify(data)
     });
   } catch (error) {
-    console.error('Error:', error);
+    // console.error('Error:', error);
   }
 };
 
@@ -30,7 +35,7 @@ export const fetchDelete = async ({ path, data }) => {
       body: JSON.stringify(data)
     });
   } catch (error) {
-    console.error('Error:', error);
+    // console.error('Error:', error);
   }
 };
 

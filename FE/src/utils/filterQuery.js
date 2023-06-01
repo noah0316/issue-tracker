@@ -2,9 +2,8 @@ export const getFilterQueryString = ({
   isOpen,
   author,
   labels, // 중복가능
-  milestone,
+  milestones,
   assignees, // 중복가능
-  comments, //
   isWrittenByMe,
   isAssignedToMe,
   commentedByMe
@@ -13,9 +12,8 @@ export const getFilterQueryString = ({
     `?isOpen=${isOpen}`,
     author && `&author=${author}`,
     labels && `&labels=${labels}`,
-    milestone && `&milestone=${milestone}`,
+    milestones && `&milestone=${milestones}`,
     assignees && `&assignees=${assignees}`,
-    comments && `&comments=${comments}`,
     isWrittenByMe && `&isWrittenByMe=${isWrittenByMe}`,
     isAssignedToMe && `&isAssignedToMe=${isAssignedToMe}`,
     commentedByMe && `&commentedByMe=${commentedByMe}`
@@ -81,7 +79,7 @@ export const convertFilterQueryToInputValue = ({
   isOpen,
   author,
   labels,
-  milestone,
+  milestones,
   assignees,
   comments,
   isWrittenByMe,
@@ -92,7 +90,7 @@ export const convertFilterQueryToInputValue = ({
     `is:${isOpen ? 'open' : 'close'} is:issue`,
     author && `author:${author}`,
     labels && `labels:${labels}`,
-    milestone && `milestone:${milestone}`,
+    milestones && `milestone:${milestones}`,
     assignees && `assignees:${assignees}`,
     comments && `comments:${comments}`,
     isWrittenByMe && `isWrittenByMe=@me`,
