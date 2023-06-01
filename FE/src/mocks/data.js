@@ -96,7 +96,7 @@ export const issueList = [
       id: 0,
       name: 'First Milestone'
     },
-    commentAuthors: [2],
+    commentAuthors: [0, 3],
     author: {
       id: 3,
       name: 'GamJa',
@@ -136,7 +136,7 @@ export const issueList = [
       id: 1,
       name: 'Second Milestone'
     },
-    commentAuthors: [1, 3],
+    commentAuthors: [0, 3],
     author: {
       id: 5,
       name: 'Demian',
@@ -172,10 +172,10 @@ export const issueList = [
     },
     commentAuthors: [2, 4],
     author: {
-      id: 2,
-      name: 'Birdie',
+      id: 3,
+      name: 'GamJa',
       profileUrl:
-        'https://github.com/bread1022/TIL/assets/107349637/bacc531d-a512-4a54-9c5c-5e22d7425900'
+        'https://github.com/bread1022/TIL/assets/107349637/e3d247fa-47b0-4d13-8dc5-a3cae495d732'
     },
     assignees: [
       {
@@ -183,12 +183,6 @@ export const issueList = [
         name: 'Noah',
         profileUrl:
           'https://github.com/bread1022/TIL/assets/107349637/6094efe1-d378-43bc-9d5e-e6cf5e792e3d'
-      },
-      {
-        id: 3,
-        name: 'GamJa',
-        profileUrl:
-          'https://github.com/bread1022/TIL/assets/107349637/e3d247fa-47b0-4d13-8dc5-a3cae495d732'
       }
     ],
     labels: [
