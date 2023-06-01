@@ -15,7 +15,6 @@ export const IssueDetailContent = () => {
   const [comment, setComment] = useState('');
   const [saveComment, setSaveComment] = useState([]);
   const userData = user?.userProfile;
-  console.log(userData);
 
   useEffect(() => {
     setSaveComment(comments);
@@ -76,12 +75,10 @@ export const IssueDetailContent = () => {
         comments.map((comment, index) => (
           <CommentElements
             key={index}
-            authorInfo={
-              {
-                // id: userData?.id,
-                // name: userData?.name
-              }
-            }
+            authorInfo={{
+              id: userData?.id,
+              name: userData?.name
+            }}
             userInfo={{
               id: comment.userId,
               name: comment.userName,

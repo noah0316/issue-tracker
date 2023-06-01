@@ -9,14 +9,11 @@ import { fontSize } from '../../styles/font';
 
 export const IssueListContent = () => {
   const { issuesInfo } = useContext(IssueListContext);
-
   return (
     <MyIssueListContent>
       {issuesInfo
         ? (
-          issuesInfo.map((issueData) => (
-            <IssueItem key={issueData.issueId} {...issueData} />
-          ))
+          issuesInfo.map((issues) => <IssueItem key={issues.id} {...issues} />)
         )
         : (
           <MyEmptyContent>등록된 이슈가 없습니다</MyEmptyContent>

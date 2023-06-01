@@ -68,9 +68,11 @@ export const Dropdown = ({
     async (selectedTab, filterOptions) => {
       const selectedTabApi =
         selectedTab === 'assignees' || selectedTab === 'author'
-          ? 'user'
-          : selectedTab;
-      const response = await fetchData(`/${selectedTabApi}`);
+          ? 'users'
+          : `${selectedTab}/filter`;
+      const response = await fetchData(
+        `http://13.209.232.172:8080/${selectedTabApi}`
+      );
       const tabData = await getFilteredOptions(filterOptions, response);
       setTabOptionsInfo(tabData);
     },
