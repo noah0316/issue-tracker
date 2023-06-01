@@ -13,4 +13,5 @@ public class PostingLabelDTO {
     private String title;
     private String description;
     private String backgroundColor;
+    private String fontColor;
 }
