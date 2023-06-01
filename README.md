@@ -92,3 +92,5 @@
 ## 🗓️ 스프린트 계획
 
 [팀별 스프린트 계획](https://www.notion.so/d12a341bc59242d3ba5d926dbbad1cdb)
+
+cicd 테스트
