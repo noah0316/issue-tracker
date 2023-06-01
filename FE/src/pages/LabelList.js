@@ -189,7 +189,7 @@ const MyLabelItem = styled.div`
   padding: 0 25px;
   background-color: ${colors.gray50};
   color: ${colors.gray600};
-  ${fontSize.S}
+  ${fontSize.M}
   ${fontType.LIGHT}
   &: hover {
     background-color: ${colors.gray100};

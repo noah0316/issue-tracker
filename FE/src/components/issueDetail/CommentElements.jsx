@@ -136,31 +136,29 @@ export const CommentElements = ({
 };
 
 const MyCommentElements = styled.div`
+  box-shadow: ${({ isFocus }) =>
+    isFocus ? `0 0 0 1px ${colors.gray700}` : null};
   width: 100%;
-  background: ${colors.gray100};
   align-items: center;
   border-radius: 16px;
-  box-shadow: ${({ isFocus }) =>
-    isFocus ? `0 0 0 1px ${colors.gray900}` : null};
+  border: ${({ isFocus }) => (isFocus ? null : `1px solid ${colors.gray300}`)};
   > div {
-    :first-child {
-      background: ${colors.gray100};
+    &:first-child {
       border-radius: 16px 16px 0px 0px;
-      border: 1px solid ${colors.gray300};
-      align-items: center;
       padding-right: 10px;
+      align-items: center;
+      border-bottom: 1px solid ${colors.gray300};
     }
   }
 `;
+
 const MyComments = styled.div`
-  background: ${colors.gray50};
+  height: max-heigth;
   border-radius: 0px 0px 16px 16px;
-  border: 1px solid ${colors.gray300};
-  border-top: none;
-  height: 60px;
-  padding: 2px 20px;
+  padding: 15px 20px;
   display: flex;
   align-items: center;
+  background: ${colors.gray50};
 `;
 
 const MyProfileInfo = styled.div`

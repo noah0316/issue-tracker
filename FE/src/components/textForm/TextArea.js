@@ -7,7 +7,6 @@ import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 import { Button } from '../button/Button';
 
-// uncontrolled components
 export const TextArea = React.memo(
   ({ label, size, value, setValue, inputRef, isEdit }) => {
     const areaSize = areaSizes[size];
@@ -112,15 +111,11 @@ const MyTextArea = styled.form`
   flex-direction: column;
   align-items: center;
   width: 938px;
-  border-radius: 11px;
+  border-radius: ${({ isEdit }) => (isEdit ? `0 0 16px 16px` : '11px')};
   background: ${({ isFocus, isEdit }) =>
-    isEdit
-      ? `${colors.gray50}`
-      : isFocus
-        ? `${colors.gray50}`
-        : `${colors.gray200}`};
+    isEdit || isFocus ? `${colors.gray50}` : `${colors.gray200}`};
   box-shadow: ${({ isFocus, isEdit }) =>
-    isEdit ? null : isFocus ? `0 0 0 1px ${colors.blue}` : null};
+    !isEdit && isFocus ? `0 0 0 1px ${colors.blue}` : null};
   &: focus-within label {
     transform: translate(0, 12px) scale(0.8);
   }
@@ -143,24 +138,18 @@ const MyTextArea = styled.form`
     top: 3px;
   }
   & textarea {
-    ${({ areaSize }) => areaSize};
-    border-radius: ${({ isEdit }) => (isEdit ? '0px' : '11px 11px 0px 0px')};
     box-sizing: border-box;
+    ${({ areaSize }) => areaSize};
     width: 100%;
-    border: none;
-    outline: none;
-    box-shadow: none;
     padding: 30px;
     transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
     resize: none;
     ${fontSize.M};
     ${fontType.REGULAR};
-    background: ${({ isFocus, isEdit }) =>
-    isEdit
-      ? `${colors.gray50}`
-      : isFocus
-        ? `${colors.gray50}`
-        : `${colors.gray200}`};
+    background: transparent;
+    border: none;
+    outline: none;
+    border-radius: 11px 11px 0px 0px;
   }
 `;
 
@@ -169,17 +158,11 @@ const MyFileArea = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: ${(isEdit) =>
-    isEdit ? '0px 0px 16px 16px' : '0px 0px 11px 11px'};
   width: 100%;
-  background: ${({ isFocus, isEdit }) =>
-    isEdit
-      ? `${colors.gray50}`
-      : isFocus
-        ? `${colors.gray50}`
-        : `${colors.gray200}`};
-  border-top: ${({ isFocus }) =>
-    isFocus ? `1px dashed ${colors.blue}` : `1px dashed ${colors.gray300}`};
+  border-top: ${({ isFocus, isEdit }) =>
+    isFocus && !isEdit
+      ? `1px dashed ${colors.blue}`
+      : `1px dashed ${colors.gray300}`};
   > div {
     padding: 0px 20px 0px 0px;
   }
