@@ -33,7 +33,6 @@ export const IssueItem = ({
       checkDispatch({ type: 'CHECK', payload: id });
     }
   };
-  console.log(labels);
   return (
     <MyIssueItem>
       <MyIssueBox>

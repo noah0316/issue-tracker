@@ -14,10 +14,9 @@ export const tabTypes = {
     tabId: 'labels',
     tabName: '레이블',
     filterOptions (label) {
-      console.log(label);
       return {
         id: label.id,
-        option: label.title,
+        option: label.title ?? label.labelName,
         backgroundColor: label.backgroundColor,
         fontColor: label.fontColor
       };

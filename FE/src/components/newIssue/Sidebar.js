@@ -23,12 +23,19 @@ export const SideBar = React.memo(
       labels: labelSetValue,
       milestones: milestoneSetValue
     };
+
     const handleSelectedSideBarMenu = useCallback(
       (selectedTab, selectedSideBarMenu) => {
         if (!selectedSideBarMenu) return;
-        console.log(selectedSideBarMenu);
-        const { name, title, option, profileUrl, backgroundColor, fontColor } =
-          selectedSideBarMenu;
+        const {
+          name,
+          labelName,
+          title,
+          option,
+          profileUrl,
+          backgroundColor,
+          fontColor
+        } = selectedSideBarMenu;
         const sideBarMenu = {
           assignees: () => (
             <>
@@ -39,7 +46,7 @@ export const SideBar = React.memo(
           labels: () => (
             <LabelTag
               tagType={'labels'}
-              text={title ?? option}
+              text={labelName ?? option}
               backgroundColor={backgroundColor}
               fontColor={fontColor}
             />

@@ -23,9 +23,8 @@ export const IssueDetail = () => {
       );
       setIssue(issueInfo);
       setComments(commentInfo);
-      console.log(issueInfo, commentInfo);
     } catch (err) {
-      console.log(err);
+      // console.error(err);
     }
   };
 
