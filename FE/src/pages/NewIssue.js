@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 
+import { useOutletContext } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { NewIssueFooter } from '../components/newIssue/NewIssueFooter';
@@ -12,6 +13,7 @@ import { TextInput } from '../components/textForm/TextInput';
 export const NewIssue = () => {
   const titleInputRef = useRef();
   const commentInputRef = useRef();
+  const { user } = useOutletContext();
   const [title, setTitle] = useState('');
   const [comment, setComment] = useState('');
   const [assignee, setAssignee] = useState(null);
@@ -38,7 +40,13 @@ export const NewIssue = () => {
       <PageHeader leftChild={'새로운 이슈 작성'} />
       <MyNewIssueForm onSubmit={handleSubmit}>
         <MyNewIssueContainer>
-          <Profile isLarge userInfo={null} />
+          <Profile
+            isLarge
+            userInfo={{
+              name: user?.userProfile.name,
+              profileUrl: user?.userProfile.avatar_url
+            }}
+          />
           <MyNewIssueContent>
             <TextInput
               label={'제목'}
