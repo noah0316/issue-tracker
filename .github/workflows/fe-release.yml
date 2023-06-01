@@ -54,9 +54,9 @@ jobs:
       run: npm install
       working-directory: ${{ env.working-directory }}
 
-    # - name: install CI
-    #   run: npm ci
-    #   working-directory: ${{ env.working-directory }}
+    - name: install CI
+      run: npm ci
+      working-directory: ${{ env.working-directory }}
     
     - name: Generate build
       run: npm run build
