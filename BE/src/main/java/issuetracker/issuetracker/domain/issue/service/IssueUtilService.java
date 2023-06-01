@@ -46,8 +46,7 @@ public class IssueUtilService {
 
     public void issueMilestoneUpdate(long milestoneId) {
         getIssues().stream()
-                .filter(idx -> idx.getMilestoneId().getId() == milestoneId)
-                //TODO 이부분 상세히구현
+                .filter(issue -> issue.getMilestoneId() != null && issue.getMilestoneId().getId() == milestoneId)
                 .forEach(issue -> {
                     issue.deleteMilestone();
                     issueRepository.save(issue);
@@ -55,9 +54,5 @@ public class IssueUtilService {
     }
 
     public void issueLabelUpdate(Label label) {
-//        getIssues().stream()
-//                .filter(issue -> issue.getAttachedLabels().stream().filter(idx -> idx.getLabelId().getId() == label.getId())
-//                        .forEach(issue::removeAttachedLabels)
-//                );
     }
 }

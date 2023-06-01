@@ -2,14 +2,16 @@ package issuetracker.issuetracker.domain.issue;
 
 
 import io.swagger.v3.oas.annotations.tags.Tag;
-import issuetracker.issuetracker.domain.issue.comment.dto.CommentInIssueDTO;
-import issuetracker.issuetracker.domain.issue.comment.dto.CommentPostDTO;
+import issuetracker.issuetracker.domain.issue.dto.CommentInIssueDTO;
+import issuetracker.issuetracker.domain.issue.dto.Request.CommentPostDTO;
 import issuetracker.issuetracker.domain.issue.dto.IssueDTO;
 import issuetracker.issuetracker.domain.issue.dto.IssueDetailDTO;
 import issuetracker.issuetracker.domain.issue.dto.IssueDetailLabelDto;
 import issuetracker.issuetracker.domain.issue.dto.Request.IssueTitleDTO;
 import issuetracker.issuetracker.domain.issue.dto.Request.PostingIssueDTO;
 import issuetracker.issuetracker.domain.issue.repository.IssueMybatisRepository;
+import issuetracker.issuetracker.domain.issue.dto.IssueCommentDto;
+import issuetracker.issuetracker.domain.issue.service.IssueCommentService;
 import issuetracker.issuetracker.domain.issue.service.IssueService;
 import issuetracker.issuetracker.domain.label.Label;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +19,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Tag(name = "posts", description = "issue 메인 API")
@@ -28,6 +29,7 @@ public class IssueController {
 
     private final IssueMybatisRepository repository;
     private final IssueService issueService;
+    private final IssueCommentService issueCommentService;
     private final Logger log = LoggerFactory.getLogger(IssueController.class);
 
     @GetMapping
@@ -90,25 +92,30 @@ public class IssueController {
     }
 
     @GetMapping("/{issueId}/comments")
-    public List<CommentInIssueDTO> showComment(@RequestParam Long issueId) {
+    public List<CommentInIssueDTO> showComment(@PathVariable long issueId) {
         // TODO 댓글 리스트 구현
-        return new ArrayList<>();
+        return issueCommentService.readComment(issueId);
     }
 
-    @PostMapping("/{issueId}/comments")
-    public void postComment(@RequestBody CommentPostDTO comment) {
+    @PostMapping("/{loginId}/{issueId}/comments")
+    public IssueCommentDto postComment(@PathVariable Long loginId, @PathVariable Long issueId, @RequestBody CommentPostDTO comment) {
         // TODO 댓글 작성하기 구현
-
+        log.debug("이슈의 코멘트 작성");
+        return issueCommentService.creatComment(loginId, issueId, comment);
     }
 
-    @PutMapping("/{issueId}/comments/{commentId}")
-    public void updateComment(@RequestParam Long issueId, @RequestParam Long commentId, @RequestBody CommentPostDTO comment) {
+    @PatchMapping("/comments/{commentId}")
+    public void updateComment(@PathVariable long commentId,
+                              @RequestBody CommentPostDTO comment) {
         // TODO 댓글 수정하기 구현
+        // TODO 댓글 작성하기 구현
+        log.debug("이슈의 코멘트 수정");
+        issueCommentService.updateComment(commentId, comment);
     }
 
-    @DeleteMapping("/{issueId}/comments/{commentId}")
-    public void deleteComment(@PathVariable Long userId, @PathVariable Long issueId, @RequestParam Long commentId) {
+    @DeleteMapping("/{issueId}/comments/{commentId}/{userId}")
+    public void deleteComment(@PathVariable Long issueId, @PathVariable Long commentId, @PathVariable Long userId) {
         // TODO 댓글 삭제하기 구현
-        issueService.deleteCommnet(userId, issueId, commentId);
+        issueCommentService.deleteComment(userId, issueId, commentId);
     }
 }

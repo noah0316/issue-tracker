@@ -1,6 +1,7 @@
 package issuetracker.issuetracker.domain.issue;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import issuetracker.issuetracker.domain.comment.Comment;
 import issuetracker.issuetracker.domain.issue.dto.Request.IssueTitleDTO;
 import issuetracker.issuetracker.domain.issue.dto.Request.PostingIssueDTO;
 import issuetracker.issuetracker.domain.label.Label;
@@ -14,11 +15,8 @@ import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
 import javax.validation.constraints.NotNull;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Getter
 @Builder
@@ -80,7 +78,6 @@ public class Issue {
                 //TODO 사용자 id넣어야함
                 .author(AggregateReference.to(postingIssueDTO.getTokenuser().getId()))
                 .milestoneId(AggregateReference.to(postingIssueDTO.getMilestoneId()))
-                .milestoneId(null)
                 .attachedLabels(attacheSet)
                 .assignees(assigneeSet)
                 .build();
@@ -97,6 +94,11 @@ public class Issue {
         return this;
     }
 
+//    public Issue addComment(Comment comment) {
+//        this.comments.add(comment);
+//        return this;
+//    }
+
     public Set<IssueAttachedLabel> getAttachedLabels() {
         return Collections.unmodifiableSet(this.attachedLabels);
     }
@@ -112,6 +114,4 @@ public class Issue {
     public void removeAttachedLabels(Label label) {
         this.attachedLabels.removeIf(attachedLabel -> attachedLabel.labelId.getId() == label.getId());
     }
-
-
 }
