@@ -21,6 +21,6 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new JwtInterceptor(new JwtUtil()))
                 .addPathPatterns("/**")
-                .excludePathPatterns("/");
+                .excludePathPatterns("/githublogin");
     }
 }
