@@ -14,7 +14,6 @@ export const IssueDetailSidebar = () => {
   const [milestone, setMilestone] = useState(null);
   const [selectedSideBarMenu, setselectedSideBarMenu] = useState({});
   const navigate = useNavigate();
-
   // TODO: 이슈 삭제하기
   const btnInfo = {
     size: 'xs',
