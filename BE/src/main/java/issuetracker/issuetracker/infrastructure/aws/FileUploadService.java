@@ -17,7 +17,7 @@ public class FileUploadService {
 
     private final S3Client s3Client;
 
-    @Value("${cloud.aws.s3.bucket}")
+    @Value("${AWS_S3_BUCKET}")
     private String bucketName;
 
 
