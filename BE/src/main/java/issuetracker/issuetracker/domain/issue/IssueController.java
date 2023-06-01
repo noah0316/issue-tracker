@@ -1,6 +1,7 @@
 package issuetracker.issuetracker.domain.issue;
 
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import issuetracker.issuetracker.domain.issue.dto.CommentInIssueDTO;
 import issuetracker.issuetracker.domain.issue.dto.Request.CommentPostDTO;
@@ -91,12 +92,22 @@ public class IssueController {
         return issueService.removeAttachedLabels(issueId, label);
     }
 
+    @Operation(
+            summary = "이슈에 맞는 코멘트 출력 ",
+            tags = "comment",
+            description = "."
+    )
     @GetMapping("/{issueId}/comments")
     public List<CommentInIssueDTO> showComment(@PathVariable long issueId) {
         // TODO 댓글 리스트 구현
         return issueCommentService.readComment(issueId);
     }
 
+    @Operation(
+            summary = "코멘트 작성 ",
+            tags = "comment",
+            description = "."
+    )
     @PostMapping("/{loginId}/{issueId}/comments")
     public IssueCommentDto postComment(@PathVariable Long loginId, @PathVariable Long issueId, @RequestBody CommentPostDTO comment) {
         // TODO 댓글 작성하기 구현
@@ -104,6 +115,11 @@ public class IssueController {
         return issueCommentService.creatComment(loginId, issueId, comment);
     }
 
+    @Operation(
+            summary = "코멘트 수정 ",
+            tags = "comment",
+            description = "."
+    )
     @PatchMapping("/comments/{commentId}")
     public void updateComment(@PathVariable long commentId,
                               @RequestBody CommentPostDTO comment) {
@@ -113,6 +129,11 @@ public class IssueController {
         issueCommentService.updateComment(commentId, comment);
     }
 
+    @Operation(
+            summary = "모든 코멘트 출력 ",
+            tags = "comment",
+            description = "."
+    )
     @DeleteMapping("/{issueId}/comments/{commentId}/{userId}")
     public void deleteComment(@PathVariable Long issueId, @PathVariable Long commentId, @PathVariable Long userId) {
         // TODO 댓글 삭제하기 구현
