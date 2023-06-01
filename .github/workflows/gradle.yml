@@ -1,9 +1,9 @@
 name: Deploy SpringBoot to EC2
 
 on:
-  push:
+  pull_request:
     branches:
-      - release
+      - BE-sprint4
 
 env:
   S3_BUCKET_NAME: issuetracker-web
