@@ -10,7 +10,6 @@ export const DropdownFilterTabs = ({ onFilterIssues }) => {
     ['author', 'assignees'].includes(tabId) ? '가' : '이';
   const isSelected = (option, selectedOption) =>
     String(option) === selectedOption;
-
   return (
     <MyDropdownFilterTabs>
       {dropdownTabInfo.map(({ tabId, tabName, filterOptions }) => (
