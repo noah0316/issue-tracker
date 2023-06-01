@@ -1,20 +1,21 @@
 import { useContext, useEffect, useState } from 'react';
 
+import { useOutletContext } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { CommentElements } from './CommentElements';
-import { users } from '../../mocks/data';
 import { IssueDetailContext } from '../../pages/IssueDetail';
 import { fontSize } from '../../styles/font';
 import { Button } from '../button/Button';
 import { TextArea } from '../textForm/TextArea';
 
 export const IssueDetailContent = () => {
+  const { user } = useOutletContext();
   const { issue, comments } = useContext(IssueDetailContext);
   const [comment, setComment] = useState('');
   const [saveComment, setSaveComment] = useState([]);
-  // TODO: 유저정보 가져오기
-  const userData = users[3];
+  const userData = user?.userProfile;
+  console.log(userData);
 
   useEffect(() => {
     setSaveComment(comments);
@@ -26,7 +27,7 @@ export const IssueDetailContent = () => {
       {
         userId: userData?.id,
         userName: userData?.name,
-        userUrl: userData?.profileUrl,
+        userUrl: userData?.avatar_url,
         createTime: Date.now(),
         replyContents: comment
       }
@@ -75,10 +76,12 @@ export const IssueDetailContent = () => {
         comments.map((comment, index) => (
           <CommentElements
             key={index}
-            authorInfo={{
-              id: userData?.id,
-              name: userData?.name
-            }}
+            authorInfo={
+              {
+                // id: userData?.id,
+                // name: userData?.name
+              }
+            }
             userInfo={{
               id: comment.userId,
               name: comment.userName,
@@ -99,6 +102,7 @@ const MyIssueDetailContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  width: 938px;
   > button {
     justify-content: center;
     ${fontSize.S};
