@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useOutletContext } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { IssueDetailContent } from '../components/issueDetail/IssueDetailContent';
@@ -14,7 +14,7 @@ export const IssueDetail = () => {
   const [issue, setIssue] = useState([]);
   const [comments, setComments] = useState([]);
   const { id } = useParams();
-
+  const { user } = useOutletContext();
   const initData = async () => {
     try {
       const [issueInfo, commentInfo] = await fetchAll(
@@ -28,9 +28,35 @@ export const IssueDetail = () => {
     }
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const url = `${process.env.REACT_APP_BASE_URI}/issues/${user.userProfile.id}/${id}/comments`;
+    const data = {
+      issueId: id,
+      comment: comments,
+      fileAttachmentUrl: null,
+      description: null,
+      userId: user.userProfile.id,
+      userName: user.userProfile.name,
+      userProfileUrl: user?.userProfile.id
+    };
+    await fetchPost({ url, data });
+  };
+
+  // TODO : 코맨트 편집기능
+  const handleEdit = async (e, element) => {
+    e.preventDefault();
+    const url = `${process.env.REACT_APP_BASE_URI}/issues/${id}/${element}`;
+    const data = {
+      element
+    };
+    await fetchPatch({ url, data });
+  };
+
   useEffect(() => {
     initData();
   }, [id]);
+
   return (
     <IssueDetailContext.Provider value={{ issue, comments }}>
       <IssueDetailHeader />

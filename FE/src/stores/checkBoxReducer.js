@@ -15,9 +15,7 @@ export const checkBoxReducer = (state, action) => {
       };
     }
     case 'UNCHECK': {
-      const updateCheckedIssues = checkedIssues.filter(
-        (issueId) => issueId !== payload
-      );
+      const updateCheckedIssues = checkedIssues.filter((id) => id !== payload);
       const isAllUpdatedChecked = updateCheckedIssues.length > 0;
       return {
         isAllChecked: isAllUpdatedChecked,
@@ -25,7 +23,7 @@ export const checkBoxReducer = (state, action) => {
       };
     }
     case 'ALL-CHECK': {
-      const updateCheckedIssues = payload.map(({ issueId }) => issueId);
+      const updateCheckedIssues = payload.map(({ id }) => id);
       return {
         isAllChecked: true,
         checkedIssues: updateCheckedIssues
@@ -36,7 +34,7 @@ export const checkBoxReducer = (state, action) => {
     }
     case 'SWITCH-OPEN': {
       const updateCheckedIssues = payload.reduce((acc, issue) => {
-        if (checkedIssues.includes(issue.issueId) && issue.isOpen !== true) {
+        if (checkedIssues.includes(issue.id) && issue.isOpen !== true) {
           issue.isOpen = true;
         }
         acc.push(issue);
@@ -50,7 +48,7 @@ export const checkBoxReducer = (state, action) => {
     case 'SWITCH-CLOSE': {
       // TODO: 업데이트한 데이터 POST하고, 그 값을 다시 받아서 리렌더
       const updateCheckedIssues = payload.reduce((acc, issue) => {
-        if (checkedIssues.includes(issue.issueId) && issue.isOpen !== false) {
+        if (checkedIssues.includes(issue.id) && issue.isOpen !== false) {
           issue.isOpen = false;
         }
         acc.push(issue);

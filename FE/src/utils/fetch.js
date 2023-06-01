@@ -39,15 +39,13 @@ export const fetchDelete = async ({ path, data }) => {
   }
 };
 
-export const getLoginToken = async (queryCode) => {
+export const fetchPatch = async ({ path, data }) => {
   try {
-    const data = await customFetch({
-      path: '/oauth/result',
-      method: 'GET',
-      queries: { code: queryCode }
+    const response = await fetch(path, {
+      method: 'PATCH',
+      body: JSON.stringify(data)
     });
-    return data;
   } catch (error) {
-    return error;
+    // console.error('Error:', error);
   }
 };

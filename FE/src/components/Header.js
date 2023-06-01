@@ -21,8 +21,8 @@ export const Header = ({ userData }) => {
       <Profile
         isLarge
         userInfo={{
-          name: userData?.userProfile.name,
-          profileUrl: userData?.userProfile.avatar_url
+          name: userData?.name,
+          profileUrl: userData?.avatar_url
         }}
       />
     </MyHeader>

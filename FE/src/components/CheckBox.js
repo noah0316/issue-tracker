@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Icon } from '../assets/Icon';
 import { colors } from '../styles/color';
 
-// TODO : 상태에 따라 체크 박스 아이콘 변경 하기
 const checkType = {
   initial: {
     iconType: 'checkBoxInitial',
@@ -19,18 +18,20 @@ const checkType = {
   }
 };
 
-export const CheckBox = ({ id, checked, onChange }) => {
-  const iconType = checked ? 'active' : 'disable';
+export const CheckBox = ({ id, checked, onClick }) => {
+  const type = checked
+    ? id === 'select-all'
+      ? 'disable'
+      : 'active'
+    : 'initial';
+
   return (
-    <MyCheckBox
-      id={id}
-      type={'checkbox'}
-      checked={checked}
-      onChange={onChange}
-    ></MyCheckBox>
+    <MyCheckBox id={id} type={'button'} onClick={onClick}>
+      <Icon {...checkType[type]} />
+    </MyCheckBox>
   );
 };
 
-const MyCheckBox = styled.input`
+const MyCheckBox = styled.div`
   cursor: pointer;
 `;

@@ -20,7 +20,7 @@ export const HeaderLayout = () => {
 
   return (
     <>
-      <Header userData={user} />
+      <Header userData={user?.userProfile} />
       <DefaultLayout>
         <Outlet context={{ user }} />
       </DefaultLayout>

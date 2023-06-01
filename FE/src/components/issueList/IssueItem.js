@@ -27,7 +27,7 @@ export const IssueItem = ({
   const { checkedIssues } = checkState;
   const iconType = isOpen ? 'alertCircle' : 'archive';
   const handleCheckBoxClick = ({ currentTarget }) => {
-    if (checkedIssues.some((id) => id === Number(currentTarget.id))) {
+    if (checkedIssues.includes(Number(currentTarget.id))) {
       checkDispatch({ type: 'UNCHECK', payload: id });
     } else {
       checkDispatch({ type: 'CHECK', payload: id });
@@ -38,8 +38,8 @@ export const IssueItem = ({
       <MyIssueBox>
         <CheckBox
           id={id}
-          onChange={handleCheckBoxClick}
           checked={checkedIssues.includes(id)}
+          onClick={handleCheckBoxClick}
         />
         <MyIssue>
           <MyIssueTitle>

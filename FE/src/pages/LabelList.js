@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
 import { Button } from '../components/button/Button';
 import { NewLabelSection } from '../components/labelList/NewlabelSection';
 import { LabelTag } from '../components/LabelTag';
 import { colors } from '../styles/color';
 import { fontSize, fontType } from '../styles/font';
-import { fetchAll, fetchData, fetchDelete } from '../utils/fetch';
+import { fetchAll, fetchDelete } from '../utils/fetch';
 
 export const LabelList = () => {
   const navigate = useNavigate();
@@ -27,9 +27,9 @@ export const LabelList = () => {
       // console.log(err);
     }
   };
-
   useEffect(() => {
     initData();
+    // TODO: labels 이면 왜 안되는가 ?
   }, [labels.length]);
 
   const filterTabOptions = {
