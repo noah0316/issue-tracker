@@ -18,13 +18,13 @@ import java.util.Map;
 @Service
 public class LoginService {
 
-    @Value("${GITHUB_URL}")
+    @Value("${OAUTH_GITHUB_URL}")
     private String url;
 
-    @Value("${GITHUB_CLIENT_ID}")
+    @Value("${OAUTH_GITHUB_CLIENT_ID}")
     private String clientId;
 
-    @Value("${GITHUB_CLIENT_SECRET}")
+    @Value("${OAUTH_GITHUB_CLIENT_SECRET}")
     private String clientSecret;
 
     public GithubToken getAccessToken(String code) {
