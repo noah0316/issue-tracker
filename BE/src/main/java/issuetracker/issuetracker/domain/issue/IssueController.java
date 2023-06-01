@@ -46,6 +46,11 @@ public class IssueController {
         return issueService.save(issue);
     }
 
+    @Operation(
+            summary = "이슈 하나 조회",
+            tags = "issue",
+            description = "."
+    )
     @GetMapping("/{issueId}")
     public IssueDetailDTO explainIssue(@PathVariable Long issueId) {
         // findByIssue
