@@ -24,8 +24,10 @@ export const IssueList = () => {
   const initData = async () => {
     try {
       const [issuesInfo, countInfo] = await fetchAll(
-        `http://13.209.232.172:8080/issues${getFilterQueryString(filterState)}`,
-        `http://13.209.232.172:8080/issues/countInfo`
+        `${process.env.REACT_APP_BASE_URI}/issues${getFilterQueryString(
+          filterState
+        )}`,
+        `${process.env.REACT_APP_BASE_URI}/issues/countInfo`
       );
       setIssuesInfo(issuesInfo);
       setCountInfo(countInfo);

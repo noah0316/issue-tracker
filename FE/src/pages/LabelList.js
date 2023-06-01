@@ -18,8 +18,8 @@ export const LabelList = () => {
   const initData = async () => {
     try {
       const [labelsInfo, countInfo] = await fetchAll(
-        'http://13.209.232.172:8080/labels',
-        'http://13.209.232.172:8080/issues/countInfo'
+        `${process.env.REACT_APP_BASE_URI}/labels`,
+        `${process.env.REACT_APP_BASE_URI}/issues/countInfo`
       );
       setLabels(labelsInfo);
       setCountInfo(countInfo);
@@ -60,7 +60,7 @@ export const LabelList = () => {
   };
 
   const handleDelete = async (id) => {
-    const url = `http://13.209.232.172:8080/labels/${id}`;
+    const url = `${process.env.REACT_APP_BASE_URI}/labels/${id}`;
     const idData = {
       labelId: id
     };
