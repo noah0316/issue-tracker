@@ -20,7 +20,7 @@ export const Login = () => {
   const focusStyle = isLogin ? null : colors.red;
 
   const CLIENT_ID = '3b1dfca72b24afb9ebb2';
-  const REDIRECT_URI = 'http://issue-tracker-04.site/auth&scope=user';
+  const REDIRECT_URI = 'http://localhost:3000/auth&scope=user';
   const loginUri = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`;
 
   const githubLoginHandler = () => {

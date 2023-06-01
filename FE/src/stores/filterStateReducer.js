@@ -2,7 +2,7 @@ export const initialFilterState = {
   isOpen: true,
   author: null, // 작성자
   labels: null, // 레이블 중복가능
-  milestone: null, // 마일스톤
+  milestones: null, // 마일스톤
   assignees: null, // 담당자 중복가능
   comments: null // 댓글
 };
