@@ -1,32 +1,76 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-# This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
-
-name: Java CI with Gradle
+name: Deploy SpringBoot to EC2
 
 on:
-  pull_request:
-    branches: [ "BE-sprint4" ]
+  push:
+    branches:
+      - release
 
-permissions:
-  contents: read
+env:
+  S3_BUCKET_NAME: issuetracker-web
+  RESOURCE_PATH: ./be/src/main/resources/application.yaml
+  CODE_DEPLOY_APPLICATION_NAME: issue-tracker
+  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: issue-tracker
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
+  deploy:
+    name: DEPLOY
+    runs-on: ubuntu-22.04
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Set up JDK 11
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v1
         with:
-          java-version: '11'
-          distribution: 'temurin'
+          java-version: 11
+
+
+
+      - name: make application.properties
+        run:
+          touch ./be/src/main/resources/application.properties
+        shell: bash
+
+      - name: deliver application.properties
+        run: echo "${{ secrets.APPLICATION_PROPERTIES }}" > ./be/src/main/resources/application.properties
+        shell: bash
+
+
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./BE/gradlew
+        shell: bash
+
+#-p 경로 설정
       - name: Build with Gradle
-        uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
+        run: ./BE/gradlew -p BE build -x test
+        shell: bash
+
+      - name: find
+        run: find ./BE/build
+        shell: bash
+
+      - name: Make zip file
+        run: zip -r ./$GITHUB_SHA.zip .
+        shell: bash
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          arguments: build -x test
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+
+      - name: Upload to S3
+        run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip
+
+
+      - name: Code Deploy
+        run: |
+          aws deploy create-deployment \
+          --deployment-config-name CodeDeployDefault.AllAtOnce \
+          --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
+          --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }} \
+          --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$GITHUB_SHA.zip
