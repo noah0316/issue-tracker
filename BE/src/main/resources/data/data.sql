@@ -21,3 +21,9 @@ INSERT INTO `comment` (`contents`, `issue_id`, `member_id`) VALUES ('Comment 3',
 INSERT INTO `label_list` (`label_id`, `issue_id`) VALUES (1, 1);
 INSERT INTO `label_list` (`label_id`, `issue_id`) VALUES (2, 1);
 INSERT INTO `label_list` (`label_id`, `issue_id`) VALUES (3, 2);
+
+INSERT INTO `assignee` (`member_id`, `issue_id`)
+VALUES
+    (1, 1),
+    (2, 2),
+    (3, 3);

@@ -6,7 +6,7 @@
 
     <select id="findIssueFilter" resultMap="IssueResultMap" parameterType="issuetracker.issuetracker.domain.issue.IssueFilterCondition">
         SELECT
-        i.issue_id, i.title, i.create_time, i.update_time, i.is_open, m.title AS milestone, a.member_id AS author_id,
+        i.issue_id, i.title, i.create_time, i.update_time, i.is_open,m.milestone_id AS milestone_id, m.title AS milestone, a.member_id AS author_id,
         a.member_name AS author_name, a.profile_url AS author_profile_url, asg.member_id AS assignee_id, asg.member_name AS assignee_name,
         asg.profile_url AS assignee_profile_url, l.label_id, l.title AS label_name, l.background_color, l.font_color
         FROM issue i
@@ -75,7 +75,7 @@
         <result property="isOpen" column="is_open"/>
         <association property="milestone" column="milestone_id" javaType="issuetracker.issuetracker.domain.milestone.dto.MileStoneDTO">
             <id property="id" column="milestone_id"/>
-            <result property="title" column="title"/>
+            <result property="title" column="milestone"/>
         </association>
         <association property="author" column="author_id" javaType="issuetracker.issuetracker.domain.user.dto.AuthorDTO">
             <id property="id" column="author_id"/>
@@ -90,6 +90,7 @@
         <collection property="labels" ofType="issuetracker.issuetracker.domain.label.dto.LabelDTO" javaType="java.util.Set">
             <id property="id" column="label_id"/>
             <result property="backgroundColor" column="background_color"/>
+            <result property="labelName" column="label_name"/>
             <result property="fontColor" column="font_color"/>
         </collection>
     </resultMap>
