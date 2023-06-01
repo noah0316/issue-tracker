@@ -24,7 +24,7 @@ export const LabelList = () => {
       setLabels(labelsInfo);
       setCountInfo(countInfo);
     } catch (err) {
-      console.error(err);
+      // console.log(err);
     }
   };
 

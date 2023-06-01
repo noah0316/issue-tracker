@@ -18,7 +18,7 @@ export const Auth = () => {
         localStorage.setItem('jwtToken', token);
         navigate('/issues');
       } catch (error) {
-        console.log(error);
+        // console.error(error);
       }
     };
     getToken();

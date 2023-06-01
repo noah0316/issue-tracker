@@ -16,19 +16,19 @@ export const tabTypes = {
     filterOptions (label) {
       return {
         id: label.id,
-        option: label.name,
+        option: label.title ?? label.labelName,
         backgroundColor: label.backgroundColor,
         fontColor: label.fontColor
       };
     }
   },
-  milestone: {
-    tabId: 'milestone',
+  milestones: {
+    tabId: 'milestones',
     tabName: '마일스톤',
     filterOptions (milestone) {
       return {
         id: milestone.id,
-        option: milestone.name
+        option: milestone.title
       };
     }
   },

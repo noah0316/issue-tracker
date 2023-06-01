@@ -13,25 +13,24 @@ export const IssueDetailContext = React.createContext();
 export const IssueDetail = () => {
   const [issue, setIssue] = useState([]);
   const [comments, setComments] = useState([]);
-  const { issueId } = useParams();
+  const { id } = useParams();
 
   const initData = async () => {
     try {
-      const [issue, comment] = await fetchAll(
-        `${process.env.REACT_APP_BASE_URI}/issues/${issueId}`,
-        `${process.env.REACT_APP_BASE_URI}/issues/issues/${issueId}/comments`
+      const [issueInfo, commentInfo] = await fetchAll(
+        `${process.env.REACT_APP_BASE_URI}/issues/${id}`,
+        `${process.env.REACT_APP_BASE_URI}/issues/${id}/comments?issueId=${id}`
       );
-      setIssue(issue);
-      setComments(comment.comments);
+      setIssue(issueInfo);
+      setComments(commentInfo);
     } catch (err) {
-      console.log(err);
+      // console.error(err);
     }
   };
 
   useEffect(() => {
     initData();
-  }, [issueId]);
-
+  }, [id]);
   return (
     <IssueDetailContext.Provider value={{ issue, comments }}>
       <IssueDetailHeader />

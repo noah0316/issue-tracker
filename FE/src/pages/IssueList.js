@@ -32,7 +32,7 @@ export const IssueList = () => {
       setIssuesInfo(issuesInfo);
       setCountInfo(countInfo);
     } catch (err) {
-      console.error(err);
+      // console.log(err);
     }
   };
 
