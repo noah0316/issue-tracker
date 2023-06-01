@@ -9,6 +9,31 @@ export const fetchAll = async (...url) => {
   return response;
 };
 
+export const fetchPost = async ({ path, data }) => {
+  try {
+    const response = await fetch(path, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
+export const fetchDelete = async ({ path, data }) => {
+  try {
+    const response = await fetch(path, {
+      method: 'DELETE',
+      body: JSON.stringify(data)
+    });
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
 export const getLoginToken = async (queryCode) => {
   try {
     const data = await customFetch({
