@@ -1,17 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
 import styled from 'styled-components';
 
 import { CheckboxStateContext } from './IssueListContainer';
-import { IssueListContext } from '../../pages/IssueList';
+import { IssueListContext, FilterStateContext } from '../../pages/IssueList';
 import { colors } from '../../styles/color';
 import { fontSize } from '../../styles/font';
 import { Button } from '../button/Button';
 import { CheckBox } from '../CheckBox';
 import { Dropdown } from '../dropdown/Dropdown';
-import { DropdownTabs } from '../dropdown/DropdownTabs';
+import { DropdownFilterTabs } from '../dropdown/DropdownFilterTabs';
 
-const checkTabsType = {
+const checkTabTypes = {
   tabId: 'checkTab',
   tabName: '상태 수정',
   tabOptions: [
@@ -58,17 +58,21 @@ const issueButtonTypes = [
 export const IssueListHeader = () => {
   const { checkState, checkDispatch } = useContext(CheckboxStateContext);
   const { isAllChecked, checkedIssues } = checkState;
-  const issues = useContext(IssueListContext);
-  const countInfo = issues.countInfo;
-
+  const { issuesInfo, countInfo } = useContext(IssueListContext);
+  const { filterState, onOpenIssues, onFilterIssues } =
+    useContext(FilterStateContext);
   const handleCheckedIssueTabsClick = () => {
-    if (isAllChecked) checkDispatch({ type: 'ALL_UNCHECK' });
+    if (isAllChecked) checkDispatch({ type: 'ALL-UNCHECK' });
     else {
-      checkDispatch({ type: 'ALL_CHECK', payload: issues.issueList });
+      checkDispatch({ type: 'ALL-CHECK', payload: issuesInfo });
     }
   };
 
-  const [activeTab, setActiveTab] = useState(true);
+  const handleSwitchCheckIssueState = (option) => {
+    if (option === 'open') {
+      checkDispatch({ type: 'SWITCH-OPEN', payload: issuesInfo });
+    } else checkDispatch({ type: 'SWITCH-CLOSE', payload: issuesInfo });
+  };
 
   return (
     <MyIssueListHeader>
@@ -84,11 +88,11 @@ export const IssueListHeader = () => {
           )
           : (
             issueButtonTypes.map(
-              ({ buttonText, status, buttonOption }, index) => (
+              ({ tabId, buttonText, status, buttonOption }) => (
                 <Button
-                  key={index}
-                  active={activeTab === status}
-                  onClick={() => setActiveTab(status)}
+                  key={tabId}
+                  active={status === filterState.isOpen}
+                  onClick={() => onOpenIssues(tabId)}
                   {...buttonOption}
                   buttonText={`${buttonText} (${
                     status
@@ -100,7 +104,16 @@ export const IssueListHeader = () => {
             )
           )}
       </MyIssueTabs>
-      {isAllChecked ? <Dropdown {...checkTabsType} /> : <DropdownTabs />}
+      {isAllChecked
+        ? (
+          <Dropdown
+            {...checkTabTypes}
+            handleSwitchCheckIssueState={handleSwitchCheckIssueState}
+          />
+        )
+        : (
+          <DropdownFilterTabs onFilterIssues={onFilterIssues} />
+        )}
     </MyIssueListHeader>
   );
 };

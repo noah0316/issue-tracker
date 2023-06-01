@@ -3,14 +3,16 @@ import styled from 'styled-components';
 import { Dropdown } from './Dropdown';
 import { tabTypes } from './DropdownTypes';
 
-export const DropdownTabs = () => {
-  const tabButtons = ['author', 'labels', 'milestone', 'assignees'];
+export const DropdownFilterTabs = ({ onFilterIssues }) => {
+  const tabButtons = ['author', 'labels', 'milestones', 'assignees'];
   const dropdownTabInfo = tabButtons.map((tab) => tabTypes[tab]);
   const getParticleType = (tabId) =>
     ['author', 'assignees'].includes(tabId) ? '가' : '이';
+  const isSelected = (option, selectedOption) =>
+    String(option) === selectedOption;
 
   return (
-    <MyDropdownTabs>
+    <MyDropdownFilterTabs>
       {dropdownTabInfo.map(({ tabId, tabName, filterOptions }) => (
         <Dropdown
           key={tabId}
@@ -25,13 +27,15 @@ export const DropdownTabs = () => {
               {getParticleType(tabId)} 없는 이슈
             </>
           }
+          onFilterIssues={onFilterIssues}
+          isSelected={isSelected}
         />
       ))}
-    </MyDropdownTabs>
+    </MyDropdownFilterTabs>
   );
 };
 
-const MyDropdownTabs = styled.div`
+const MyDropdownFilterTabs = styled.div`
   display: flex;
   align-items: center;
   gap: 18px;

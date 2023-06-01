@@ -13,14 +13,14 @@ export const DropdownPanel = ({
   type,
   options,
   isLeft,
+  optionalArea,
   selectedOption,
   handleSelectedOption,
-  optionalArea
+  isSelected
 }) => {
   const handleOptionClick = ({ currentTarget }) => {
-    handleSelectedOption(currentTarget.id, currentTarget.getAttribute('value'));
+    handleSelectedOption(currentTarget.getAttribute('value'), currentTarget.id);
   };
-
   const iconType =
     selectedOption === 'none' ? 'checkOnCircle' : 'checkOffCircle';
   const MyDropdownPanel = type === 'sidebar' ? MySidebarPanel : MyDefaultPanel;
@@ -45,7 +45,7 @@ export const DropdownPanel = ({
               tabId={tabId}
               id={option.id}
               {...option}
-              isSelected={String(option.id) === selectedOption}
+              isSelected={isSelected?.(option.id, selectedOption, tabId)}
               onMouseUp={handleOptionClick}
             />
           ))}

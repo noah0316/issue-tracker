@@ -9,7 +9,7 @@ export const DropdownPanelItem = ({
   profileUrl,
   backgroundColor,
   isSelected,
-  onMouseUp,
+  onMouseUp
 }) => {
   const iconType = isSelected ? 'checkOnCircle' : 'checkOffCircle';
   return (

@@ -1,6 +1,6 @@
 {
   "id": 1,
-  "title": "Second Issue",
+  "title": "FE 이슈트래커 디자인 시스템 구현",
   "createTime": "2023-05-24T03:34:16.754Z",
   "updateTime": "2023-05-22T06:34:16.754Z",
   "isOpen": true,
@@ -9,15 +9,15 @@
     "name": "Second Milestone"
   },
   "author": {
-    "id": 2,
-    "name": "Demian",
-    "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/a981d3b0-77ec-4402-a658-ca6a41ed41de"
+    "id": 0,
+    "name": "GamJa",
+    "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/e3d247fa-47b0-4d13-8dc5-a3cae495d732"
   },
   "assignees": [
     {
-      "id": 0,
-      "name": "GamJa",
-      "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/e3d247fa-47b0-4d13-8dc5-a3cae495d732"
+      "id": 2,
+      "name": "Demian",
+      "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/a981d3b0-77ec-4402-a658-ca6a41ed41de"
     }
   ],
   "labels": [

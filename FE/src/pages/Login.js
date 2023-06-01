@@ -12,9 +12,6 @@ import { fetchData } from '../utils/fetch';
 export const Login = () => {
   const navigate = useNavigate();
 
-  const idInputRef = useRef(null);
-  const pwInputRef = useRef(null);
-
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const [isLogin, setIsLogin] = useState(true);
@@ -22,8 +19,9 @@ export const Login = () => {
 
   const focusStyle = isLogin ? null : colors.red;
 
-  const loginUri =
-    'https://github.com/login/oauth/authorize?client_id=3b1dfca72b24afb9ebb2&redirect_uri=http://localhost:3000/auth&scope=user';
+  const CLIENT_ID = '3b1dfca72b24afb9ebb2';
+  const REDIRECT_URI = 'http://localhost:3000/auth&scope=user';
+  const loginUri = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`;
 
   const githubLoginHandler = () => {
     window.location.href = loginUri;
@@ -37,8 +35,6 @@ export const Login = () => {
       }
     });
     setIsLogin(false);
-    idInputRef.current.focus();
-    pwInputRef.current.focus();
   };
 
   const initData = async () => {
@@ -73,7 +69,7 @@ export const Login = () => {
       value: id,
       setValue: setId,
       loginValue: isLogin,
-      myInputRef: idInputRef
+      inputType: 'text'
     },
     {
       id: 2,
@@ -82,7 +78,7 @@ export const Login = () => {
       value: pw,
       setValue: setPw,
       loginValue: isLogin,
-      myInputRef: pwInputRef
+      inputType: 'password'
     }
   ];
 
@@ -117,8 +113,8 @@ export const Login = () => {
           height={login.height}
           value={login.value}
           setValue={login.setValue}
-          myInputRef={login.myInputRef}
           focusStyle={focusStyle}
+          inputType={login.inputType}
         />
       ))}
       <Button {...idLoginBtn} />

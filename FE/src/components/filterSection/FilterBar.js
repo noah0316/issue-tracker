@@ -1,63 +1,111 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 import styled from 'styled-components';
 
 import { Icon } from '../../assets/Icon';
+import { FilterStateContext } from '../../pages/IssueList';
+import { initialFilterState } from '../../stores/filterStateReducer';
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
+import { convertFilterQueryToInputValue } from '../../utils/filterQuery';
+import { Button } from '../button/Button';
 import { Dropdown } from '../dropdown/Dropdown';
 
 const filterTabOptions = [
-  { id: 'isOpen', option: '열린 이슈', isSelected: true },
-  { id: 'isWrittenByMe', option: '내가 작성한 이슈', isSelected: false },
-  { id: 'isAssignedToMe', option: '나에게 할당된 이슈', isSelected: false },
-  { id: 'commentedByMe', option: '내가 댓글을 남긴 이슈', isSelected: false },
-  { id: '!isOpen', option: '닫힌 이슈', isSelected: false }
+  { id: 'isOpen', option: '열린 이슈' },
+  { id: 'author', option: '내가 작성한 이슈' },
+  { id: 'assignees', option: '나에게 할당된 이슈' },
+  { id: 'comments', option: '내가 댓글을 남긴 이슈' },
+  { id: '!isOpen', option: '닫힌 이슈' }
 ];
 
-// TODO : uncontrolled component, forwardRef
-export const FilterBar = () => {
-  const [isFilterTextFocus, setIsFilterTextFocus] = useState(false);
-  const [value, setValue] = useState('is:issue is:open');
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
-
-  const dropdownInfo = {
+const filterBtnOptions = {
+  dropdown: {
     tabId: 'filter',
     tabName: '필터',
     tabOptions: filterTabOptions,
     buttonOption: { size: 's' },
     isLeft: true
-  };
-
-  const iconInfo = {
+  },
+  searchIcon: {
     iconType: 'search',
     fill: colors.gray600,
     width: 11
+  },
+  textInput: {
+    type: 'text',
+    placeholder: 'Search all issues'
+  },
+  removeFilter: {
+    color: 'ghostGray',
+    iconType: 'xSquare',
+    isIcon: true,
+    buttonText: '현재의 검색 필터 및 정렬 지우기',
+    isLeftPosition: true
+  }
+};
+
+// TODO : uncontrolled component, forwardRef
+export const FilterBar = () => {
+  const { filterState, onResetFilter, onFilterIssues, onOpenIssues } =
+    useContext(FilterStateContext);
+  const [isFilterTextFocus, setIsFilterTextFocus] = useState(false);
+  const [value, setValue] = useState(
+    convertFilterQueryToInputValue(filterState)
+  );
+  // QUESTION: 필터가 적용되면 (초기상태와 다른지 확인을 이런식으로 해도 되는지 ..?)
+  const isFiltered = filterState !== initialFilterState;
+
+  const isSelected = (id, selectedOption, tabId) => {
+    if (tabId === 'filter' && id.endsWith('isOpen')) {
+      return (id === 'isOpen') === filterState.isOpen;
+    } else {
+      return String(id) === selectedOption;
+    }
   };
 
-  const filterInputOptions = {
-    type: 'text',
-    value,
-    onChange: handleChange,
-    placeholder: 'Search all issues'
-  };
+  useEffect(() => {
+    setValue(convertFilterQueryToInputValue(filterState));
+  }, [filterState]);
 
   return (
-    <MyfilterBar>
-      <Dropdown {...dropdownInfo} />
-      <MyIconTextInput
-        isFocus={isFilterTextFocus}
-        onFocus={() => setIsFilterTextFocus(true)}
-        onBlur={() => setIsFilterTextFocus(false)}
-      >
-        <Icon {...iconInfo} />
-        <input {...filterInputOptions} />
-      </MyIconTextInput>
-    </MyfilterBar>
+    <MyfilterBarBox>
+      <MyfilterBar>
+        <Dropdown
+          {...filterBtnOptions.dropdown}
+          onFilterIssues={onFilterIssues}
+          onOpenIssues={onOpenIssues}
+          isSelected={isSelected}
+        />
+        <MyTextInput
+          isFocus={isFilterTextFocus}
+          onFocus={() => setIsFilterTextFocus(true)}
+          onBlur={() => setIsFilterTextFocus(false)}
+        >
+          <Icon {...filterBtnOptions.searchIcon} />
+          <input
+            value={value}
+            {...filterBtnOptions.textInput}
+            onChange={({ target }) => setValue(target.value)}
+          />
+        </MyTextInput>
+      </MyfilterBar>
+      {isFiltered && (
+        <Button
+          {...filterBtnOptions.removeFilter}
+          onClick={() => onResetFilter()}
+        />
+      )}
+    </MyfilterBarBox>
   );
 };
+
+const MyfilterBarBox = styled.div`
+  > button {
+    padding: 5px 10px;
+    ${fontSize.S}
+  }
+`;
 
 const MyfilterBar = styled.div`
   height: 40px;
@@ -65,14 +113,14 @@ const MyfilterBar = styled.div`
   align-items: center;
   border-radius: 11px;
   border: 1px solid ${colors.gray300};
-  ${fontSize.M}
-
   > div:first-child {
     border-radius: 11px 0px 0px 11px;
     border-right: 1px solid ${colors.gray300};
-
     &:hover {
       background: ${colors.gray200};
+    }
+    > button {
+      font-size: 14px;
     }
   }
 
@@ -86,7 +134,7 @@ const MyfilterBar = styled.div`
   }
 `;
 
-const MyIconTextInput = styled.div`
+const MyTextInput = styled.div`
   position: relative;
   display: flex;
   align-items: center;

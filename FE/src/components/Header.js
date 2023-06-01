@@ -1,24 +1,12 @@
-import { useState, useEffect } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Profile } from './Profile';
 import { Icon } from '../assets/Icon';
 import { fontSize, fontType } from '../styles/font';
-import { fetchData } from '../utils/fetch';
 
-export const Header = () => {
+export const Header = ({ userData }) => {
   const navigate = useNavigate();
-  const [user, setUser] = useState('');
-  const initData = async () => {
-    const resData = await fetchData('/issues');
-    setUser(resData);
-  };
-
-  useEffect(() => {
-    initData();
-  }, []);
 
   const logoInfo = {
     iconType: 'logotypeLarge',
@@ -30,7 +18,13 @@ export const Header = () => {
   return (
     <MyHeader>
       <Icon {...logoInfo} />
-      <Profile isLarge userInfo={user?.userInfo} />
+      <Profile
+        isLarge
+        userInfo={{
+          name: userData?.userProfile.name,
+          profileUrl: userData?.userProfile.avatar_url
+        }}
+      />
     </MyHeader>
   );
 };

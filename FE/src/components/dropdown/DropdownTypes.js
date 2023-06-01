@@ -14,21 +14,22 @@ export const tabTypes = {
     tabId: 'labels',
     tabName: '레이블',
     filterOptions (label) {
+      console.log(label);
       return {
         id: label.id,
-        option: label.name,
+        option: label.title,
         backgroundColor: label.backgroundColor,
         fontColor: label.fontColor
       };
     }
   },
-  milestone: {
-    tabId: 'milestone',
+  milestones: {
+    tabId: 'milestones',
     tabName: '마일스톤',
     filterOptions (milestone) {
       return {
         id: milestone.id,
-        option: milestone.name
+        option: milestone.title
       };
     }
   },

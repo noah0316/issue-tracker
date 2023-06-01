@@ -6,7 +6,7 @@ import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 
 export const TextInput = React.memo(
-  ({ label, height, value, setValue, myInputRef, focusStyle }) => {
+  ({ label, height, value, setValue, focusStyle, inputType, inputRef }) => {
     const [isTextInputFocus, setIsTextInputFocus] = useState(false);
 
     return (
@@ -19,11 +19,13 @@ export const TextInput = React.memo(
         onBlur={() => setIsTextInputFocus(false)}
       >
         <input
-          type="text"
-          onChange={(e) => {
-            setValue(e.target.value);
+          name="title"
+          type={inputType}
+          onChange={({ target }) => {
+            setValue(target.value);
           }}
-          ref={myInputRef}
+          ref={inputRef}
+          value={value}
         />
         <label className={value && 'filled'}>{label}</label>
       </MyTextInput>
@@ -41,10 +43,7 @@ const MyTextInput = styled.div`
   border-radius: 11px;
   background: ${({ isFocus }) => (isFocus ? `${colors.gray50}` : null)};
   box-shadow: ${({ isFocus, focusStyle }) =>
-    isFocus
-      ? (focusStyle && `0 0 0 1px ${focusStyle}`) || `0 0 0 1px ${colors.blue}`
-      : null};
-
+    isFocus ? `0 0 0 1px ${colors.blue}` : `0 0 0 1px ${focusStyle}`};
   &: focus-within label {
     transform: translate(0, 12px) scale(0.8);
   }

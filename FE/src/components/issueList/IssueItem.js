@@ -13,7 +13,7 @@ import { LabelTag } from '../LabelTag';
 import { Profile } from '../Profile';
 
 export const IssueItem = ({
-  issueId,
+  id,
   title,
   author,
   labels,
@@ -28,63 +28,59 @@ export const IssueItem = ({
   const iconType = isOpen ? 'alertCircle' : 'archive';
   const handleCheckBoxClick = ({ currentTarget }) => {
     if (checkedIssues.some((id) => id === Number(currentTarget.id))) {
-      checkDispatch({ type: 'UNCHECK', payload: issueId });
+      checkDispatch({ type: 'UNCHECK', payload: id });
     } else {
-      checkDispatch({ type: 'CHECK', payload: issueId });
+      checkDispatch({ type: 'CHECK', payload: id });
     }
   };
-
+  console.log(labels);
   return (
-    isOpen && (
-      <MyIssueItem>
-        <MyIssueBox>
-          <CheckBox
-            id={issueId}
-            onChange={handleCheckBoxClick}
-            checked={checkedIssues.includes(issueId)}
-          />
-          <MyIssue>
-            <MyIssueTitle>
-              <Icon iconType={iconType} fill={colors.blue} />
-              <span onClick={() => navigate('/issueDetail/:issueId')}>
-                {title}
-              </span>
-              {!!labels.length &&
-                labels.map((label) => (
-                  <LabelTag
-                    key={label.id}
-                    tagType={'labels'}
-                    hasIcon={false}
-                    text={label.name}
-                    backgroundColor={label.backgroundColor}
-                    fontColor={label.fontColor}
-                  />
-                ))}
-            </MyIssueTitle>
-            <MyIssueDiscription>
-              <p>#{issueId}</p>
-              <p>
-                이 이슈가 {getTimeElapsed(createTime)}, {author?.name}님에 의해
-                작성되었습니다
-              </p>
-              {milestone && (
-                <>
-                  <Icon iconType={'milestone'} fill={colors.gray600} />
-                  <p>{milestone.name}</p>
-                </>
-              )}
-            </MyIssueDiscription>
-          </MyIssue>
-        </MyIssueBox>
-        {assignees && (
-          <MyIssueAssignee>
-            {assignees.map((assignee) => (
-              <Profile key={assignee.id} userInfo={assignee} />
-            ))}
-          </MyIssueAssignee>
-        )}
-      </MyIssueItem>
-    )
+    <MyIssueItem>
+      <MyIssueBox>
+        <CheckBox
+          id={id}
+          onChange={handleCheckBoxClick}
+          checked={checkedIssues.includes(id)}
+        />
+        <MyIssue>
+          <MyIssueTitle>
+            <Icon iconType={iconType} fill={colors.blue} />
+            <span onClick={() => navigate(`/issues/${id}`)}>{title}</span>
+            {!!labels.length &&
+              labels.map((label) => (
+                <LabelTag
+                  key={label.id}
+                  tagType={'labels'}
+                  hasIcon={false}
+                  text={label.labelName}
+                  backgroundColor={label.backgroundColor}
+                  fontColor={label.fontColor}
+                />
+              ))}
+          </MyIssueTitle>
+          <MyIssueDiscription>
+            <p>#{id}</p>
+            <p>
+              이 이슈가 {getTimeElapsed(createTime)}, {author?.name}님에 의해
+              작성되었습니다
+            </p>
+            {milestone && (
+              <>
+                <Icon iconType={'milestone'} fill={colors.gray600} />
+                <p>{milestone.title}</p>
+              </>
+            )}
+          </MyIssueDiscription>
+        </MyIssue>
+      </MyIssueBox>
+      {assignees && (
+        <MyIssueAssignee>
+          {assignees.map(({ id, name, profileUrl }) => (
+            <Profile key={id} userInfo={{ name, profileUrl }} />
+          ))}
+        </MyIssueAssignee>
+      )}
+    </MyIssueItem>
   );
 };
 
@@ -157,7 +153,7 @@ const MyIssueAssignee = styled.div`
   &:hover {
     > img:first-of-type:not(:last-child) {
       transform: translateX(-10px);
-      transition: all 0.2s ease-in-out;
+      transition: all 0.1s ease-in-out;
     }
   }
 `;

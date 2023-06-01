@@ -3,24 +3,28 @@
     "id": 0,
     "name": "Bug",
     "backgroundColor": "#389561",
+    "description":"버그",
     "fontColor": "#fff"
   },
   {
     "id": 1,
     "name": "Feature",
     "backgroundColor": "#FFBBC6",
+    "description":"기능",
     "fontColor": "#000"
   },
   {
     "id": 2,
     "name": "Enhancement",
     "backgroundColor": "#6E6ED7",
+    "description":"향상",
     "fontColor": "#fff"
   },
   {
     "id": 3,
     "name": "Refactor",
     "backgroundColor": "#975a97",
+    "description":"리팩토링",
     "fontColor": "#fff"
   }
 ]

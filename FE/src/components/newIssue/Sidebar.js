@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 
 import styled from 'styled-components';
 
@@ -9,68 +9,71 @@ import { tabTypes } from '../dropdown/DropdownTypes';
 import { LabelTag } from '../LabelTag';
 import { Profile } from '../Profile';
 
-export const SideBar = ({
-  assigneeSetValue,
-  labelSetValue,
-  milestoneSetValue
-}) => {
-  const sideBarTabs = ['assignees', 'labels', 'milestone'];
-  const sideBarInfo = sideBarTabs.map((tab) => tabTypes[tab]);
-  const setValue = {
-    assignees: assigneeSetValue,
-    labels: labelSetValue,
-    milestone: milestoneSetValue
-  };
-  const getSelectedSideBarMenu = useCallback(
-    (selectedTab, selectedSideBarMenu) => {
-      if (!selectedSideBarMenu) return;
-      const { option, profileUrl, backgroundColor, fontColor } =
-        selectedSideBarMenu;
+export const SideBar = React.memo(
+  ({
+    assigneeSetValue,
+    labelSetValue,
+    milestoneSetValue,
+    selectedSideBarMenu
+  }) => {
+    const sideBarTabs = ['assignees', 'labels', 'milestones'];
+    const sideBarInfo = sideBarTabs.map((tab) => tabTypes[tab]);
+    const setValue = {
+      assignees: assigneeSetValue,
+      labels: labelSetValue,
+      milestones: milestoneSetValue
+    };
+    const handleSelectedSideBarMenu = useCallback(
+      (selectedTab, selectedSideBarMenu) => {
+        if (!selectedSideBarMenu) return;
+        console.log(selectedSideBarMenu);
+        const { name, title, option, profileUrl, backgroundColor, fontColor } =
+          selectedSideBarMenu;
+        const sideBarMenu = {
+          assignees: () => (
+            <>
+              {profileUrl && <Profile userInfo={{ option, profileUrl }} />}
+              <div>{name ?? option}</div>
+            </>
+          ),
+          labels: () => (
+            <LabelTag
+              tagType={'labels'}
+              text={title ?? option}
+              backgroundColor={backgroundColor}
+              fontColor={fontColor}
+            />
+          ),
+          milestones: () => <>{title ?? option}</>
+        };
+        const SelectedMenuItem = sideBarMenu[selectedTab];
+        return <SelectedMenuItem />;
+      },
+      []
+    );
 
-      const sideBarMenu = {
-        assignees: () => (
-          <>
-            {profileUrl && <Profile userInfo={{ option, profileUrl }} />}
-            <div>{option}</div>
-          </>
-        ),
-        labels: () => (
-          <LabelTag
-            tagType={'labels'}
-            text={option}
-            backgroundColor={backgroundColor}
-            fontColor={fontColor}
+    return (
+      <MySidebar>
+        {sideBarInfo.map(({ tabId, tabName, filterOptions }) => (
+          <Dropdown
+            key={tabId}
+            type={'sidebar'}
+            tabId={tabId}
+            tabName={tabName}
+            filterOptions={filterOptions}
+            buttonOption={{
+              disabled: false,
+              size: 'm'
+            }}
+            setValue={setValue[tabId]}
+            selectedSideBarMenu={selectedSideBarMenu}
+            handleSelectedSideBarMenu={handleSelectedSideBarMenu}
           />
-        ),
-        milestone: () => <>{option}</>
-      };
-
-      const SelectedMenuItem = sideBarMenu[selectedTab];
-      return <SelectedMenuItem />;
-    },
-    []
-  );
-
-  return (
-    <MySidebar>
-      {sideBarInfo.map(({ tabId, tabName, filterOptions }) => (
-        <Dropdown
-          key={tabId}
-          type={'sidebar'}
-          tabId={tabId}
-          tabName={tabName}
-          setValue={setValue[tabId]}
-          filterOptions={filterOptions}
-          buttonOption={{
-            disabled: false,
-            size: 'm'
-          }}
-          selectedSideBarMenu={getSelectedSideBarMenu}
-        />
-      ))}
-    </MySidebar>
-  );
-};
+        ))}
+      </MySidebar>
+    );
+  }
+);
 
 const MySidebar = styled.div`
   border: 1px solid ${colors.gray300};

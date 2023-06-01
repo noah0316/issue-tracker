@@ -1,49 +1,76 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
+import { useOutletContext } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { NewIssueContainer } from '../components/newIssue/NewIssueContainer';
 import { NewIssueFooter } from '../components/newIssue/NewIssueFooter';
+import { SideBar } from '../components/newIssue/Sidebar';
 import { PageHeader } from '../components/PageHeader';
-
-export const NewIssueContext = React.createContext();
+import { Profile } from '../components/Profile';
+import { TextArea } from '../components/textForm/TextArea';
+import { TextInput } from '../components/textForm/TextInput';
 
 export const NewIssue = () => {
-  const [data, dispatch] = useState([]);
+  const titleInputRef = useRef();
+  const commentInputRef = useRef();
+  const { user } = useOutletContext();
   const [title, setTitle] = useState('');
   const [comment, setComment] = useState('');
-  const [assignee, setAssignee] = useState('');
-  const [label, setlabel] = useState('');
-  const [milestone, setMilestone] = useState('');
+  const [assignee, setAssignee] = useState(null);
+  const [label, setlabel] = useState(null);
+  const [milestone, setMilestone] = useState(null);
   const [newIssue, setNewIssue] = useState({});
-  // TODO : Fetch -> user 정보 필요
-  const initData = async () => {
-    const response = await fetch('/issues');
-    const resData = await response.json();
-    dispatch(resData);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setNewIssue(
+      JSON.stringify({
+        title,
+        comment,
+        assignees: assignee,
+        labels: label,
+        milestone
+      })
+    );
   };
 
-  useEffect(() => {
-    initData();
-    setNewIssue({ assignee, label, milestone });
-  }, []);
-
   return (
-    <NewIssueContext.Provider value={data}>
-      <MyNewIssuePage>
-        <PageHeader leftChild={'새로운 이슈 작성'} />
-        <NewIssueContainer
-          titleValue={title}
-          titleSetValue={setTitle}
-          commentValue={comment}
-          commentSetValue={setComment}
-          assigneeSetValue={setAssignee}
-          labelSetValue={setlabel}
-          milestoneSetValue={setMilestone}
-        />
+    <MyNewIssuePage>
+      <PageHeader leftChild={'새로운 이슈 작성'} />
+      <MyNewIssueForm onSubmit={handleSubmit}>
+        <MyNewIssueContainer>
+          <Profile
+            isLarge
+            userInfo={{
+              name: user?.userProfile.name,
+              profileUrl: user?.userProfile.avatar_url
+            }}
+          />
+          <MyNewIssueContent>
+            <TextInput
+              label={'제목'}
+              height={'70px'}
+              value={title}
+              setValue={setTitle}
+              inputRef={titleInputRef}
+            />
+            <TextArea
+              label={'코멘트를 입력하세요'}
+              size={'l'}
+              value={comment}
+              setValue={setComment}
+              inputRef={commentInputRef}
+            />
+          </MyNewIssueContent>
+          <SideBar
+            assigneeSetValue={setAssignee}
+            labelSetValue={setlabel}
+            milestoneSetValue={setMilestone}
+          />
+        </MyNewIssueContainer>
         <NewIssueFooter titleValue={title} commentValue={comment} />
-      </MyNewIssuePage>
-    </NewIssueContext.Provider>
+      </MyNewIssueForm>
+    </MyNewIssuePage>
   );
 };
 
@@ -51,3 +78,17 @@ const MyNewIssuePage = styled.div`
   width: 1280px;
   margin: 0px auto;
 `;
+
+const MyNewIssueContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 0px 20px 0px;
+`;
+
+const MyNewIssueContent = styled.div`
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const MyNewIssueForm = styled.form``;

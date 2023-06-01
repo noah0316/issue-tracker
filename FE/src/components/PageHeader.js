@@ -1,21 +1,47 @@
 import styled from 'styled-components';
 
 import { MyHeader } from './Header';
+import { IconTextInput } from './textForm/IconTextInput';
 import { colors } from '../styles/color';
 
-export const PageHeader = ({ leftChild, middleChild, rigthChild }) => {
+export const PageHeader = ({
+  leftChild,
+  middleChild,
+  rigthChild,
+  value,
+  inputValue,
+  inputSetValue
+}) => {
   return (
     <MyPageHeader>
-      {middleChild
-        ? (
-          <MyLeftPageHeader>
-            {leftChild && <div>{leftChild}</div>}
-            {middleChild && <div>{middleChild}</div>}
-          </MyLeftPageHeader>
-        )
-        : (
-          <>{leftChild && <div>{leftChild}</div>}</>
-        )}
+      <MyLeftPageHeader>
+        {middleChild
+          ? (
+            <>
+              {value
+                ? (
+                  <>
+                    {leftChild && (
+                      <IconTextInput
+                        inputValue={inputValue}
+                        inputSetValue={inputSetValue}
+                        label={'제목'}
+                      />
+                    )}
+                  </>
+                )
+                : (
+                  <>
+                    {leftChild && <div>{leftChild}</div>}
+                    {middleChild && <div>{middleChild}</div>}
+                  </>
+                )}
+            </>
+          )
+          : (
+            <>{leftChild && <div>{leftChild}</div>}</>
+          )}
+      </MyLeftPageHeader>
       {rigthChild && <MyrightPageHeader>{rigthChild}</MyrightPageHeader>}
     </MyPageHeader>
   );

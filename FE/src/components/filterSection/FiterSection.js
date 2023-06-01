@@ -37,27 +37,23 @@ const filterTabOptions = {
 
 export const FilterSection = () => {
   const navigate = useNavigate();
-  const issues = useContext(IssueListContext);
-  const issueCountInfo = issues.countInfo;
+  const { countInfo } = useContext(IssueListContext);
+
   return (
     <MyFilterSection>
       <FilterBar />
       <MyPageMoveTabButtons>
         <MyTabButtons>
-          <MyLeftTabButton>
-            <Button
-              {...filterTabOptions.labels}
-              buttonText={`레이블 (${issueCountInfo?.labelCount || 0})`}
-              onClick={() => navigate('/labels')}
-            />
-          </MyLeftTabButton>
-          <MyRightTabButton>
-            <Button
-              {...filterTabOptions.milestone}
-              buttonText={`마일스톤 (${issueCountInfo?.milestoneCount || 0})`}
-              onClick={() => navigate('/milestone')}
-            />
-          </MyRightTabButton>
+          <Button
+            {...filterTabOptions.labels}
+            buttonText={`레이블 (${countInfo?.labelCount || 0})`}
+            onClick={() => navigate('/labels')}
+          />
+          <Button
+            {...filterTabOptions.milestone}
+            buttonText={`마일스톤 (${countInfo?.milestoneCount || 0})`}
+            onClick={() => navigate('/milestone')}
+          />
         </MyTabButtons>
         <Button
           {...filterTabOptions.newIssue}
@@ -69,13 +65,11 @@ export const FilterSection = () => {
 };
 
 const MyFilterSection = styled.div`
+  height: 75px;
   display: flex;
   justify-content: space-between;
-  padding: 20px 0;
-
+  align-items: flex-start;
   button {
-    font-size: 14px;
-    margin: 0 auto;
     cursor: pointer;
   }
 `;
@@ -84,31 +78,28 @@ const MyPageMoveTabButtons = styled.div`
   display: flex;
   align-items: center;
   gap: 15px;
+  button {
+    font-size: 14px;
+  }
 `;
 
 const MyTabButtons = styled.div`
   display: flex;
   height: 40px;
   width: 300px;
-
-  & div {
+  border-radius: 11px;
+  border: 1px solid ${colors.gray300};
+  > button {
     width: 100%;
-    border: 1px solid ${colors.gray300};
-
-    :last-child {
-      border-left: none;
+    &:first-child {
+      border-radius: 11px 0px 0px 11px;
+      border-right: 1px solid ${colors.gray300};
     }
-
+    &:last-child {
+      border-radius: 0px 11px 11px 0px;
+    }
     &: hover {
       background: ${colors.gray200};
     }
   }
-`;
-
-const MyLeftTabButton = styled.div`
-  border-radius: 11px 0px 0px 11px;
-`;
-
-const MyRightTabButton = styled.div`
-  border-radius: 0px 11px 11px 0px;
 `;

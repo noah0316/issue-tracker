@@ -14,7 +14,8 @@ export const Button = ({
   buttonText,
   isLeftPosition,
   onClick,
-  active
+  active,
+  buttonType
 }) => {
   const btnSize = btnSizes[size];
   const btnColor =
@@ -31,7 +32,7 @@ export const Button = ({
       btnSize={btnSize}
       btnColor={btnColor}
       onClick={onClick}
-      type="button"
+      type={buttonType || 'button'}
     >
       {isIcon
         ? (
@@ -70,6 +71,10 @@ const btnSizes = {
     height: 40px;
   `,
   xs: css`
+    width: 65px;
+    height: 32px;
+  `,
+  xxs: css`
     width: 59px;
     height: 28px;
   `
@@ -89,7 +94,7 @@ const btnColors = {
   outlineBlue: css`
     background-color: transparent;
     color: ${colors.blue};
-    border-color: ${colors.blue};
+    border: 1px solid ${colors.blue};
     > svg {
       fill: ${colors.blue};
     }
@@ -108,6 +113,17 @@ const btnColors = {
     border: none;
     > svg {
       fill: ${colors.gray600};
+    }
+  `,
+  ghostRed: css`
+    background-color: transparent;
+    color: ${colors.red};
+    border: none;
+    > svg {
+      fill: transparent;
+      > path {
+        stroke: red;
+      }
     }
   `
 };

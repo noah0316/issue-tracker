@@ -7,24 +7,20 @@ import { IssueListContext } from '../../pages/IssueList';
 import { colors } from '../../styles/color';
 import { fontSize } from '../../styles/font';
 
-export const IssueListContent = React.memo(() => {
-  const issues = useContext(IssueListContext);
-  const issueListData = issues.issueList;
-
+export const IssueListContent = () => {
+  const { issuesInfo } = useContext(IssueListContext);
   return (
     <MyIssueListContent>
-      {issueListData
+      {issuesInfo
         ? (
-          issueListData.map((issueData) => (
-            <IssueItem key={issueData.issueId} {...issueData} />
-          ))
+          issuesInfo.map((issues) => <IssueItem key={issues.id} {...issues} />)
         )
         : (
           <MyEmptyContent>등록된 이슈가 없습니다</MyEmptyContent>
         )}
     </MyIssueListContent>
   );
-});
+};
 
 const MyIssueListContent = styled.div`
   > div:not(:last-child) {
