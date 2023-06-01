@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PROJECT_ROOT="/home/ubuntu/app/be"
+PROJECT_ROOT="/home/ubuntu/app/BE"
 JAR_FILE="$PROJECT_ROOT/issue-tracker.jar"
 
 APP_LOG="$PROJECT_ROOT/application.log"
