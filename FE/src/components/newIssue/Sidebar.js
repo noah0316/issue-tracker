@@ -10,7 +10,12 @@ import { LabelTag } from '../LabelTag';
 import { Profile } from '../Profile';
 
 export const SideBar = React.memo(
-  ({ assigneeSetValue, labelSetValue, milestoneSetValue }) => {
+  ({
+    assigneeSetValue,
+    labelSetValue,
+    milestoneSetValue,
+    selectedSideBarMenu
+  }) => {
     const sideBarTabs = ['assignees', 'labels', 'milestone'];
     const sideBarInfo = sideBarTabs.map((tab) => tabTypes[tab]);
     const setValue = {
@@ -18,30 +23,28 @@ export const SideBar = React.memo(
       labels: labelSetValue,
       milestone: milestoneSetValue
     };
-    const getSelectedSideBarMenu = useCallback(
+    const handleSelectedSideBarMenu = useCallback(
       (selectedTab, selectedSideBarMenu) => {
         if (!selectedSideBarMenu) return;
-        const { option, profileUrl, backgroundColor, fontColor } =
+        const { name, option, profileUrl, backgroundColor, fontColor } =
           selectedSideBarMenu;
-
         const sideBarMenu = {
           assignees: () => (
             <>
               {profileUrl && <Profile userInfo={{ option, profileUrl }} />}
-              <div>{option}</div>
+              <div>{name ?? option}</div>
             </>
           ),
           labels: () => (
             <LabelTag
               tagType={'labels'}
-              text={option}
+              text={name ?? option}
               backgroundColor={backgroundColor}
               fontColor={fontColor}
             />
           ),
-          milestone: () => <>{option}</>
+          milestone: () => <>{name ?? option}</>
         };
-
         const SelectedMenuItem = sideBarMenu[selectedTab];
         return <SelectedMenuItem />;
       },
@@ -62,7 +65,8 @@ export const SideBar = React.memo(
               size: 'm'
             }}
             setValue={setValue[tabId]}
-            selectedSideBarMenu={getSelectedSideBarMenu}
+            selectedSideBarMenu={selectedSideBarMenu}
+            handleSelectedSideBarMenu={handleSelectedSideBarMenu}
           />
         ))}
       </MySidebar>

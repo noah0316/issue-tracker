@@ -16,7 +16,7 @@ export const DropdownPanel = ({
   optionalArea,
   selectedOption,
   handleSelectedOption,
-  isSelected,
+  isSelected
 }) => {
   const handleOptionClick = ({ currentTarget }) => {
     handleSelectedOption(currentTarget.getAttribute('value'), currentTarget.id);

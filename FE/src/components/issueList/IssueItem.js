@@ -45,7 +45,7 @@ export const IssueItem = ({
         <MyIssue>
           <MyIssueTitle>
             <Icon iconType={iconType} fill={colors.blue} />
-            <span onClick={() => navigate(`/issueDetail/:${issueId}`)}>
+            <span onClick={() => navigate(`/issueDetail/${issueId}`)}>
               {title}
             </span>
             {!!labels.length &&

@@ -1,12 +1,20 @@
+import { useContext, useEffect, useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { IssueDetailContent } from './IssueDetailContent';
+import { IssueDetailContext } from '../../pages/IssueDetail';
 import { Button } from '../button/Button';
-import { SideBar } from '../newIssue/SideBar';
+import { SideBar } from '../newIssue/Sidebar';
 
 export const IssueDetailSidebar = () => {
+  const { issue } = useContext(IssueDetailContext);
+  const [assignees, setAssignees] = useState(null);
+  const [labels, setlabels] = useState(null);
+  const [milestone, setMilestone] = useState(null);
+  const [selectedSideBarMenu, setselectedSideBarMenu] = useState({});
   const navigate = useNavigate();
+
   const btnInfo = {
     size: 'xs',
     color: 'ghostRed',
@@ -16,9 +24,29 @@ export const IssueDetailSidebar = () => {
     isLeftPosition: true,
     onClick: () => navigate('/issues')
   };
+
+  useEffect(() => {
+    setselectedSideBarMenu({
+      assignees: issue.assignees?.[0],
+      labels: issue.labels?.[0],
+      milestone: issue.milestone
+    });
+  }, [issue]);
+
+  useEffect(() => {
+    setAssignees(assignees);
+    setlabels(labels);
+    setMilestone(milestone);
+  }, []);
+
   return (
     <SidebarSection>
-      <SideBar />
+      <SideBar
+        assigneeSetValue={setAssignees}
+        labelSetValue={setlabels}
+        milestoneSetValue={setMilestone}
+        selectedSideBarMenu={selectedSideBarMenu}
+      />
       <Button {...btnInfo} />
     </SidebarSection>
   );

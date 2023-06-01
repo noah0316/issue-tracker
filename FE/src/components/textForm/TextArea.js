@@ -7,10 +7,8 @@ import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 import { Button } from '../button/Button';
 
-// uncontrolled components
 export const TextArea = React.memo(
-  ({ label, size, value, setValue, setText, isEdit }) => {
-    const textAreaValue = value;
+  ({ label, size, value, setValue, inputRef, isEdit }) => {
     const areaSize = areaSizes[size];
     const fileSize = fileSizes[size];
 
@@ -18,17 +16,13 @@ export const TextArea = React.memo(
     const [isCount, setIsCount] = useState(true);
     const fileInput = React.useRef(null);
 
-    const handleValueChange = (e) => {
-      setValue(e.target.value);
-    };
-
     const handleButtonClick = (e) => {
       fileInput.current.click();
     };
 
     const handleChange = (e) => {
       setValue(
-        `![${e.target.files[0].name}](https://github.com/codesquad-members-2023/issue-tracker/assets/104904719/${e.target.files[0].name})`
+        `${value}\n![${e.target.files[0].name}](https://github.com/codesquad-members-2023/issue-tracker/assets/104904719/${e.target.files[0].name})`
       );
     };
 
@@ -38,7 +32,6 @@ export const TextArea = React.memo(
       if (value.length > 0) {
         timerId = setTimeout(() => setIsCount(false), 2000);
       }
-
       return () => clearTimeout(timerId);
     }, [value]);
 
@@ -47,25 +40,23 @@ export const TextArea = React.memo(
         isFocus={isTextAreaFocus}
         isEdit={isEdit}
         areaSize={areaSize}
-        value={textAreaValue}
+        value={value}
       >
         <textarea
-          onChange={({ target }) => setValue(target.value)}
+          name="comment"
+          onChange={({ target }) => {
+            setValue(target.value);
+          }}
           onFocus={() => setIsTextAreaFocus(true)}
           onBlur={() => setIsTextAreaFocus(false)}
-          value={textAreaValue}
-          ref={(value) => setText?.(value)}
+          ref={inputRef}
+          value={value}
         />
-        {isEdit
-          ? null
-          : (
-            <label className={textAreaValue && 'filled'}>{label}</label>
-          )}
-        <TextCount isFocus={isTextAreaFocus} isEidt={isEdit}>
-          {isCount && <span>{`띄어쓰기 포함 ${textAreaValue?.length}자`}</span>}
+        {isEdit || <label className={value && 'filled'}>{label}</label>}
+        <MyTextCount isFocus={isTextAreaFocus} isEidt={isEdit}>
+          {isCount && <span>{`띄어쓰기 포함 ${value?.length}자`}</span>}
           <Icon iconType={'grip'} />
-        </TextCount>
-
+        </MyTextCount>
         <MyFileArea
           isFocus={isTextAreaFocus}
           isEdit={isEdit}
@@ -120,19 +111,17 @@ const MyTextArea = styled.form`
   flex-direction: column;
   align-items: center;
   width: 938px;
-  border-radius: 11px;
-
+  border-radius: ${({ isEdit }) => (isEdit ? `0 0 16px 16px` : '11px')};
+  background: ${({ isFocus, isEdit }) =>
+    isEdit || isFocus ? `${colors.gray50}` : `${colors.gray200}`};
   box-shadow: ${({ isFocus, isEdit }) =>
-    isEdit ? null : isFocus ? `0 0 0 1px ${colors.blue}` : null};
-
+    !isEdit && isFocus ? `0 0 0 1px ${colors.blue}` : null};
   &: focus-within label {
     transform: translate(0, 12px) scale(0.8);
   }
-
   &: filled {
     transform: translate(0, 12px) scale(0.8);
   }
-
   & label {
     position: absolute;
     ${({ value }) =>
@@ -148,26 +137,19 @@ const MyTextArea = styled.form`
     left: 16px;
     top: 3px;
   }
-
   & textarea {
-    ${({ areaSize }) => areaSize};
-    border-radius: ${({ isEdit }) => (isEdit ? '0px' : '11px 11px 0px 0px')};
     box-sizing: border-box;
+    ${({ areaSize }) => areaSize};
     width: 100%;
-    border: none;
-    outline: none;
-    box-shadow: none;
     padding: 30px;
     transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
     resize: none;
     ${fontSize.M};
     ${fontType.REGULAR};
-    background: ${({ isFocus, isEdit }) =>
-    isEdit
-      ? `${colors.gray50}`
-      : isFocus
-        ? `${colors.gray50}`
-        : `${colors.gray200}`};
+    background: transparent;
+    border: none;
+    outline: none;
+    border-radius: 11px 11px 0px 0px;
   }
 `;
 
@@ -176,18 +158,11 @@ const MyFileArea = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: ${(isEdit) =>
-    isEdit ? '0px 0px 16px 16px' : '0px 0px 11px 11px'};
   width: 100%;
-  background: ${({ isFocus, isEdit }) =>
-    isEdit
-      ? `${colors.gray50}`
-      : isFocus
-        ? `${colors.gray50}`
-        : `${colors.gray200}`};
-  border-top: ${({ isFocus }) =>
-    isFocus ? `1px dashed ${colors.blue}` : `1px dashed ${colors.gray300}`};
-
+  border-top: ${({ isFocus, isEdit }) =>
+    isFocus && !isEdit
+      ? `1px dashed ${colors.blue}`
+      : `1px dashed ${colors.gray300}`};
   > div {
     padding: 0px 20px 0px 0px;
   }
@@ -197,7 +172,7 @@ const MyFileArea = styled.div`
   }
 `;
 
-const TextCount = styled.div`
+const MyTextCount = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
@@ -205,10 +180,5 @@ const TextCount = styled.div`
   color: ${colors.gray600};
   ${fontSize.S};
   ${fontType.REGULAR};
-  background: ${({ isFocus, isEdit }) =>
-    isEdit
-      ? `${colors.gray50}`
-      : isFocus
-        ? `${colors.gray50}`
-        : `${colors.gray200}`};
+  background: transparent;
 `;

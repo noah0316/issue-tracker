@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // import { ThemeProvider } from 'styled-components';
 
 import { Header } from './components/Header';
+import { HeaderLayout } from './components/HeaderLayout';
 import { Auth } from './pages/Auth';
 import { IssueDetail } from './pages/IssueDetail';
 import { IssueList } from './pages/IssueList';
@@ -22,16 +23,16 @@ const App = () => {
       <GlobalStyle />
       <BrowserRouter>
         <div className="App">
-          {/* {login.isLogin && <Header />} */}
-          {<Header />}
           <Routes>
             <Route path="/" element={<Login />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/issues" element={<IssueList />} />
-            <Route path="/newIssue" element={<NewIssue />} />
-            <Route path="/issueDetail/:id" element={<IssueDetail />} />
-            <Route path="/labels" element={<LabelList />} />
-            <Route path="/milestone" element={<MilestoneList />} />
+            <Route element={<HeaderLayout />}>
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/issues" element={<IssueList />} />
+              <Route path="/newIssue" element={<NewIssue />} />
+              <Route path="/issueDetail/:issueId" element={<IssueDetail />} />
+              <Route path="/labels" element={<LabelList />} />
+              <Route path="/milestone" element={<MilestoneList />} />
+            </Route>
           </Routes>
         </div>
       </BrowserRouter>

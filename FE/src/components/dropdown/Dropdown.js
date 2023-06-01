@@ -24,6 +24,7 @@ export const Dropdown = ({
   isLeft,
   setValue,
   optionalArea,
+  handleSelectedSideBarMenu,
   selectedSideBarMenu,
   onFilterIssues,
   onOpenIssues,
@@ -34,15 +35,15 @@ export const Dropdown = ({
   const [selectedOption, setSelectedOption] = useState('isOpen');
   const [selectedTab, setSelectedTab] = useState(null);
   const [tabOptionsInfo, setTabOptionsInfo] = useState(null);
+  const panelRef = useRef(null);
+
   const selectedSideBarItemInfo = tabOptionsInfo?.find(
     ({ id }) => id === Number(selectedOption)
   );
-  // 사이드바 아이템을 클릭을 때 사이드바 컴포넌트를 생성하는 함수
-  const SelectedSideBarItem = selectedSideBarMenu?.(
-    selectedTab,
-    selectedSideBarItemInfo
-  );
-  const panelRef = useRef(null);
+  // 사이드바 아이템 컴포넌트
+  const SelectedSideBarItem = selectedSideBarMenu
+    ? handleSelectedSideBarMenu(tabId, selectedSideBarMenu[tabId])
+    : handleSelectedSideBarMenu?.(selectedTab, selectedSideBarItemInfo);
 
   useEffect(() => {
     const handleClick = (e) => {

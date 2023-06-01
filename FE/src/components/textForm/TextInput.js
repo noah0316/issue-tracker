@@ -6,7 +6,7 @@ import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 
 export const TextInput = React.memo(
-  ({ label, height, value, setValue, focusStyle, inputType, setText }) => {
+  ({ label, height, value, setValue, focusStyle, inputType, inputRef }) => {
     const [isTextInputFocus, setIsTextInputFocus] = useState(false);
 
     return (
@@ -19,11 +19,13 @@ export const TextInput = React.memo(
         onBlur={() => setIsTextInputFocus(false)}
       >
         <input
+          name="title"
           type={inputType}
-          onChange={(e) => {
-            setValue(e.target.value);
+          onChange={({ target }) => {
+            setValue(target.value);
           }}
-          ref={(value) => setText?.(value)}
+          ref={inputRef}
+          value={value}
         />
         <label className={value && 'filled'}>{label}</label>
       </MyTextInput>

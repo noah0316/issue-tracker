@@ -2,9 +2,7 @@ import styled from 'styled-components';
 
 import { MyHeader } from './Header';
 import { IconTextInput } from './textForm/IconTextInput';
-import { Icon } from '../assets/Icon';
 import { colors } from '../styles/color';
-import { fontType } from '../styles/font';
 
 export const PageHeader = ({
   leftChild,
@@ -55,8 +53,6 @@ const MyLeftPageHeader = styled.div`
   gap: 10px;
   >div: last-child {
     color: ${colors.gray600};
-  }
-
   }
 `;
 const MyrightPageHeader = styled.div`

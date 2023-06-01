@@ -14,9 +14,9 @@ export const Auth = () => {
     const getToken = async () => {
       try {
         const response = await fetchData(`${AUTH_URI}?code=${queryCode}`);
-        console.log(response);
-
-        // navigate('/issues');
+        const token = response.token;
+        localStorage.setItem('jwtToken', token);
+        navigate('/issues');
       } catch (error) {
         console.log(error);
       }

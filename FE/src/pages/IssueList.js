@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -24,13 +24,13 @@ export const IssueList = () => {
   const initData = async () => {
     try {
       const [issuesInfo, countInfo] = await fetchAll(
-        `/issues/${getFilterQueryString(filterState)}`,
-        `/issues`
+        `http://13.209.232.172:8080/issues${getFilterQueryString(filterState)}`,
+        `http://13.209.232.172:8080/issues/countInfo`
       );
       setIssuesInfo(issuesInfo);
-      setCountInfo(countInfo.countInfo);
+      setCountInfo(countInfo);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 

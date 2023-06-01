@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 
 import styled from 'styled-components';
 
@@ -10,38 +10,32 @@ import { LabelTag } from '../LabelTag';
 import { PageHeader } from '../PageHeader';
 
 export const IssueDetailHeader = () => {
-  const issueDetail = useContext(IssueDetailContext);
-  const [issueSubInfo, CommentInfo] = issueDetail;
+  const { issue, comments } = useContext(IssueDetailContext);
   const [isEdit, setIsEdit] = useState(false);
   const [isClose, setIsClose] = useState(false);
   const [titleData, setTitleData] = useState(null);
-  const [completeTitleData, setcompleteTitleData] = useState(null);
-
-  useEffect(() => {
-    setTitleData(issueSubInfo?.title);
-  }, [issueSubInfo?.title]);
-
-  const handleEdit = () => {
-    setIsEdit(true);
-  };
+  const [completeTitleData, setCompleteTitleData] = useState(null);
 
   const handleNotEdit = () => {
     setIsEdit(false);
+    setTitleData(completeTitleData);
   };
-
   const handleCloseIssue = () => {
     setIsClose(true);
   };
-
   const handleSubmit = () => {
     setIsEdit(false);
+    setCompleteTitleData(titleData);
+  };
+  const handleEdit = () => {
+    setIsEdit(true);
+    setTitleData(`${issue?.title}`);
   };
 
-  const pageHeaderInfo = {
-    leftChild: titleData,
-    middleChild: `#${issueSubInfo?.id}`,
-    value: isEdit
-  };
+  useEffect(() => {
+    setTitleData(issue?.title);
+    setCompleteTitleData(issue?.title);
+  }, [issue?.title]);
 
   const editBtn = [
     {
@@ -70,6 +64,12 @@ export const IssueDetailHeader = () => {
     text: isClose ? '닫힌 이슈' : '열린 이슈'
   };
 
+  const pageHeaderInfo = {
+    leftChild: titleData,
+    middleChild: `#${issue?.issueId}`,
+    value: isEdit
+  };
+
   return (
     <MyIssueDetailHeader>
       <PageHeader
@@ -78,17 +78,7 @@ export const IssueDetailHeader = () => {
         rigthChild={
           <>
             {editBtn.map((edit) => (
-              <Button
-                key={edit.id}
-                size={edit.size}
-                color={edit.color}
-                iconType={edit.iconType}
-                iconWidth={edit.iconWidth}
-                isIcon
-                buttonText={edit.buttonText}
-                isLeftPosition
-                onClick={edit.onClick}
-              />
+              <Button key={edit.id} {...edit} />
             ))}
           </>
         }
@@ -96,14 +86,13 @@ export const IssueDetailHeader = () => {
         inputValue={titleData}
         inputSetValue={setTitleData}
       />
-      <SubHeader>
+      <MySubHeader>
         <LabelTag {...labelTagBtn} />
         <p>
-          이 이슈가 {getTimeElapsed(issueSubInfo?.createTime)}에{' '}
-          {issueSubInfo?.author.name}님에 의해 열렸습니다. * 코멘트{' '}
-          {CommentInfo?.length}개
+          이 이슈가 {getTimeElapsed(issue?.createTime)}에 {issue.author?.name}
+          님에 의해 열렸습니다. * 코멘트 {comments.length}개
         </p>
-      </SubHeader>
+      </MySubHeader>
     </MyIssueDetailHeader>
   );
 };
@@ -114,7 +103,7 @@ const MyIssueDetailHeader = styled.div`
   border-bottom: 1px solid ${colors.gray400};
   padding-bottom: 25px;
 `;
-const SubHeader = styled.div`
+const MySubHeader = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;

@@ -1,58 +1,76 @@
 import { useState, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 import { Button } from '../components/button/Button';
+import { NewLabelSection } from '../components/labelList/NewlabelSection';
 import { LabelTag } from '../components/LabelTag';
 import { colors } from '../styles/color';
 import { fontSize, fontType } from '../styles/font';
-import { fetchAll } from '../utils/fetch';
-
-const filterTabOptions = {
-  labels: {
-    size: 's',
-    color: 'ghostGray',
-    iconType: 'label',
-    iconWidth: 16,
-    isIcon: true,
-    isLeftPosition: true
-  },
-  milestone: {
-    size: 's',
-    color: 'ghostGray',
-    iconType: 'milestone',
-    iconWidth: 16,
-    isIcon: true,
-    isLeftPosition: true
-  },
-  newIssue: {
-    size: 's',
-    color: 'containerBlue',
-    iconType: 'plus',
-    isIcon: true,
-    buttonText: '레이블 추가',
-    isLeftPosition: true
-  }
-};
+import { fetchAll, fetchData, fetchDelete } from '../utils/fetch';
 
 export const LabelList = () => {
   const navigate = useNavigate();
   const [labels, setLabels] = useState([]);
   const [countInfo, setCountInfo] = useState([]);
+  const [isNewLabel, setIsNewLabel] = useState(false);
   const initData = async () => {
     try {
-      const [labelsInfo, countInfo] = await fetchAll('/labels', '/issues');
+      const [labelsInfo, countInfo] = await fetchAll(
+        'http://13.209.232.172:8080/labels',
+        'http://13.209.232.172:8080/issues/countInfo'
+      );
       setLabels(labelsInfo);
-      setCountInfo(countInfo.countInfo);
+      setCountInfo(countInfo);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
   useEffect(() => {
     initData();
-  }, []);
+  }, [labels.length]);
+
+  const filterTabOptions = {
+    labels: {
+      size: 's',
+      color: 'ghostGray',
+      iconType: 'label',
+      iconWidth: 16,
+      isIcon: true,
+      isLeftPosition: true
+    },
+    milestone: {
+      size: 's',
+      color: 'ghostGray',
+      iconType: 'milestone',
+      iconWidth: 16,
+      isIcon: true,
+      isLeftPosition: true
+    },
+    newIssue: {
+      size: 's',
+      color: isNewLabel ? 'outlineBlue' : 'containerBlue',
+      iconType: isNewLabel ? 'xSquare' : 'plus',
+      isIcon: true,
+      buttonText: isNewLabel ? '닫기' : '레이블 추가',
+      isLeftPosition: true
+    }
+  };
+
+  const handleDelete = async (id) => {
+    const url = `http://13.209.232.172:8080/labels/${id}`;
+    const idData = {
+      labelId: id
+    };
+    await fetchDelete({ path: url, data: idData });
+    handleRemove(id);
+  };
+
+  const handleRemove = (id) => {
+    setLabels(labels.filter((label) => label.id !== id));
+  };
 
   return (
     <MyLabelListPage>
@@ -71,9 +89,12 @@ export const LabelList = () => {
         </MyPageMoveBUttons>
         <Button
           {...filterTabOptions.newIssue}
-          onClick={() => navigate('/newIssue')}
+          onClick={() =>
+            isNewLabel ? setIsNewLabel(false) : setIsNewLabel(true)
+          }
         />
       </MyPageTabButtons>
+      {isNewLabel && <NewLabelSection setValue={setLabels} value={labels} />}
       <MyLabelList>
         <MyLabelListHeader>
           {countInfo.labelCount} 개의 레이블
@@ -86,7 +107,7 @@ export const LabelList = () => {
                   key={label.id}
                   tagType={'labels'}
                   hasIcon={false}
-                  text={label.name}
+                  text={label.title}
                   backgroundColor={label.backgroundColor}
                   fontColor={label.fontColor}
                 />
@@ -108,6 +129,7 @@ export const LabelList = () => {
                   isIcon
                   iconType={'trash'}
                   isLeftPosition
+                  onClick={() => handleDelete(label.id)}
                 />
               </MyLabelEditButtons>
             </MyLabelItem>
@@ -185,7 +207,7 @@ const MyLabelItem = styled.div`
   padding: 0 25px;
   background-color: ${colors.gray50};
   color: ${colors.gray600};
-  ${fontSize.S}
+  ${fontSize.M}
   ${fontType.LIGHT}
   &: hover {
     background-color: ${colors.gray100};

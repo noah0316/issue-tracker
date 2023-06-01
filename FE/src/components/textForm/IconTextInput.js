@@ -5,11 +5,21 @@ import styled from 'styled-components';
 import { Icon } from '../../assets/Icon';
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
-export const IconTextInput = ({ inputValue, inputSetValue, label }) => {
-  const [isFocus, setIsFocus] = useState(false);
 
+export const IconTextInput = ({
+  inputValue,
+  inputSetValue,
+  label,
+  inputWidth,
+  isIcon,
+  iconType,
+  iconFill,
+  iconWidth,
+  iconClick
+}) => {
+  const [isFocus, setIsFocus] = useState(false);
   return (
-    <MyInputPageHeader isFocus={isFocus}>
+    <MyInputPageHeader isFocus={isFocus} inputWidth={inputWidth}>
       <label>{label}</label>
       <input
         type="text"
@@ -20,15 +30,24 @@ export const IconTextInput = ({ inputValue, inputSetValue, label }) => {
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
       />
+      {isIcon && (
+        <Icon
+          iconType={iconType}
+          fill={iconFill}
+          width={iconWidth}
+          onClick={iconClick}
+        />
+      )}
     </MyInputPageHeader>
   );
 };
 
 const MyInputPageHeader = styled.form`
-  display: flex;
+  display: grid;
+  grid-template-columns: 70px auto 1fr;
   align-items: center;
   border-radius: 11px;
-  width: 900px;
+  width: ${({ inputWidth }) => inputWidth || `900px`};
   height: 40px;
   gap: 10px;
   padding: 0px 24px;
@@ -37,15 +56,12 @@ const MyInputPageHeader = styled.form`
     isFocus ? `${colors.gray50}` : `${colors.gray200}`};
   box-shadow: ${({ isFocus }) =>
     isFocus ? `0 0 0 1px ${colors.gray900}` : null};
-
-  & label {
-    width: 72px;
+  label {
+    width: max-content;
     height: 20px;
     ${fontSize.S}
   }
-
   & input {
-    width: 100%;
     height: 100%;
     background: transparent;
     border: none;

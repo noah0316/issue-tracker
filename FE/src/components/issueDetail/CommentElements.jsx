@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -16,7 +16,6 @@ export const CommentElements = ({
   createTime
 }) => {
   const [isEditComment, setIsEditComment] = useState(false);
-  const [isCompleteEdit, setIsCompleteEdit] = useState(false);
   const [comment, setComment] = useState('');
   const [completeComment, setIsCompleteComment] = useState(null);
 
@@ -31,15 +30,14 @@ export const CommentElements = ({
 
   const handleCompleteEditComment = () => {
     setIsEditComment(false);
-    setIsCompleteEdit(true);
     setComment(completeComment);
   };
 
   const handleCanelEditComment = () => {
     setIsEditComment(false);
-    setIsCompleteEdit(false);
     setIsCompleteComment(comment);
   };
+
   const emojiOptions = {
     size: 'xs',
     color: 'ghostGray',
@@ -49,7 +47,6 @@ export const CommentElements = ({
     buttonText: '반응',
     isLeftPosition: true
   };
-
   const editOption = {
     size: 'xs',
     color: 'ghostGray',
@@ -60,7 +57,6 @@ export const CommentElements = ({
     isLeftPosition: true,
     onClick: handleEditCommnet
   };
-
   const labelTagInfo = {
     tagType: 'labels',
     hasIcon: false,
@@ -69,16 +65,14 @@ export const CommentElements = ({
     fontColor: colors.gray600,
     borderColor: colors.gray300
   };
-
   const commentInput = {
     size: 's',
     value: completeComment,
     setValue: setIsCompleteComment,
     isEdit: isEditComment
   };
-
-  const editComment = [
-    {
+  const editComment = {
+    cancle: {
       id: 1,
       size: 's',
       color: 'outlineBlue',
@@ -89,7 +83,7 @@ export const CommentElements = ({
       buttonText: '편집 취소',
       onClick: handleCanelEditComment
     },
-    {
+    complete: {
       id: 2,
       size: 's',
       color: 'outlineBlue',
@@ -100,7 +94,7 @@ export const CommentElements = ({
       buttonText: '편집 완료',
       onClick: handleCompleteEditComment
     }
-  ];
+  };
 
   return (
     <>
@@ -131,47 +125,40 @@ export const CommentElements = ({
             <MyComments>{comment}</MyComments>
           )}
       </MyCommentElements>
-      {isEditComment
-        ? (
-          <MyEditCommentBtn>
-            {editComment.map((edit) => (
-              <>
-                <Button key={edit.id} {...edit} />
-              </>
-            ))}
-          </MyEditCommentBtn>
-        )
-        : null}
+      {isEditComment && (
+        <MyEditCommentBtn>
+          <Button {...editComment.cancle} />
+          <Button {...editComment.complete} />
+        </MyEditCommentBtn>
+      )}
     </>
   );
 };
 
 const MyCommentElements = styled.div`
+  box-shadow: ${({ isFocus }) =>
+    isFocus ? `0 0 0 1px ${colors.gray700}` : null};
   width: 100%;
-  background: ${colors.gray100};
   align-items: center;
   border-radius: 16px;
-  box-shadow: ${({ isFocus }) =>
-    isFocus ? `0 0 0 1px ${colors.gray900}` : null};
+  border: ${({ isFocus }) => (isFocus ? null : `1px solid ${colors.gray300}`)};
   > div {
-    :first-child {
-      background: ${colors.gray100};
+    &:first-child {
       border-radius: 16px 16px 0px 0px;
-      border: 1px solid ${colors.gray300};
-      align-items: center;
       padding-right: 10px;
+      align-items: center;
+      border-bottom: 1px solid ${colors.gray300};
     }
   }
 `;
+
 const MyComments = styled.div`
-  background: ${colors.gray50};
+  height: max-heigth;
   border-radius: 0px 0px 16px 16px;
-  border: 1px solid ${colors.gray300};
-  border-top: none;
-  height: 60px;
-  padding: 2px 20px;
+  padding: 15px 20px;
   display: flex;
   align-items: center;
+  background: ${colors.gray50};
 `;
 
 const MyProfileInfo = styled.div`
