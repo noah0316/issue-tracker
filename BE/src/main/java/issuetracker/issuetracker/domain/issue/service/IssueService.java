@@ -3,7 +3,6 @@ package issuetracker.issuetracker.domain.issue.service;
 import issuetracker.issuetracker.domain.issue.Assignee;
 import issuetracker.issuetracker.domain.issue.Issue;
 import issuetracker.issuetracker.domain.issue.IssueAttachedLabel;
-import issuetracker.issuetracker.domain.issue.IssueController;
 import issuetracker.issuetracker.domain.issue.dto.IssueDetailDTO;
 import issuetracker.issuetracker.domain.issue.dto.IssueDetailLabelDto;
 import issuetracker.issuetracker.domain.issue.dto.Request.IssueTitleDTO;
@@ -11,7 +10,6 @@ import issuetracker.issuetracker.domain.issue.dto.Request.PostingIssueDTO;
 import issuetracker.issuetracker.domain.issue.repository.IssueRepository;
 import issuetracker.issuetracker.domain.label.Label;
 import issuetracker.issuetracker.domain.label.LabelRepository;
-import issuetracker.issuetracker.domain.label.LabelService;
 import issuetracker.issuetracker.domain.label.dto.LabelDTO;
 import issuetracker.issuetracker.domain.milestone.MilestoneService;
 import issuetracker.issuetracker.domain.milestone.dto.MileStoneDTO;
@@ -136,19 +134,6 @@ public class IssueService {
         issueRepository.delete(issue);
     }
 
-    public Long findByIsOpen(Long milestoneId) {
-        Iterable<Issue> all = issueRepository.findAll();
-        Long count = 0L;
-        for (Issue issue : all) {
-            if (issue.getMilestoneId().getId() == milestoneId) {
-                if (issue.getIsOpen() == true) {
-                    count++;
-                }
-            }
-        }
-        return count;
-    }
-
 
     public Issue update(Issue issue) {
         return Issue.builder()
@@ -159,8 +144,6 @@ public class IssueService {
                 .build();
     }
 
-    public void deleteCommnet(Long userId, Long issueId, Long commentId) {
-    }
 
     public void updateLabels(Long issueId, PostingIssueDTO issueDto) {
         Issue issue = issueRepository.findById(issueId).get();

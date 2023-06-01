@@ -1,6 +1,5 @@
 package issuetracker.issuetracker.domain.issue.dto;
 
-import issuetracker.issuetracker.domain.issue.comment.dto.CommentInIssueDTO;
 import issuetracker.issuetracker.domain.label.dto.LabelDTO;
 import issuetracker.issuetracker.domain.user.dto.AssigneeDTO;
 import issuetracker.issuetracker.domain.user.dto.AuthorDTO;

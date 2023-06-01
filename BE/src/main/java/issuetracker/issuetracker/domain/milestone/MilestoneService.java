@@ -1,6 +1,6 @@
 package issuetracker.issuetracker.domain.milestone;
 
-import issuetracker.issuetracker.domain.issue.Issue;
+import issuetracker.issuetracker.domain.exception.MilestoneNotFoundException;
 import issuetracker.issuetracker.domain.issue.service.IssueUtilService;
 import issuetracker.issuetracker.domain.milestone.dto.MileStoneDTO;
 import issuetracker.issuetracker.domain.milestone.dto.MilestoneFilterDTO;
@@ -64,9 +64,18 @@ public class MilestoneService {
 
 
     public void delete(long milestoneId) {
-        Milestone milestone = milestoneRepository.findById(milestoneId).get();
+        Milestone milestone = findMilestoneById(milestoneId);
         issueUtilService.issueMilestoneUpdate(milestone.getMilestoneId());
         milestoneRepository.delete(milestone);
+    }
+
+    private Milestone findMilestoneById(Long milestoneId) {
+        if (milestoneId == null) {
+            log.debug("마일스톤 id null");
+            return null;
+        }
+        return milestoneRepository.findById(milestoneId).orElseThrow(()
+                -> new MilestoneNotFoundException());
     }
 
     public void update(Long milestoneId, MilestonePostDTO milestonePostDTO) {

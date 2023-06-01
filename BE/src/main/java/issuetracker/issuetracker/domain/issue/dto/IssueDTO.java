@@ -23,6 +23,7 @@ public class IssueDTO {
     private Long id;
     @NotNull
     private String title;
+    private String description;
     @NotNull
     private LocalDateTime createTime;
     @NotNull

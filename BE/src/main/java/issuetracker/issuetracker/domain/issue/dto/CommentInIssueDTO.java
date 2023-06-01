@@ -1,12 +1,13 @@
-package issuetracker.issuetracker.domain.issue.comment.dto;
+package issuetracker.issuetracker.domain.issue.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 
 @Getter
-@Setter
+@Builder
 public class CommentInIssueDTO {
     // 유저 pk,유저 이름, 유저 url, (작성자)
     @NotNull

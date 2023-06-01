@@ -20,6 +20,7 @@ public class LabelListDTO {
     @NotNull
     private String title;
     private String description;
+    private String fontColor;
     @NotNull
     private String backgroundColor;
 }

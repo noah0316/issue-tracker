@@ -1,4 +1,4 @@
-package issuetracker.issuetracker.domain.issue.comment.dto;
+package issuetracker.issuetracker.domain.issue.dto.Request;
 
 import lombok.Getter;
 import lombok.Setter;

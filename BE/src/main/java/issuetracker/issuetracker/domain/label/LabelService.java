@@ -1,8 +1,10 @@
 package issuetracker.issuetracker.domain.label;
 
+import issuetracker.issuetracker.domain.exception.LabelNotFoundException;
 import issuetracker.issuetracker.domain.issue.Issue;
 import issuetracker.issuetracker.domain.issue.IssueController;
 import issuetracker.issuetracker.domain.issue.service.IssueUtilService;
+import issuetracker.issuetracker.domain.label.dto.LabelDTO;
 import issuetracker.issuetracker.domain.label.dto.LabelFilterDTO;
 import issuetracker.issuetracker.domain.label.dto.LabelListDTO;
 import issuetracker.issuetracker.domain.label.dto.PostingLabelDTO;
@@ -16,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -43,8 +46,6 @@ public class LabelService {
     public void delete(Long labelId) {
         Label label = labelRepository.findById(labelId).get();
         //TODO 이슈에있는 라벨도 삭제해야함.
-        // Remove the label from all issues
-
 //        issueUtilService.getIssues().stream()
 //                .filter(issue -> issue.getAttachedLabels().contains(label))
 //                .forEach(issue -> issue.getAttachedLabels().remove(label));
@@ -53,7 +54,15 @@ public class LabelService {
     }
 
     public void update(Long labelId, PostingLabelDTO newLabelLine) {
-        Label label = labelRepository.findById(labelId).get();
+        Label label = findLabelById(labelId);
         labelRepository.save(label.update(newLabelLine));
+    }
+
+    private Label findLabelById(Long labelId) {
+        if (labelId == null) {
+            return null;
+        }
+        return labelRepository.findById(labelId).orElseThrow(() ->
+                new LabelNotFoundException());
     }
 }
