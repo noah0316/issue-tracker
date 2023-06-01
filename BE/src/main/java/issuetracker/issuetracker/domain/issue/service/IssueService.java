@@ -1,5 +1,6 @@
 package issuetracker.issuetracker.domain.issue.service;
 
+import issuetracker.issuetracker.domain.exception.IssueNotFoundException;
 import issuetracker.issuetracker.domain.issue.Assignee;
 import issuetracker.issuetracker.domain.issue.Issue;
 import issuetracker.issuetracker.domain.issue.IssueAttachedLabel;
@@ -24,8 +25,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.validation.constraints.NotNull;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -54,7 +55,6 @@ public class IssueService {
 
     public IssueDetailDTO findByIssueDetailPage(Long id) { // 이슈 id
         Issue issue = issueRepository.findById(id).get();
-        log.debug("byId = {}", issue);
         log.debug("issue = {}", issue);
         //라벨 n관계
         List<LabelDTO> labels = getLabelsByIssueId(id);
@@ -62,13 +62,13 @@ public class IssueService {
         //담당자 n관계
         List<Assignee> assigneeList = new ArrayList<>(issue.getAssignees());
         List<AssigneeDTO> assignees = new ArrayList<>();
-
         for (Assignee assignee : assigneeList) {
-            Long labelId = assignee.getId();
-            Member member = memberRepository.findById(labelId).get();
-            log.debug("member ={}", member);
+            Long memberId = assignee.getMemberId().getId();  // 1
+
+            Member member = memberRepository.findById(memberId).get();//1
+            log.debug("member ={}", issue.getAuthor().getId());
             AssigneeDTO assigneeDTO = AssigneeDTO.builder()
-                    .id(member.getId())
+                    .id(issue.getAuthor().getId())
                     .name(member.getName())
                     .profileUrl(member.getProfileUrl())
                     .build();
@@ -96,6 +96,11 @@ public class IssueService {
                 .build();
 
         return issueDetailDTO;
+    }
+
+
+    private Issue findIssueById(Long id) {
+        return issueRepository.findById(id).orElseThrow(() -> new IssueNotFoundException());
     }
 
     public List<LabelDTO> getLabelsByIssueId(final Long issueId) {

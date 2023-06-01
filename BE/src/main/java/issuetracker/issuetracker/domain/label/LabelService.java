@@ -46,10 +46,7 @@ public class LabelService {
     public void delete(Long labelId) {
         Label label = labelRepository.findById(labelId).get();
         //TODO 이슈에있는 라벨도 삭제해야함.
-//        issueUtilService.getIssues().stream()
-//                .filter(issue -> issue.getAttachedLabels().contains(label))
-//                .forEach(issue -> issue.getAttachedLabels().remove(label));
-        issueUtilService.issueLabelUpdate(label);
+        labelRepository.deleteAllIssueInLabelAndLabel(labelId);
         labelRepository.delete(label);
     }
 

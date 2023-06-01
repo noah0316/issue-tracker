@@ -6,6 +6,7 @@ import issuetracker.issuetracker.domain.label.dto.LabelDTO;
 import issuetracker.issuetracker.domain.label.dto.LabelFilterDTO;
 import issuetracker.issuetracker.domain.label.dto.LabelListDTO;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
+import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -38,4 +39,8 @@ public interface LabelRepository extends CrudRepository<Label, Long> {
             "JOIN label_list ll  " +
             "ON ll.issue_id = :id")
     List<Label> findAllAttachedLabelByIssues(@Param("id") Long id);
+
+    @Modifying
+    @Query("DELETE ll FROM label_list ll JOIN label l WHERE ll.label_id = :labelId")
+    void deleteAllIssueInLabelAndLabel(@Param("labelId") long labelId);
 }
