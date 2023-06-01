@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Getter
 @Builder
@@ -19,6 +20,7 @@ public class CommentInIssueDTO {
     // 댓글 제목, 내용,
     @NotNull
     private String replyContents;
+    private LocalDateTime createTime;
 
     // 이모지 (모양, 개수)
     private String emojiShape;

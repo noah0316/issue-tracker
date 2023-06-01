@@ -109,6 +109,7 @@ public class IssueCommentService {
                     .userName(member.getName())
                     .userUrl(member.getProfileUrl())
                     .replyContents(comment.getContents())
+                    .createTime(comment.getCreateTime())
                     .emojiCount(null)
                     .emojiShape(null)
                     .fileAttachmentUrl(null)
