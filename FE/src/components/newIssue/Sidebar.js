@@ -23,7 +23,6 @@ export const SideBar = React.memo(
       labels: labelSetValue,
       milestones: milestoneSetValue
     };
-
     const handleSelectedSideBarMenu = useCallback(
       (selectedTab, selectedSideBarMenu) => {
         if (!selectedSideBarMenu) return;

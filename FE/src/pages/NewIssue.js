@@ -9,29 +9,30 @@ import { PageHeader } from '../components/PageHeader';
 import { Profile } from '../components/Profile';
 import { TextArea } from '../components/textForm/TextArea';
 import { TextInput } from '../components/textForm/TextInput';
+import { fetchPost } from '../utils/fetch';
 
 export const NewIssue = () => {
   const titleInputRef = useRef();
   const commentInputRef = useRef();
   const { user } = useOutletContext();
-  const [title, setTitle] = useState('');
+  const [issueTitle, setIssueTitle] = useState('');
   const [comment, setComment] = useState('');
   const [assignee, setAssignee] = useState(null);
   const [label, setlabel] = useState(null);
   const [milestone, setMilestone] = useState(null);
   const [newIssue, setNewIssue] = useState({});
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setNewIssue(
-      JSON.stringify({
-        title,
-        comment,
-        assignees: assignee,
-        labels: label,
-        milestone
-      })
-    );
+  const handleSubmit = async () => {
+    const data = {
+      title: issueTitle,
+      contents: comment,
+      fileUrl: null,
+      assignees: [assignee],
+      labels: [label],
+      milestoneId: milestone,
+      tokenuser: { id: user.userProfile.id }
+    };
+    await fetchPost({ path, data });
   };
 
   return (
@@ -50,8 +51,8 @@ export const NewIssue = () => {
             <TextInput
               label={'제목'}
               height={'70px'}
-              value={title}
-              setValue={setTitle}
+              value={issueTitle}
+              setValue={setIssueTitle}
               inputRef={titleInputRef}
             />
             <TextArea
@@ -68,7 +69,7 @@ export const NewIssue = () => {
             milestoneSetValue={setMilestone}
           />
         </MyNewIssueContainer>
-        <NewIssueFooter titleValue={title} commentValue={comment} />
+        <NewIssueFooter titleValue={issueTitle} commentValue={comment} />
       </MyNewIssueForm>
     </MyNewIssuePage>
   );
