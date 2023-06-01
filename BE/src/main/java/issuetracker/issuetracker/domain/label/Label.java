@@ -31,7 +31,7 @@ public class Label {
                 .title(labelDTO.getTitle())
                 .backgroundColor(labelDTO.getBackgroundColor())
                 .description(labelDTO.getDescription())
-                .fontColor("#FFFF")
+                .fontColor(labelDTO.getFontColor())
                 .isDelete(false)
                 .build();
     }
