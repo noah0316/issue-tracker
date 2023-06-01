@@ -16,6 +16,7 @@ export const IssueDetailHeader = () => {
   const [titleData, setTitleData] = useState(null);
   const [completeTitleData, setCompleteTitleData] = useState(null);
 
+  console.log(issue, comments);
   const handleNotEdit = () => {
     setIsEdit(false);
     setTitleData(completeTitleData);
@@ -29,7 +30,7 @@ export const IssueDetailHeader = () => {
   };
   const handleEdit = () => {
     setIsEdit(true);
-    setTitleData(`${issue?.title}`);
+    setTitleData(issue?.title);
   };
 
   useEffect(() => {
@@ -66,7 +67,7 @@ export const IssueDetailHeader = () => {
 
   const pageHeaderInfo = {
     leftChild: titleData,
-    middleChild: `#${issue?.issueId}`,
+    middleChild: `#${issue?.id}`,
     value: isEdit
   };
 

@@ -13,16 +13,17 @@ export const IssueDetailContext = React.createContext();
 export const IssueDetail = () => {
   const [issue, setIssue] = useState([]);
   const [comments, setComments] = useState([]);
-  const { issueId } = useParams();
+  const { id } = useParams();
 
   const initData = async () => {
     try {
-      const [issue, comment] = await fetchAll(
-        `/issueDetail/${issueId}`,
-        `/issues/${issueId}/comments`
+      const [issueInfo, commentInfo] = await fetchAll(
+        `http://13.209.232.172:8080/issues/${id}`,
+        `http://13.209.232.172:8080/issues/${id}/comments?issueId=${id}`
       );
-      setIssue(issue);
-      setComments(comment.comments);
+      setIssue(issueInfo);
+      setComments(commentInfo);
+      console.log(issueInfo, commentInfo);
     } catch (err) {
       console.log(err);
     }
@@ -30,8 +31,7 @@ export const IssueDetail = () => {
 
   useEffect(() => {
     initData();
-  }, [issueId]);
-
+  }, [id]);
   return (
     <IssueDetailContext.Provider value={{ issue, comments }}>
       <IssueDetailHeader />

@@ -19,7 +19,6 @@ export const NewIssue = () => {
   const [assignee, setAssignee] = useState(null);
   const [label, setlabel] = useState(null);
   const [milestone, setMilestone] = useState(null);
-
   const [newIssue, setNewIssue] = useState({});
 
   const handleSubmit = (e) => {
