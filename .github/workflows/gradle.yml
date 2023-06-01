@@ -24,6 +24,15 @@ jobs:
 
     # 아래의 flow들이 차례대로 실행됩니다.
     steps:
+
+      # AWS 인증
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
       # 1) 기본 체크아웃
       - name: Checkout
         uses: actions/checkout@v3
@@ -49,14 +58,7 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build -x test
         working-directory: ${{ env.working-directory }}
-      
-      # AWS 인증
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
+    
 
       # AWS S3에 업로드
       - name: Upload to AWS S3
