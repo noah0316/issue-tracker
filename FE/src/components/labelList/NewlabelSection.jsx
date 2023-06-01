@@ -35,7 +35,7 @@ export const NewLabelSection = () => {
     labelColor: {
       inputValue: bgColor,
       inputSetValue: setBgColor,
-      inputWidth: `215px`,
+      inputWidth: `max-content`,
       label: '배경 색상',
       isIcon: true,
       iconType: 'refreshCcw',
@@ -71,7 +71,6 @@ export const NewLabelSection = () => {
   return (
     <MyNewLabelSection>
       <p>새로운 레이블 추가</p>
-
       <MyLabel>
         <MyViewLabel>
           <LabelTag {...labelInfo.labelTag} />
@@ -105,7 +104,6 @@ const MyNewLabelSection = styled.div`
   border-radius: 16px;
   border: 1px solid ${colors.gray300};
   margin-bottom: 30px;
-
   & p {
     ${fontSize.L};
     ${fontType.BOLD};
@@ -133,6 +131,9 @@ const MyNewLabel = styled.form`
 `;
 const MyNewLabelColor = styled.div`
   display: flex;
+  label {
+    width: max-content;
+  }
 `;
 const MyLabel = styled.div`
   display: flex;

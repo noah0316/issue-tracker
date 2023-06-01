@@ -43,7 +43,8 @@ export const IconTextInput = ({
 };
 
 const MyInputPageHeader = styled.form`
-  display: flex;
+  display: grid;
+  grid-template-columns: 70px auto 1fr;
   align-items: center;
   border-radius: 11px;
   width: ${({ inputWidth }) => inputWidth || `900px`};
@@ -55,15 +56,12 @@ const MyInputPageHeader = styled.form`
     isFocus ? `${colors.gray50}` : `${colors.gray200}`};
   box-shadow: ${({ isFocus }) =>
     isFocus ? `0 0 0 1px ${colors.gray900}` : null};
-
-  & label {
-    width: 72px;
+  label {
+    width: max-content;
     height: 20px;
     ${fontSize.S}
   }
-
   & input {
-    width: 100%;
     height: 100%;
     background: transparent;
     border: none;

@@ -64,6 +64,12 @@ export const IssueDetailHeader = () => {
     text: isClose ? '닫힌 이슈' : '열린 이슈'
   };
 
+  const pageHeaderInfo = {
+    leftChild: titleData,
+    middleChild: `#${issue?.issueId}`,
+    value: isEdit
+  };
+
   return (
     <MyIssueDetailHeader>
       <PageHeader
