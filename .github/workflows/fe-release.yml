@@ -1,4 +1,4 @@
-name: Java CI with Gradle & Deploy to EC2
+name: FE codedeploy
 
 # main 브런치에 push가 되면 아래의 flow가 실행됩니다.
 on:
@@ -44,9 +44,9 @@ jobs:
       run: npm install
       working-directory: ${{ env.working-directory }}
 
-    - name: install CI
-      run: npm ci
-      working-directory: ${{ env.working-directory }}
+    # - name: install CI
+    #   run: npm ci
+    #   working-directory: ${{ env.working-directory }}
     
     - name: Generate build
       run: npm run build
