@@ -2,6 +2,7 @@ package issuetracker.issuetracker.domain.label;
 
 
 import issuetracker.issuetracker.domain.issue.IssueAttachedLabel;
+import issuetracker.issuetracker.domain.label.dto.LabelDTO;
 import issuetracker.issuetracker.domain.label.dto.LabelFilterDTO;
 import issuetracker.issuetracker.domain.label.dto.LabelListDTO;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
@@ -20,6 +21,7 @@ public interface LabelRepository extends CrudRepository<Label, Long> {
             "label.label_id AS id, " +
             "label.title AS title, " +
             "label.description AS description, " +
+            "label.font_color AS fontColor, " +
             "label.background_color AS `background_color` " +
             "FROM label")
     List<LabelListDTO> getLabelList();

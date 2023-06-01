@@ -18,6 +18,7 @@ public class PostingIssueDTO {
     @NotNull
     private String title;
     private String contents;
+    private String description;
     private String fileUrl;
     private List<Long> assignees;
     private List<Long> labels;

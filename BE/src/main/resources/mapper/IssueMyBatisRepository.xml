@@ -72,6 +72,7 @@
         <result property="title" column="title"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
+        <result property="description" column="description"/>
         <result property="isOpen" column="is_open"/>
         <association property="milestone" column="milestone_id" javaType="issuetracker.issuetracker.domain.milestone.dto.MileStoneDTO">
             <id property="id" column="milestone_id"/>

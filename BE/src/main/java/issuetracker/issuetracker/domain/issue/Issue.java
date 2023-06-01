@@ -30,6 +30,7 @@ public class Issue {
     @Column("title")
     private String title;
 
+    private String description;
     // Other commented out properties
 
     @Column("create_time")
@@ -75,6 +76,7 @@ public class Issue {
                 .isOpen(true)
                 .isDelete(false)
                 .title(postingIssueDTO.getTitle())
+                .description(postingIssueDTO.getDescription())
                 //TODO 사용자 id넣어야함
                 .author(AggregateReference.to(postingIssueDTO.getTokenuser().getId()))
                 .milestoneId(AggregateReference.to(postingIssueDTO.getMilestoneId()))

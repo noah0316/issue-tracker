@@ -28,6 +28,7 @@ CREATE TABLE `issue`
 (
     `issue_id`     INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `title`        VARCHAR(45) NOT NULL,
+    `description`   VARCHAR(300) NULL,
     `create_time`  DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_time`  DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `is_open`      BIT         NOT NULL DEFAULT 1,
@@ -88,9 +89,9 @@ CREATE TABLE `comment`
 
 CREATE TABLE `label_list`
 (
-    `label_list_id`  INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `label_id` INT NOT NULL,
-    `issue_id` INT NOT NULL,
+    `label_list_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `label_id`      INT NOT NULL,
+    `issue_id`      INT NOT NULL,
 
     CONSTRAINT `fk_Label_has_Issue_Label1`
         FOREIGN KEY (`label_id`)
@@ -108,9 +109,9 @@ CREATE TABLE `label_list`
 
 CREATE TABLE `assignee`
 (
-    `assignee_id`  INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `member_id` INT NOT NULL,
-    `issue_id`  INT NOT NULL,
+    `assignee_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `member_id`   INT NOT NULL,
+    `issue_id`    INT NOT NULL,
 
     CONSTRAINT `fk_User_has_Issue_User1`
         FOREIGN KEY (`member_id`)

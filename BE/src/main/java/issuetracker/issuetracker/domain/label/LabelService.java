@@ -4,6 +4,7 @@ import issuetracker.issuetracker.domain.exception.LabelNotFoundException;
 import issuetracker.issuetracker.domain.issue.Issue;
 import issuetracker.issuetracker.domain.issue.IssueController;
 import issuetracker.issuetracker.domain.issue.service.IssueUtilService;
+import issuetracker.issuetracker.domain.label.dto.LabelDTO;
 import issuetracker.issuetracker.domain.label.dto.LabelFilterDTO;
 import issuetracker.issuetracker.domain.label.dto.LabelListDTO;
 import issuetracker.issuetracker.domain.label.dto.PostingLabelDTO;
