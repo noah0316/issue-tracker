@@ -29,9 +29,6 @@ export const IssueList = () => {
       );
       setIssuesInfo(issuesInfo);
       setCountInfo(countInfo);
-      console.log(
-        'http://13.209.232.172:8080/issues${getFilterQueryString(filterState)'
-      );
     } catch (err) {
       // console.log(err);
     }
