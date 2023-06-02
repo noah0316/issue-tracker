@@ -61,6 +61,7 @@ export const IssueListHeader = () => {
   const { issuesInfo, countInfo } = useContext(IssueListContext);
   const { filterState, onOpenIssues, onFilterIssues } =
     useContext(FilterStateContext);
+
   const handleCheckedIssueTabsClick = () => {
     if (isAllChecked) checkDispatch({ type: 'ALL-UNCHECK' });
     else {
@@ -80,7 +81,7 @@ export const IssueListHeader = () => {
         <CheckBox
           id={'select-all'}
           checked={isAllChecked}
-          onChange={handleCheckedIssueTabsClick}
+          onClick={handleCheckedIssueTabsClick}
         />
         {isAllChecked
           ? (

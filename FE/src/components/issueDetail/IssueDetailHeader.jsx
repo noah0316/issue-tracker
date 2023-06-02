@@ -89,7 +89,7 @@ export const IssueDetailHeader = () => {
       <MySubHeader>
         <LabelTag {...labelTagBtn} />
         <p>
-          이 이슈가 {getTimeElapsed(issue?.createTime)}에 {issue.author?.name}
+          이 이슈가 {getTimeElapsed(issue.createTime)}에 {issue.author?.name}
           님에 의해 열렸습니다. * 코멘트 {comments.length}개
         </p>
       </MySubHeader>

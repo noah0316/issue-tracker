@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
 import { Button } from '../components/button/Button';
 import { LabelListItem } from '../components/labelList/LabelListItem';
@@ -91,11 +91,10 @@ export const LabelList = () => {
       // console.log(err);
     }
   };
-
   useEffect(() => {
     initData();
   }, []);
-
+  
   const filterTabOptions = {
     labels: {
       size: 's',
@@ -122,6 +121,7 @@ export const LabelList = () => {
       isLeftPosition: true
     }
   };
+  
   return (
     <MyLabelListPage>
       <MyPageTabButtons>
@@ -147,7 +147,6 @@ export const LabelList = () => {
       {isNewLabel && (
         <NewLabelSection setValue={setLabelInfo} value={labelInfo} />
       )}
-
       <MyLabelList>
         <MyLabelListHeader>
           {countInfo.labelCount} 개의 레이블
