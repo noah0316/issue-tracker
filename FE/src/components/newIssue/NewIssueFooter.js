@@ -26,7 +26,7 @@ export const NewIssueFooter = ({ titleValue, commentValue }) => {
         color={'containerBlue'}
         isIcon={false}
         buttonText={'완료'}
-        // onClick={() => navigate('/issueDetail/:id')}
+        onClick={() => navigate('/issues/:id')}
         buttonType={'submit'}
       />
     </MyNewIssueFooter>

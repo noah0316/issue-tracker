@@ -4,13 +4,12 @@ import { Dropdown } from './Dropdown';
 import { tabTypes } from './DropdownTypes';
 
 export const DropdownFilterTabs = ({ onFilterIssues }) => {
-  const tabButtons = ['author', 'labels', 'milestone', 'assignees'];
+  const tabButtons = ['author', 'labels', 'milestones', 'assignees'];
   const dropdownTabInfo = tabButtons.map((tab) => tabTypes[tab]);
   const getParticleType = (tabId) =>
     ['author', 'assignees'].includes(tabId) ? '가' : '이';
   const isSelected = (option, selectedOption) =>
     String(option) === selectedOption;
-
   return (
     <MyDropdownFilterTabs>
       {dropdownTabInfo.map(({ tabId, tabName, filterOptions }) => (

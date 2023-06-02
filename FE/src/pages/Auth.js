@@ -6,7 +6,7 @@ import { fetchData } from '../utils/fetch';
 
 export const Auth = () => {
   const navigate = useNavigate();
-  const AUTH_URI = 'http://13.209.232.172:8080/githublogin';
+  const AUTH_URI = `${process.env.REACT_APP_BASE_URI}/githublogin`;
   const url = new URL(window.location.href);
   const queryCode = url.searchParams.get('code');
 
@@ -15,14 +15,16 @@ export const Auth = () => {
       try {
         const response = await fetchData(`${AUTH_URI}?code=${queryCode}`);
         const token = response.token;
-        localStorage.setItem('jwtToken', token);
+        if (!localStorage.getItem('jwtToken')) {
+          localStorage.setItem('jwtToken', token);
+        }
         navigate('/issues');
       } catch (error) {
-        console.log(error);
+        // console.error(error);
       }
     };
     getToken();
-  }, [location, AUTH_URI]);
+  }, [location]);
 
   return <></>;
 };

@@ -45,9 +45,8 @@ const MydefaultTag = styled.div`
 `;
 
 const MyLabelsTag = styled(MydefaultTag)`
-  color: ${colors.gray50};
   background-color: ${({ backgroundColor }) => backgroundColor};
-  color: ${({ fontColor }) => fontColor};
+  color: ${({ fontColor }) => fontColor || `${colors.gray700}`};
   border: ${({ borderColor }) =>
     borderColor ? `1px solid ${borderColor}` : null};
 `;

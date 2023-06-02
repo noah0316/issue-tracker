@@ -24,13 +24,15 @@ export const IssueList = () => {
   const initData = async () => {
     try {
       const [issuesInfo, countInfo] = await fetchAll(
-        `/issues/${getFilterQueryString(filterState)}`,
-        `/issues`
+        `${process.env.REACT_APP_BASE_URI}/issues${getFilterQueryString(
+          filterState
+        )}`,
+        `${process.env.REACT_APP_BASE_URI}/issues/countInfo`
       );
       setIssuesInfo(issuesInfo);
-      setCountInfo(countInfo.countInfo);
+      setCountInfo(countInfo);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

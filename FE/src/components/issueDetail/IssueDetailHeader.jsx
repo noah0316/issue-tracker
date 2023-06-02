@@ -29,7 +29,7 @@ export const IssueDetailHeader = () => {
   };
   const handleEdit = () => {
     setIsEdit(true);
-    setTitleData(`${issue?.title}`);
+    setTitleData(issue?.title);
   };
 
   useEffect(() => {
@@ -66,7 +66,7 @@ export const IssueDetailHeader = () => {
 
   const pageHeaderInfo = {
     leftChild: titleData,
-    middleChild: `#${issue?.issueId}`,
+    middleChild: `#${issue?.id}`,
     value: isEdit
   };
 

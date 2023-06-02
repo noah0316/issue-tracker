@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -8,19 +8,39 @@ import { Button } from '../button/Button';
 import { LabelTag } from '../LabelTag';
 import { IconTextInput } from '../textForm/IconTextInput';
 
-export const NewLabelSection = () => {
+export const NewLabelSection = ({
+  id,
+  isEditLabel,
+  setIsEditLabel,
+  labelTitle,
+  labelDescription,
+  labelBackgroundColor,
+  labelFontColor,
+  postLabel,
+  putLabel
+}) => {
   const [labelName, setLabelName] = useState('레이블');
-  const [explain, setExplain] = useState('입력해주세요');
+  const [explain, setExplain] = useState(null);
   const [bgColor, setBgColor] = useState(colors.gray300);
   const [isDark, setIsDark] = useState(false);
-
-  const randomColor = () => {
-    return '#' + Math.random().toString(16).substring(2, 8);
-  };
+  console.log('POST1', postLabel, 'PUT1', putLabel);
+  useEffect(() => {
+    if (isEditLabel) {
+      setLabelName(labelTitle);
+      setExplain(labelDescription);
+      setBgColor(labelBackgroundColor);
+      setIsDark(labelFontColor);
+    }
+  }, []);
 
   const handleChangeColor = () => {
     setBgColor(randomColor());
   };
+
+  const randomColor = () => {
+    return '#' + Math.random().toString(16).substring(2, 8);
+  };
+  console.log(isEditLabel);
   const labelInfo = {
     labelName: {
       inputValue: labelName,
@@ -50,14 +70,46 @@ export const NewLabelSection = () => {
       buttonText: isDark ? 'dark text' : 'light text',
       isLeftPosition: false
     },
+
+    cancleBtn: {
+      size: 's',
+      color: 'outlineBlue',
+      iconType: 'xSquare',
+      iconWidth: '10',
+      isIcon: true,
+      buttonText: '취소',
+      isLeftPosition: true,
+      onClick: () => setIsEditLabel(false)
+    },
     completeBtn: {
       size: 's',
       color: 'containerBlue',
-      iconType: 'plus',
+      iconType: isEditLabel ? 'edit' : 'plus',
       iconWidth: '16',
       isIcon: true,
-      buttonText: '완료',
-      isLeftPosition: true
+      buttonText: isEditLabel ? '편집 완료' : '완료',
+      isLeftPosition: true,
+      onClick: isEditLabel
+        ? () =>
+          putLabel({
+            id,
+            labelName,
+            explain,
+            bgColor,
+            isDark,
+            setIsEditLabel
+          })
+        : () =>
+          postLabel({
+            labelName,
+            explain,
+            bgColor,
+            isDark,
+            setLabelName,
+            setExplain,
+            setBgColor,
+            setIsEditLabel
+          })
     },
     labelTag: {
       tagType: 'labels',
@@ -70,7 +122,7 @@ export const NewLabelSection = () => {
 
   return (
     <MyNewLabelSection>
-      <p>새로운 레이블 추가</p>
+      <p>{isEditLabel ? '레이블 편집' : '새로운 레이블 추가'}</p>
       <MyLabel>
         <MyViewLabel>
           <LabelTag {...labelInfo.labelTag} />
@@ -91,6 +143,7 @@ export const NewLabelSection = () => {
         </MyNewLabel>
       </MyLabel>
       <MyNewLabelContent>
+        {isEditLabel && <Button {...labelInfo.cancleBtn} />}
         <Button {...labelInfo.completeBtn} />
       </MyNewLabelContent>
     </MyNewLabelSection>
@@ -98,12 +151,12 @@ export const NewLabelSection = () => {
 };
 
 const MyNewLabelSection = styled.div`
-  width: 1280px;
+  // width: 1280px;
+  width: 100%;
   height: 337px;
   background: ${colors.gray50};
   border-radius: 16px;
   border: 1px solid ${colors.gray300};
-  margin-bottom: 30px;
   & p {
     ${fontSize.L};
     ${fontType.BOLD};
@@ -147,4 +200,5 @@ const MyNewLabelContent = styled.div`
   justify-content: flex-end;
   margin-top: 20px;
   margin-right: 17px;
+  gap: 10px;
 `;
