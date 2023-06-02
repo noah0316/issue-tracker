@@ -4,24 +4,88 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Button } from '../components/button/Button';
+import { LabelListItem } from '../components/labelList/LabelListItem';
 import { NewLabelSection } from '../components/labelList/NewlabelSection';
 import { LabelTag } from '../components/LabelTag';
 import { colors } from '../styles/color';
 import { fontSize, fontType } from '../styles/font';
-import { fetchAll, fetchDelete } from '../utils/fetch';
+import {
+  fetchAll,
+  fetchPost,
+  fetchData,
+  fetchDelete,
+  fetchPut
+} from '../utils/fetch';
 
 export const LabelList = () => {
   const navigate = useNavigate();
-  const [labels, setLabels] = useState([]);
+  const [labelInfo, setLabelInfo] = useState([]);
   const [countInfo, setCountInfo] = useState([]);
   const [isNewLabel, setIsNewLabel] = useState(false);
+
+  const handleDelete = async ({ id }) => {
+    const url = `${process.env.REACT_APP_BASE_URI}/labels/${id}`;
+    const idData = {
+      labelId: id
+    };
+    await fetchDelete({ path: url, data: idData });
+    await initData();
+  };
+
+  const postLabel = async ({
+    labelName,
+    explain,
+    bgColor,
+    isDark,
+    setLabelName,
+    setExplain,
+    setBgColor,
+    setIsEditLabel
+  }) => {
+    const url = 'http://13.209.232.172:8080/labels';
+    const labelData = {
+      title: labelName,
+      description: explain,
+      backgroundColor: bgColor,
+      fontColor: isDark ? colors.gray900 : colors.gray50
+    };
+
+    await fetchPost({ path: url, data: labelData });
+    await initData();
+    setLabelName('레이블');
+    setExplain('');
+    setBgColor(colors.gray300);
+    setIsEditLabel(false);
+  };
+
+  const putLabel = async ({
+    id,
+    labelName,
+    explain,
+    bgColor,
+    isDark,
+    setIsEditLabel
+  }) => {
+    const url = `${process.env.REACT_APP_BASE_URI}/labels/${id}`;
+    const putData = {
+      title: labelName,
+      description: explain,
+      backgroundColor: bgColor,
+      fontColor: isDark ? colors.gray900 : colors.gray50
+    };
+
+    await fetchPut({ path: url, data: putData });
+    await initData();
+    setIsEditLabel(false);
+  };
+
   const initData = async () => {
     try {
       const [labelsInfo, countInfo] = await fetchAll(
         `${process.env.REACT_APP_BASE_URI}/labels`,
         `${process.env.REACT_APP_BASE_URI}/issues/countInfo`
       );
-      setLabels(labelsInfo);
+      setLabelInfo(labelsInfo);
       setCountInfo(countInfo);
     } catch (err) {
       // console.log(err);
@@ -29,9 +93,8 @@ export const LabelList = () => {
   };
   useEffect(() => {
     initData();
-    // TODO: labels 이면 왜 안되는가 ?
-  }, [labels.length]);
-
+  }, []);
+  
   const filterTabOptions = {
     labels: {
       size: 's',
@@ -58,20 +121,7 @@ export const LabelList = () => {
       isLeftPosition: true
     }
   };
-
-  const handleDelete = async (id) => {
-    const url = `${process.env.REACT_APP_BASE_URI}/labels/${id}`;
-    const idData = {
-      labelId: id
-    };
-    await fetchDelete({ path: url, data: idData });
-    handleRemove(id);
-  };
-
-  const handleRemove = (id) => {
-    setLabels(labels.filter((label) => label.id !== id));
-  };
-
+  
   return (
     <MyLabelListPage>
       <MyPageTabButtons>
@@ -94,45 +144,29 @@ export const LabelList = () => {
           }
         />
       </MyPageTabButtons>
-      {isNewLabel && <NewLabelSection setValue={setLabels} value={labels} />}
+      {isNewLabel && (
+        <NewLabelSection setValue={setLabelInfo} value={labelInfo} />
+      )}
       <MyLabelList>
         <MyLabelListHeader>
           {countInfo.labelCount} 개의 레이블
         </MyLabelListHeader>
-        {labels &&
-          labels.map((label) => (
-            <MyLabelItem key={label.id}>
-              <div>
-                <LabelTag
-                  key={label.id}
-                  tagType={'labels'}
-                  hasIcon={false}
-                  text={label.title}
-                  backgroundColor={label.backgroundColor}
-                  fontColor={label.fontColor}
-                />
-              </div>
-              <p>{label.description}</p>
-              <MyLabelEditButtons>
-                <Button
-                  size={'xs'}
-                  color={'ghostGray'}
-                  buttonText={'편집'}
-                  isIcon
-                  iconType={'edit'}
-                  isLeftPosition
-                />
-                <Button
-                  size={'xs'}
-                  color={'ghostRed'}
-                  buttonText={'삭제'}
-                  isIcon
-                  iconType={'trash'}
-                  isLeftPosition
-                  onClick={() => handleDelete(label.id)}
-                />
-              </MyLabelEditButtons>
-            </MyLabelItem>
+        {labelInfo &&
+          labelInfo.map((label) => (
+            <LabelListItem
+              key={label.id}
+              id={label.id}
+              labelText={label.title}
+              labelBackgroundColor={label.backgroundColor}
+              labelFontColor={label.fontColor}
+              labelDescription={label.description}
+              labelSetValue={setLabelInfo}
+              labelValue={labelInfo}
+              countSetValue={setCountInfo}
+              handleDelete={handleDelete}
+              postLabel={postLabel}
+              putLabel={putLabel}
+            />
           ))}
       </MyLabelList>
     </MyLabelListPage>
@@ -180,6 +214,7 @@ const MyPageMoveBUttons = styled.div`
 const MyLabelList = styled.div`
   border: 1px solid #d9dbe9;
   border-radius: 16px;
+  margin-top: 15px;
   > div:not(:last-child) {
     border-bottom: 1px solid ${colors.gray300};
   }

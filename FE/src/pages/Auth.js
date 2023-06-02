@@ -24,7 +24,7 @@ export const Auth = () => {
       }
     };
     getToken();
-  }, [location, AUTH_URI]);
+  }, [location]);
 
   return <></>;
 };
