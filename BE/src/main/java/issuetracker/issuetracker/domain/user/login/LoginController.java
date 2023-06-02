@@ -26,7 +26,7 @@ public class LoginController {
         log.info("로그인 시작 = {}", code);
         GithubToken githubToken = loginService.getAccessToken(code);
         response.setHeader("Authorization", "application/json");
-
+        log.info("토큰 검증 = {}", githubToken.getAccessToken());
         UserProfileResponse userProfile = loginService.getUserProfile(githubToken.getAccessToken());
         service.checkLoginMember(userProfile);
 
