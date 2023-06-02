@@ -18,7 +18,7 @@ export const Auth = () => {
         if (!localStorage.getItem('jwtToken')) {
           localStorage.setItem('jwtToken', token);
         }
-        navigate('/issues');
+        // navigate('/issues');
         // console.log(queryCode);
       } catch (error) {
         // console.error(error);
