@@ -75,6 +75,7 @@
 		4FDCA3A32A205ACB00AF282A /* IssueListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F46D2382A1671590003AEDD /* IssueListCollectionViewCell.swift */; };
 		4FDCA3A42A205AD500AF282A /* UICollectionReusableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F99BDBE2A17ECB6008AE8D1 /* UICollectionReusableView+Extension.swift */; };
 		4FDCA3A52A205AE100AF282A /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC81732A0D51D0008C2575 /* FontStyle.swift */; };
+		4FE9E2802A27403D006CC3C2 /* NetworkRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E27F2A27403D006CC3C2 /* NetworkRequestable.swift */; };
 		4FE9E2822A2740A6006CC3C2 /* NetworkServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2812A2740A6006CC3C2 /* NetworkServiceError.swift */; };
 		4FE9E2842A2740E7006CC3C2 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2832A2740E7006CC3C2 /* NetworkRequest.swift */; };
 		4FE9E2862A2741F1006CC3C2 /* HTTPResponseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2852A2741F1006CC3C2 /* HTTPResponseStatus.swift */; };
@@ -140,6 +141,7 @@
 		4FDCA3902A20559400AF282A /* AppDelegateTestDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateTestDouble.swift; sourceTree = "<group>"; };
 		4FDCA3922A2055FB00AF282A /* AppDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
 		4FDCA3952A20584100AF282A /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
+		4FE9E27F2A27403D006CC3C2 /* NetworkRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestable.swift; sourceTree = "<group>"; };
 		4FE9E2812A2740A6006CC3C2 /* NetworkServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceError.swift; sourceTree = "<group>"; };
 		4FE9E2832A2740E7006CC3C2 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		4FE9E2852A2741F1006CC3C2 /* HTTPResponseStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponseStatus.swift; sourceTree = "<group>"; };
@@ -705,6 +707,7 @@
 				4FC171562A1DBDC80090D4B0 /* IssueListViewModelable.swift in Sources */,
 				4FC171582A1DCA640090D4B0 /* LoadingStatus.swift in Sources */,
 				4FF650C72A0D702900A9B220 /* ComponentStyle.swift in Sources */,
+				4FE9E2802A27403D006CC3C2 /* NetworkRequestable.swift in Sources */,
 				4FFC81742A0D51D0008C2575 /* FontStyle.swift in Sources */,
 				4F46D23E2A16716C0003AEDD /* IssueHeaderCollectionViewCell.swift in Sources */,
 				4FC5A2102A1DA3410001393B /* Rgb.swift in Sources */,
