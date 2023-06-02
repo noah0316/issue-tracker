@@ -8,6 +8,7 @@ import issuetracker.issuetracker.domain.issue.dto.Request.CommentPostDTO;
 import issuetracker.issuetracker.domain.issue.dto.IssueDTO;
 import issuetracker.issuetracker.domain.issue.dto.IssueDetailDTO;
 import issuetracker.issuetracker.domain.issue.dto.IssueDetailLabelDto;
+import issuetracker.issuetracker.domain.issue.dto.Request.IssueStateListDTO;
 import issuetracker.issuetracker.domain.issue.dto.Request.IssueTitleDTO;
 import issuetracker.issuetracker.domain.issue.dto.Request.PostingIssueDTO;
 import issuetracker.issuetracker.domain.issue.repository.IssueMybatisRepository;
@@ -63,6 +64,30 @@ public class IssueController {
         // 수정하는 메서드 생성
         log.debug("이슈 제목 편집");
         issueService.updateIssueTitle(issueId, issueTitleDTO);
+    }
+
+    @Operation(
+            summary = "이슈 상태 수정",
+            tags = "issue",
+            description = "사용자는 이슈 상태만 수정할 수 있다."
+    )
+    @PatchMapping("/{issueId}")
+    public void updateIssueStatus(@PathVariable Long issueId, @RequestBody State state) {
+        // 수정하는 메서드 생성
+        log.debug("이슈 오픈,클로스 상태 수정");
+        issueService.updateStatus(issueId, state);
+    }
+
+    @Operation(
+            summary = "다중 이슈 상태 수정",
+            tags = "issue",
+            description = "사용자는 다중 이슈 상태 수정 할 수 있다."
+    )
+    @PatchMapping
+    public void updateIssueStatus(@RequestBody IssueStateListDTO issueStateListDTO) {
+        // 수정하는 메서드 생성
+        log.debug("여러 이슈 오픈,클로스 상태 수정");
+        issueService.updateListStatus(issueStateListDTO);
     }
 
     @PatchMapping("/{issueId}/labels")

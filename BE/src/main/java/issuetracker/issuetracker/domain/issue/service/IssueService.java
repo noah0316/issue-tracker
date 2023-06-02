@@ -4,8 +4,10 @@ import issuetracker.issuetracker.domain.exception.IssueNotFoundException;
 import issuetracker.issuetracker.domain.issue.Assignee;
 import issuetracker.issuetracker.domain.issue.Issue;
 import issuetracker.issuetracker.domain.issue.IssueAttachedLabel;
+import issuetracker.issuetracker.domain.issue.State;
 import issuetracker.issuetracker.domain.issue.dto.IssueDetailDTO;
 import issuetracker.issuetracker.domain.issue.dto.IssueDetailLabelDto;
+import issuetracker.issuetracker.domain.issue.dto.Request.IssueStateListDTO;
 import issuetracker.issuetracker.domain.issue.dto.Request.IssueTitleDTO;
 import issuetracker.issuetracker.domain.issue.dto.Request.PostingIssueDTO;
 import issuetracker.issuetracker.domain.issue.repository.IssueRepository;
@@ -25,9 +27,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.NotNull;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -162,5 +162,19 @@ public class IssueService {
         Issue newIssue = issueRepository.save(issue);
         List<Label> newAttachedLabel = labelRepository.findAllAttachedLabelByIssues(newIssue.getId());
         return new IssueDetailLabelDto(newIssue, newAttachedLabel);
+    }
+
+    public void updateStatus(Long issueId, State state) {
+        Issue issue = issueRepository.findById(issueId).get();
+        issue.updateStatus(state == State.OPEN);
+        issueRepository.save(issue);
+    }
+
+    public void updateListStatus(IssueStateListDTO issueStateListDTO) {
+        List<Long> issueIndexList = issueStateListDTO.getIssueIndexList();
+
+        for (Long issueId : issueIndexList) {
+            updateStatus(issueId, issueStateListDTO.getState());
+        }
     }
 }
