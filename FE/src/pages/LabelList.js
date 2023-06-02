@@ -22,8 +22,8 @@ export const LabelList = () => {
       //   `${process.env.REACT_APP_BASE_URI}/issues/countInfo`
       // );
       const [labelsInfo, countInfo] = await fetchAll(
-        `10.0.11.73/labels`,
-        `10.0.11.73/issues/countInfo`
+        `10.0.11.73:8080/labels`,
+        `10.0.11.73:8080/issues/countInfo`
       );
       setLabels(labelsInfo);
       setCountInfo(countInfo);

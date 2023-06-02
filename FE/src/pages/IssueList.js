@@ -30,8 +30,8 @@ export const IssueList = () => {
       //   `${process.env.REACT_APP_BASE_URI}/issues/countInfo`
       // );
       const [issuesInfo, countInfo] = await fetchAll(
-        `10.0.11.73/issues${getFilterQueryString(filterState)}`,
-        `10.0.11.73/issues/countInfo`
+        `10.0.11.73:8080/issues${getFilterQueryString(filterState)}`,
+        `10.0.11.73:8080/issues/countInfo`
       );
       setIssuesInfo(issuesInfo);
       setCountInfo(countInfo);
