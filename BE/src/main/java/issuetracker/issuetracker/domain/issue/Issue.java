@@ -127,4 +127,9 @@ public class Issue {
     public void removeAttachedLabels(Label label) {
         this.attachedLabels.removeIf(attachedLabel -> attachedLabel.labelId.getId() == label.getId());
     }
+
+    public Issue updateStatus(boolean state) {
+        this.isOpen = state;
+        return this;
+    }
 }
