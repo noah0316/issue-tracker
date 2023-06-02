@@ -26,6 +26,8 @@ public class LoginService {
 
     @Value("${OAUTH_GITHUB_CLIENT_SECRET}")
     private String clientSecret;
+    @Value("${OAUTH_REDIRECT_URL")
+    private String redirectUrl;
 
     public GithubToken getAccessToken(String code) {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
@@ -38,6 +40,7 @@ public class LoginService {
         requestPayload.put("client_id", clientId);
         requestPayload.put("client_secret", clientSecret);
         requestPayload.put("code", code);
+        requestPayload.put("redirect_url",redirectUrl);
         requestPayloads.setAll(requestPayload);
 
         HttpEntity<?> request = new HttpEntity<>(requestPayloads, headers);
@@ -59,6 +62,4 @@ public class LoginService {
                 UserProfileResponse.class)
                 .getBody();
     }
-
-
 }
