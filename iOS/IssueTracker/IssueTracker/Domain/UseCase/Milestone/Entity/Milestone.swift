@@ -8,5 +8,6 @@
 import Foundation
 
 struct Milestone: Hashable {
+    let id: Int
     let title: String
 }
