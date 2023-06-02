@@ -81,7 +81,11 @@
 		4FE9E2842A2740E7006CC3C2 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2832A2740E7006CC3C2 /* NetworkRequest.swift */; };
 		4FE9E2862A2741F1006CC3C2 /* HTTPResponseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2852A2741F1006CC3C2 /* HTTPResponseStatus.swift */; };
 		4FE9E2882A274234006CC3C2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2872A274234006CC3C2 /* NetworkService.swift */; };
+		4FE9E2922A286102006CC3C2 /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2912A286102006CC3C2 /* UserDTO.swift */; };
+		4FE9E2942A28621D006CC3C2 /* LabelDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2932A28621D006CC3C2 /* LabelDTO.swift */; };
 		4FE9E2982A2862FE006CC3C2 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2972A2862FE006CC3C2 /* Label.swift */; };
+		4FE9E29A2A286563006CC3C2 /* MilestoneDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2992A286563006CC3C2 /* MilestoneDTO.swift */; };
+		4FE9E29C2A28663B006CC3C2 /* IssueDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E29B2A28663B006CC3C2 /* IssueDTO.swift */; };
 		4FE9E29F2A286BD9006CC3C2 /* DomainConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E29E2A286BD9006CC3C2 /* DomainConvertible.swift */; };
 		4FE9E2A12A288AD0006CC3C2 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2A02A288AD0006CC3C2 /* EndPoint.swift */; };
 		4FE9E2A32A28ACE8006CC3C2 /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4FE9E2A22A28ACE8006CC3C2 /* Debug.xcconfig */; };
@@ -152,7 +156,11 @@
 		4FE9E2832A2740E7006CC3C2 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		4FE9E2852A2741F1006CC3C2 /* HTTPResponseStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponseStatus.swift; sourceTree = "<group>"; };
 		4FE9E2872A274234006CC3C2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		4FE9E2912A286102006CC3C2 /* UserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
+		4FE9E2932A28621D006CC3C2 /* LabelDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelDTO.swift; sourceTree = "<group>"; };
 		4FE9E2972A2862FE006CC3C2 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		4FE9E2992A286563006CC3C2 /* MilestoneDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneDTO.swift; sourceTree = "<group>"; };
+		4FE9E29B2A28663B006CC3C2 /* IssueDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDTO.swift; sourceTree = "<group>"; };
 		4FE9E29E2A286BD9006CC3C2 /* DomainConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainConvertible.swift; sourceTree = "<group>"; };
 		4FE9E2A02A288AD0006CC3C2 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		4FE9E2A22A28ACE8006CC3C2 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
@@ -260,6 +268,7 @@
 				4FFC81702A0D51B1008C2575 /* Global */,
 				4F381A0D2A0BBB740046B94D /* Resource */,
 				4FE9E27D2A27400F006CC3C2 /* Network */,
+				4FE9E2892A283CCD006CC3C2 /* Data */,
 				4F021B2C2A1753F900595114 /* Domain */,
 				4F381A0A2A0BBB320046B94D /* Presentation */,
 				4F381A092A0BB9E80046B94D /* Application */,
@@ -518,6 +527,14 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		4FE9E2892A283CCD006CC3C2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				4FE9E2902A284447006CC3C2 /* DTO */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		4FE9E28A2A283D4C006CC3C2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -528,6 +545,33 @@
 				4FE9E2A02A288AD0006CC3C2 /* EndPoint.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		4FE9E2902A284447006CC3C2 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				4FE9E2912A286102006CC3C2 /* UserDTO.swift */,
+				4FE9E2932A28621D006CC3C2 /* LabelDTO.swift */,
+				4FE9E2992A286563006CC3C2 /* MilestoneDTO.swift */,
+				4FE9E29B2A28663B006CC3C2 /* IssueDTO.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		4FE9E2952A2862EF006CC3C2 /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				4FE9E2962A2862F6006CC3C2 /* Entity */,
+			);
+			path = Label;
+			sourceTree = "<group>";
+		};
+		4FE9E2962A2862F6006CC3C2 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				4FE9E2972A2862FE006CC3C2 /* Label.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		4FE9E29D2A286BC7006CC3C2 /* Protocol */ = {
@@ -725,6 +769,7 @@
 				4F3819F62A0BA1320046B94D /* AppDelegate.swift in Sources */,
 				4FC1715B2A1DCF870090D4B0 /* IssueListUseCaseType.swift in Sources */,
 				4FC1714E2A1C5BD40090D4B0 /* NibFactory.swift in Sources */,
+				4FE9E2922A286102006CC3C2 /* UserDTO.swift in Sources */,
 				4FC171992A1F2F160090D4B0 /* MockIssueListUseCase.swift in Sources */,
 				4FC1718F2A1F284E0090D4B0 /* CompositionRoot.swift in Sources */,
 				4FC171532A1DBC210090D4B0 /* IssueListViewModel.swift in Sources */,
@@ -734,11 +779,15 @@
 				4FF650C72A0D702900A9B220 /* ComponentStyle.swift in Sources */,
 				4FE9E2802A27403D006CC3C2 /* NetworkRequestable.swift in Sources */,
 				4FFC81742A0D51D0008C2575 /* FontStyle.swift in Sources */,
+				4FE9E2942A28621D006CC3C2 /* LabelDTO.swift in Sources */,
 				4F46D23E2A16716C0003AEDD /* IssueHeaderCollectionViewCell.swift in Sources */,
 				4FC5A2102A1DA3410001393B /* Rgb.swift in Sources */,
 				4FC1719D2A1F51870090D4B0 /* StringLiteral.swift in Sources */,
+				4FE9E2982A2862FE006CC3C2 /* Label.swift in Sources */,
 				4F46D24A2A1671BA0003AEDD /* MilestoneCollectionViewCell.swift in Sources */,
 				4FC5A20C2A1B68430001393B /* LabelTag.swift in Sources */,
+				4FE9E29C2A28663B006CC3C2 /* IssueDTO.swift in Sources */,
+				4FE9E29A2A286563006CC3C2 /* MilestoneDTO.swift in Sources */,
 				4FC1719B2A1F2F9A0090D4B0 /* StoryBoardLiteral.swift in Sources */,
 				4FF650C32A0D6A3800A9B220 /* ColorStyle.swift in Sources */,
 				4FC5A2122A1DA4FC0001393B /* HexConverter.swift in Sources */,
@@ -778,6 +827,7 @@
 				4FDCA39B2A205A6E00AF282A /* ViewControllerMakable.swift in Sources */,
 				4FDCA3932A2055FB00AF282A /* AppDelegateTests.swift in Sources */,
 				4FC171872A1DE67A0090D4B0 /* User.swift in Sources */,
+				4FA35F422A2995640089C6EB /* Label.swift in Sources */,
 				4FDCA3972A20584E00AF282A /* AppDependency.swift in Sources */,
 				4FDCA39A2A205A5200AF282A /* IssueListViewControllerFactory.swift in Sources */,
 				4FDCA3982A205A2900AF282A /* CompositionRoot.swift in Sources */,
