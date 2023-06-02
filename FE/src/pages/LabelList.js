@@ -9,14 +9,75 @@ import { NewLabelSection } from '../components/labelList/NewlabelSection';
 import { LabelTag } from '../components/LabelTag';
 import { colors } from '../styles/color';
 import { fontSize, fontType } from '../styles/font';
-import { fetchAll, fetchData, fetchDelete, fetchPut } from '../utils/fetch';
+import {
+  fetchAll,
+  fetchPost,
+  fetchData,
+  fetchDelete,
+  fetchPut
+} from '../utils/fetch';
 
 export const LabelList = () => {
   const navigate = useNavigate();
   const [labelInfo, setLabelInfo] = useState([]);
   const [countInfo, setCountInfo] = useState([]);
   const [isNewLabel, setIsNewLabel] = useState(false);
-  const [saveLabel, setSaveLabel] = useState('');
+
+  const handleDelete = async ({ id }) => {
+    const url = `${process.env.REACT_APP_BASE_URI}/labels/${id}`;
+    const idData = {
+      labelId: id
+    };
+    await fetchDelete({ path: url, data: idData });
+    await initData();
+  };
+
+  const postLabel = async ({
+    labelName,
+    explain,
+    bgColor,
+    isDark,
+    setLabelName,
+    setExplain,
+    setBgColor,
+    setIsEditLabel
+  }) => {
+    const url = 'http://13.209.232.172:8080/labels';
+    const labelData = {
+      title: labelName,
+      description: explain,
+      backgroundColor: bgColor,
+      fontColor: isDark ? colors.gray900 : colors.gray50
+    };
+
+    await fetchPost({ path: url, data: labelData });
+    await initData();
+    setLabelName('레이블');
+    setExplain('');
+    setBgColor(colors.gray300);
+    setIsEditLabel(false);
+  };
+
+  const putLabel = async ({
+    id,
+    labelName,
+    explain,
+    bgColor,
+    isDark,
+    setIsEditLabel
+  }) => {
+    const url = `${process.env.REACT_APP_BASE_URI}/labels/${id}`;
+    const putData = {
+      title: labelName,
+      description: explain,
+      backgroundColor: bgColor,
+      fontColor: isDark ? colors.gray900 : colors.gray50
+    };
+
+    await fetchPut({ path: url, data: putData });
+    await initData();
+    setIsEditLabel(false);
+  };
 
   const initData = async () => {
     try {
@@ -103,6 +164,9 @@ export const LabelList = () => {
               labelSetValue={setLabelInfo}
               labelValue={labelInfo}
               countSetValue={setCountInfo}
+              handleDelete={handleDelete}
+              postLabel={postLabel}
+              putLabel={putLabel}
             />
           ))}
       </MyLabelList>

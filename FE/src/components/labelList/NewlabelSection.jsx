@@ -4,27 +4,26 @@ import styled from 'styled-components';
 
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
-import { fetchAll, fetchPost, fetchPut } from '../../utils/fetch';
 import { Button } from '../button/Button';
 import { LabelTag } from '../LabelTag';
 import { IconTextInput } from '../textForm/IconTextInput';
 
 export const NewLabelSection = ({
   id,
-  labelSetValue,
-  countSetValue,
   isEditLabel,
   setIsEditLabel,
   labelTitle,
   labelDescription,
   labelBackgroundColor,
-  labelFontColor
+  labelFontColor,
+  postLabel,
+  putLabel
 }) => {
   const [labelName, setLabelName] = useState('레이블');
   const [explain, setExplain] = useState(null);
   const [bgColor, setBgColor] = useState(colors.gray300);
   const [isDark, setIsDark] = useState(false);
-
+  console.log('POST1', postLabel, 'PUT1', putLabel);
   useEffect(() => {
     if (isEditLabel) {
       setLabelName(labelTitle);
@@ -34,44 +33,14 @@ export const NewLabelSection = ({
     }
   }, []);
 
-  const randomColor = () => {
-    return '#' + Math.random().toString(16).substring(2, 8);
-  };
-
-  const postLabel = async () => {
-    const url = 'http://13.209.232.172:8080/labels';
-    const labelData = {
-      title: labelName,
-      description: explain,
-      backgroundColor: bgColor,
-      fontColor: isDark ? colors.gray900 : colors.gray50
-    };
-
-    await fetchPost({ path: url, data: labelData });
-    saveLabel(labelData);
-    setLabelName('레이블');
-    setExplain('');
-    setBgColor(colors.gray300);
-  };
-
-  const putLabel = async (id) => {
-    const url = `${process.env.REACT_APP_BASE_URI}/labels/${id}`;
-    const putData = {
-      title: labelName,
-      description: explain,
-      backgroundColor: bgColor,
-      fontColor: isDark ? colors.gray900 : colors.gray50
-    };
-
-    await fetchPut({ path: url, data: putData });
-
-    setIsEditLabel(false);
-  };
-
   const handleChangeColor = () => {
     setBgColor(randomColor());
   };
 
+  const randomColor = () => {
+    return '#' + Math.random().toString(16).substring(2, 8);
+  };
+  console.log(isEditLabel);
   const labelInfo = {
     labelName: {
       inputValue: labelName,
@@ -112,7 +81,6 @@ export const NewLabelSection = ({
       isLeftPosition: true,
       onClick: () => setIsEditLabel(false)
     },
-
     completeBtn: {
       size: 's',
       color: 'containerBlue',
@@ -121,7 +89,27 @@ export const NewLabelSection = ({
       isIcon: true,
       buttonText: isEditLabel ? '편집 완료' : '완료',
       isLeftPosition: true,
-      onClick: isEditLabel ? () => putLabel(id) : () => postLabel()
+      onClick: isEditLabel
+        ? () =>
+          putLabel({
+            id,
+            labelName,
+            explain,
+            bgColor,
+            isDark,
+            setIsEditLabel
+          })
+        : () =>
+          postLabel({
+            labelName,
+            explain,
+            bgColor,
+            isDark,
+            setLabelName,
+            setExplain,
+            setBgColor,
+            setIsEditLabel
+          })
     },
     labelTag: {
       tagType: 'labels',

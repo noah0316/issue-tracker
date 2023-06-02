@@ -16,22 +16,16 @@ export const LabelListItem = ({
   labelDescription,
   labelSetValue,
   labelValue,
-  countSetValue
+  countSetValue,
+  handleDelete,
+  postLabel,
+  putLabel
 }) => {
   const [isEditLabel, setIsEditLabel] = useState(false);
-
-  const handleDelete = async ({ id }) => {
-    const url = `${process.env.REACT_APP_BASE_URI}/labels/${id}`;
-    const idData = {
-      labelId: id
-    };
-    await fetchDelete({ path: url, data: idData });
-  };
-
   const handleEdit = () => {
     setIsEditLabel(true);
   };
-
+  console.log('POST', postLabel, 'PUT', putLabel);
   return (
     <>
       {isEditLabel
@@ -47,6 +41,8 @@ export const LabelListItem = ({
               labelDescription={labelDescription}
               labelBackgroundColor={labelBackgroundColor}
               labelFontColor={labelFontColor}
+              postLabel={postLabel}
+              putLabel={putLabel}
             />
           </>
         )
