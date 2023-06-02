@@ -31,7 +31,7 @@ public class LoginController {
         service.checkLoginMember(userProfile);
 
         String token = jwtUtil.createToken(userProfile);
-
+        log.info("로그인 완료 = {}", token);
         return ResponseEntity.ok(new JWTResponse("login success", token));
     }
 
