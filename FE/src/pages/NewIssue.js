@@ -24,8 +24,7 @@ export const NewIssue = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const url = `${process.env.REACT_APP_BASE_URI}/issues`;
-    const url = `13.209.232.172:8080/issues`;
+    const url = `http://13.209.232.172:8080/issues`;
     const data = {
       title: issueTitle,
       contents: comment,

@@ -14,8 +14,6 @@ import { NewIssue } from './pages/NewIssue';
 import { GlobalStyle } from './styles/GlobalStyle';
 
 const App = () => {
-  // TODO: login state 필요한 정보??
-  const [login, setLogin] = useState({ isLogin: false, accessToken: '' });
   return (
     <>
       <GlobalStyle />
