@@ -17,9 +17,13 @@ export const LabelList = () => {
   const [isNewLabel, setIsNewLabel] = useState(false);
   const initData = async () => {
     try {
+      // const [labelsInfo, countInfo] = await fetchAll(
+      //   `${process.env.REACT_APP_BASE_URI}/labels`,
+      //   `${process.env.REACT_APP_BASE_URI}/issues/countInfo`
+      // );
       const [labelsInfo, countInfo] = await fetchAll(
-        `${process.env.REACT_APP_BASE_URI}/labels`,
-        `${process.env.REACT_APP_BASE_URI}/issues/countInfo`
+        `10.0.11.73/labels`,
+        `10.0.11.73/issues/countInfo`
       );
       setLabels(labelsInfo);
       setCountInfo(countInfo);
@@ -60,7 +64,8 @@ export const LabelList = () => {
   };
 
   const handleDelete = async (id) => {
-    const url = `${process.env.REACT_APP_BASE_URI}/labels/${id}`;
+    // const url = `${process.env.REACT_APP_BASE_URI}/labels/${id}`;
+    const url = `10.0.11.73/labels/${id}`;
     const idData = {
       labelId: id
     };
