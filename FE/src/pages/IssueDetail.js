@@ -17,13 +17,9 @@ export const IssueDetail = () => {
   const { user } = useOutletContext();
   const initData = async () => {
     try {
-      // const [issueInfo, commentInfo] = await fetchAll(
-      //   `${process.env.REACT_APP_BASE_URI}/issues/${id}`,
-      //   `${process.env.REACT_APP_BASE_URI}/issues/${id}/comments?issueId=${id}`
-      // );
       const [issueInfo, commentInfo] = await fetchAll(
-        `13.209.232.172:8080/issues/${id}`,
-        `13.209.232.172:8080/issues/${id}/comments?issueId=${id}`
+        `http://13.209.232.172:8080/issues/${id}`,
+        `http://13.209.232.172:8080/issues/${id}/comments?issueId=${id}`
       );
       setIssue(issueInfo);
       setComments(commentInfo);
@@ -34,8 +30,7 @@ export const IssueDetail = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const url = `${process.env.REACT_APP_BASE_URI}/issues/${user.userProfile.id}/${id}/comments`;
-    const url = `13.209.232.172:8080/issues/${user.userProfile.id}/${id}/comments`;
+    const url = `http://13.209.232.172:8080/issues/${user.userProfile.id}/${id}/comments`;
     const data = {
       issueId: id,
       comment: comments,
@@ -51,8 +46,7 @@ export const IssueDetail = () => {
   // TODO : 코맨트 편집기능
   const handleEdit = async (e, element) => {
     e.preventDefault();
-    // const url = `${process.env.REACT_APP_BASE_URI}/issues/${id}/${element}`;
-    const url = `13.209.232.172:8080/issues/${id}/${element}`;
+    const url = `http://13.209.232.172:8080/issues/${id}/${element}`;
     const data = {
       element
     };
