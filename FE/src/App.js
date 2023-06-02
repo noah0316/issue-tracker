@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import { ThemeProvider } from 'styled-components';
 
 import { Header } from './components/Header';
 import { HeaderLayout } from './components/HeaderLayout';
@@ -13,13 +12,12 @@ import { Login } from './pages/Login';
 import { MilestoneList } from './pages/MilestoneList';
 import { NewIssue } from './pages/NewIssue';
 import { GlobalStyle } from './styles/GlobalStyle';
-// import { lightTheme } from './styles/theme';
 
 const App = () => {
+  // TODO: login state 필요한 정보??
   const [login, setLogin] = useState({ isLogin: false, accessToken: '' });
   return (
     <>
-      {/* <ThemeProvider theme={lightTheme}> */}
       <GlobalStyle />
       <BrowserRouter>
         <div className="App">
@@ -36,7 +34,6 @@ const App = () => {
           </Routes>
         </div>
       </BrowserRouter>
-      {/* </ThemeProvider> */}
     </>
   );
 };

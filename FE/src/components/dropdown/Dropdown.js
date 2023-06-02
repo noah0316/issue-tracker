@@ -36,7 +36,6 @@ export const Dropdown = ({
   const [selectedTab, setSelectedTab] = useState(null);
   const [tabOptionsInfo, setTabOptionsInfo] = useState(null);
   const panelRef = useRef(null);
-
   const selectedSideBarItemInfo = tabOptionsInfo?.find(
     ({ id }) => id === Number(selectedOption)
   );
@@ -66,6 +65,7 @@ export const Dropdown = ({
   // 선택된 탭에서 옵션을 클릭했을 때 패널옵션을 패치하는 함수
   const fetchSelectedTab = useCallback(
     async (selectedTab, filterOptions) => {
+      if (selectedTab === 'checkTab') return;
       const selectedTabApi =
         selectedTab === 'assignees' || selectedTab === 'author'
           ? 'users'

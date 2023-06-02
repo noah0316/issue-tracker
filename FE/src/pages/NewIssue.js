@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 
-import { useOutletContext } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { NewIssueFooter } from '../components/newIssue/NewIssueFooter';
@@ -20,19 +20,24 @@ export const NewIssue = () => {
   const [assignee, setAssignee] = useState(null);
   const [label, setlabel] = useState(null);
   const [milestone, setMilestone] = useState(null);
-  const [newIssue, setNewIssue] = useState({});
+  const navigate = useNavigate();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // const url = `${process.env.REACT_APP_BASE_URI}/issues`;
+    const url = `10.0.11.73:8080/issues`;
     const data = {
       title: issueTitle,
       contents: comment,
+      description: null,
       fileUrl: null,
       assignees: [assignee],
       labels: [label],
       milestoneId: milestone,
-      tokenuser: { id: user.userProfile.id }
+      tokenuser: { id: user?.userProfile.id }
     };
-    await fetchPost({ path, data });
+    await fetchPost({ url, data });
+    navigate('/issues', { replace: true });
   };
 
   return (
@@ -69,7 +74,7 @@ export const NewIssue = () => {
             milestoneSetValue={setMilestone}
           />
         </MyNewIssueContainer>
-        <NewIssueFooter titleValue={issueTitle} commentValue={comment} />
+        <NewIssueFooter titleValue={issueTitle} />
       </MyNewIssueForm>
     </MyNewIssuePage>
   );

@@ -1,7 +1,7 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import { Icon } from '../assets/Icon';
 import { Button } from '../components/button/Button';
@@ -19,9 +19,11 @@ export const Login = () => {
 
   const focusStyle = isLogin ? null : colors.red;
 
+  // const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
+  // const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI;
   const CLIENT_ID = '3b1dfca72b24afb9ebb2';
-  const REDIRECT_URI = 'http://localhost:3000/auth&scope=user';
-  const loginUri = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`;
+  const REDIRECT_URI = 'http://localhost:3000/auth';
+  const loginUri = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=user`;
 
   const githubLoginHandler = () => {
     window.location.href = loginUri;

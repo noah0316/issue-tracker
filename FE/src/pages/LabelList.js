@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
 import { Button } from '../components/button/Button';
 import { NewLabelSection } from '../components/labelList/NewlabelSection';
 import { LabelTag } from '../components/LabelTag';
 import { colors } from '../styles/color';
 import { fontSize, fontType } from '../styles/font';
-import { fetchAll, fetchData, fetchDelete } from '../utils/fetch';
+import { fetchAll, fetchDelete } from '../utils/fetch';
 
 export const LabelList = () => {
   const navigate = useNavigate();
@@ -17,9 +17,13 @@ export const LabelList = () => {
   const [isNewLabel, setIsNewLabel] = useState(false);
   const initData = async () => {
     try {
+      // const [labelsInfo, countInfo] = await fetchAll(
+      //   `${process.env.REACT_APP_BASE_URI}/labels`,
+      //   `${process.env.REACT_APP_BASE_URI}/issues/countInfo`
+      // );
       const [labelsInfo, countInfo] = await fetchAll(
-        'http://13.209.232.172:8080/labels',
-        'http://13.209.232.172:8080/issues/countInfo'
+        `10.0.11.73:8080/labels`,
+        `10.0.11.73:8080/issues/countInfo`
       );
       setLabels(labelsInfo);
       setCountInfo(countInfo);
@@ -27,9 +31,9 @@ export const LabelList = () => {
       // console.log(err);
     }
   };
-
   useEffect(() => {
     initData();
+    // TODO: labels 이면 왜 안되는가 ?
   }, [labels.length]);
 
   const filterTabOptions = {
@@ -60,7 +64,8 @@ export const LabelList = () => {
   };
 
   const handleDelete = async (id) => {
-    const url = `http://13.209.232.172:8080/labels/${id}`;
+    // const url = `${process.env.REACT_APP_BASE_URI}/labels/${id}`;
+    const url = `10.0.11.73/labels/${id}`;
     const idData = {
       labelId: id
     };

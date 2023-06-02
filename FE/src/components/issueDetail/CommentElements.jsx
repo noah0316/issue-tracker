@@ -13,12 +13,11 @@ export const CommentElements = ({
   authorInfo,
   userInfo,
   reply,
-  createTime
+  createdTime
 }) => {
   const [isEditComment, setIsEditComment] = useState(false);
   const [comment, setComment] = useState('');
   const [completeComment, setIsCompleteComment] = useState(null);
-
   useEffect(() => {
     setComment(reply);
     setIsCompleteComment(reply);
@@ -103,7 +102,7 @@ export const CommentElements = ({
           <MyProfileInfo>
             <Profile userInfo={userInfo} />
             <span>{userInfo.name}</span>
-            <span>{getTimeElapsed(createTime)}</span>
+            <span>{getTimeElapsed(createdTime)}</span>
           </MyProfileInfo>
           <EditHeader>
             {authorInfo.id === userInfo.id && (

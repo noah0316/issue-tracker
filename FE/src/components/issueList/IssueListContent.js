@@ -8,16 +8,22 @@ import { colors } from '../../styles/color';
 import { fontSize } from '../../styles/font';
 
 export const IssueListContent = () => {
-  const { issuesInfo } = useContext(IssueListContext);
+  const { issuesInfo, countInfo } = useContext(IssueListContext);
+  const { openCount, closeCount } = countInfo;
+
   return (
     <MyIssueListContent>
-      {issuesInfo
+      {issuesInfo.length
         ? (
           issuesInfo.map((issues) => <IssueItem key={issues.id} {...issues} />)
         )
-        : (
-          <MyEmptyContent>등록된 이슈가 없습니다</MyEmptyContent>
-        )}
+        : !openCount && !closeCount
+          ? (
+            <MyEmptyContent>등록된 이슈가 없습니다</MyEmptyContent>
+          )
+          : (
+            <MyEmptyContent>조건에 맞는 이슈가 없습니다</MyEmptyContent>
+          )}
     </MyIssueListContent>
   );
 };
