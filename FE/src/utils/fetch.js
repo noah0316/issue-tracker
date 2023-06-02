@@ -1,7 +1,7 @@
 export const fetchData = async (path) => {
   const response = await fetch(path, {
     method: 'GET',
-    header: {
+    headers: {
       Authorization: `Bearer ${localStorage.jwtToken}`
     }
   });
