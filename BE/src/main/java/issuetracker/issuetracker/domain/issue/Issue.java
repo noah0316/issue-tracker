@@ -17,6 +17,7 @@ import org.springframework.data.relational.core.mapping.Table;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Getter
 @Builder
@@ -63,12 +64,22 @@ public class Issue {
 
     public static Issue create(PostingIssueDTO postingIssueDTO) {
         Set<Assignee> assigneeSet = new HashSet<>();
-        postingIssueDTO.getAssignees().stream().map(e -> new Assignee(e.longValue()))
-                .forEach(a -> assigneeSet.add(a));
+        if (postingIssueDTO.getAssignees() != null) {
+            assigneeSet = postingIssueDTO.getAssignees()
+                    .stream()
+                    .filter(Objects::nonNull)
+                    .map(e -> new Assignee(e.longValue())).collect(Collectors.toSet());
+        }
 
         Set<IssueAttachedLabel> attacheSet = new HashSet<>();
-        postingIssueDTO.getLabels().stream().map(e -> new IssueAttachedLabel(e.longValue()))
-                .forEach(a -> attacheSet.add(a));
+        if (postingIssueDTO.getLabels() != null) {
+            postingIssueDTO.getLabels().
+                    stream()
+                    .filter(Objects::nonNull)
+                    .map(e -> new IssueAttachedLabel(e.longValue()))
+                    .forEach(a -> attacheSet.add(a));
+        }
+
         return Issue.builder()
                 .id(null)
                 .createTime(LocalDateTime.now())
