@@ -80,6 +80,8 @@
 		4FE9E2842A2740E7006CC3C2 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2832A2740E7006CC3C2 /* NetworkRequest.swift */; };
 		4FE9E2862A2741F1006CC3C2 /* HTTPResponseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2852A2741F1006CC3C2 /* HTTPResponseStatus.swift */; };
 		4FE9E2882A274234006CC3C2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2872A274234006CC3C2 /* NetworkService.swift */; };
+		4FE9E2A12A288AD0006CC3C2 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2A02A288AD0006CC3C2 /* EndPoint.swift */; };
+		4FE9E2A32A28ACE8006CC3C2 /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4FE9E2A22A28ACE8006CC3C2 /* Debug.xcconfig */; };
 		4FF650C32A0D6A3800A9B220 /* ColorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF650C22A0D6A3800A9B220 /* ColorStyle.swift */; };
 		4FF650C72A0D702900A9B220 /* ComponentStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF650C62A0D702900A9B220 /* ComponentStyle.swift */; };
 		4FF650C92A0DDA0700A9B220 /* ImageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF650C82A0DDA0700A9B220 /* ImageMapper.swift */; };
@@ -147,6 +149,8 @@
 		4FE9E2832A2740E7006CC3C2 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		4FE9E2852A2741F1006CC3C2 /* HTTPResponseStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponseStatus.swift; sourceTree = "<group>"; };
 		4FE9E2872A274234006CC3C2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		4FE9E2A02A288AD0006CC3C2 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
+		4FE9E2A22A28ACE8006CC3C2 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		4FF650C22A0D6A3800A9B220 /* ColorStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStyle.swift; sourceTree = "<group>"; };
 		4FF650C62A0D702900A9B220 /* ComponentStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentStyle.swift; sourceTree = "<group>"; };
 		4FF650C82A0DDA0700A9B220 /* ImageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMapper.swift; sourceTree = "<group>"; };
@@ -226,6 +230,7 @@
 		4F3819E92A0BA1320046B94D = {
 			isa = PBXGroup;
 			children = (
+				4FE9E2A22A28ACE8006CC3C2 /* Debug.xcconfig */,
 				4FD5C9762A0C91890096F53D /* .swiftlint.yml */,
 				4F3819F42A0BA1320046B94D /* IssueTracker */,
 				4FC171712A1DE4C00090D4B0 /* IssueTrackerTests */,
@@ -513,6 +518,7 @@
 				4FE9E2832A2740E7006CC3C2 /* NetworkRequest.swift */,
 				4FE9E2852A2741F1006CC3C2 /* HTTPResponseStatus.swift */,
 				4FE9E2872A274234006CC3C2 /* NetworkService.swift */,
+				4FE9E2A02A288AD0006CC3C2 /* EndPoint.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -651,6 +657,7 @@
 				4F46D23B2A1671590003AEDD /* IssueListCollectionViewCell.xib in Resources */,
 				4F46D2472A16719A0003AEDD /* LabelCollectionViewCell.xib in Resources */,
 				4F46D23F2A16716C0003AEDD /* IssueHeaderCollectionViewCell.xib in Resources */,
+				4FE9E2A32A28ACE8006CC3C2 /* Debug.xcconfig in Resources */,
 				4FDA41D12A16850500340387 /* Issue.storyboard in Resources */,
 				4F3819FF2A0BA1350046B94D /* Assets.xcassets in Resources */,
 				4F46D2432A16717A0003AEDD /* IssueCommentCollectionViewCell.xib in Resources */,
@@ -727,6 +734,7 @@
 				4FC171982A1F2ECA0090D4B0 /* IssueListViewControllerFactory.swift in Sources */,
 				4F46D2462A16719A0003AEDD /* LabelCollectionViewCell.swift in Sources */,
 				4FDCA38D2A20552A00AF282A /* main.swift in Sources */,
+				4FE9E2A12A288AD0006CC3C2 /* EndPoint.swift in Sources */,
 				4FDCA3962A20584100AF282A /* AppDependency.swift in Sources */,
 				4FDA41CF2A16837B00340387 /* IssueListViewController.swift in Sources */,
 				4FC1716B2A1DDF1B0090D4B0 /* Milestone.swift in Sources */,
@@ -909,6 +917,7 @@
 		};
 		4F381A072A0BA1350046B94D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FE9E2A22A28ACE8006CC3C2 /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
