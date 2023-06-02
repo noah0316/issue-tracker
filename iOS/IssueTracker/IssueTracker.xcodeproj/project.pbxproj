@@ -77,6 +77,7 @@
 		4FDCA3A52A205AE100AF282A /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC81732A0D51D0008C2575 /* FontStyle.swift */; };
 		4FE9E2822A2740A6006CC3C2 /* NetworkServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2812A2740A6006CC3C2 /* NetworkServiceError.swift */; };
 		4FE9E2842A2740E7006CC3C2 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2832A2740E7006CC3C2 /* NetworkRequest.swift */; };
+		4FE9E2862A2741F1006CC3C2 /* HTTPResponseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2852A2741F1006CC3C2 /* HTTPResponseStatus.swift */; };
 		4FF650C32A0D6A3800A9B220 /* ColorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF650C22A0D6A3800A9B220 /* ColorStyle.swift */; };
 		4FF650C72A0D702900A9B220 /* ComponentStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF650C62A0D702900A9B220 /* ComponentStyle.swift */; };
 		4FF650C92A0DDA0700A9B220 /* ImageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF650C82A0DDA0700A9B220 /* ImageMapper.swift */; };
@@ -141,6 +142,7 @@
 		4FDCA3952A20584100AF282A /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		4FE9E2812A2740A6006CC3C2 /* NetworkServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceError.swift; sourceTree = "<group>"; };
 		4FE9E2832A2740E7006CC3C2 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		4FE9E2852A2741F1006CC3C2 /* HTTPResponseStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponseStatus.swift; sourceTree = "<group>"; };
 		4FF650C22A0D6A3800A9B220 /* ColorStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStyle.swift; sourceTree = "<group>"; };
 		4FF650C62A0D702900A9B220 /* ComponentStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentStyle.swift; sourceTree = "<group>"; };
 		4FF650C82A0DDA0700A9B220 /* ImageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMapper.swift; sourceTree = "<group>"; };
@@ -505,6 +507,7 @@
 			children = (
 				4FE9E2812A2740A6006CC3C2 /* NetworkServiceError.swift */,
 				4FE9E2832A2740E7006CC3C2 /* NetworkRequest.swift */,
+				4FE9E2852A2741F1006CC3C2 /* HTTPResponseStatus.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -685,6 +688,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FE9E2862A2741F1006CC3C2 /* HTTPResponseStatus.swift in Sources */,
 				4F021B2B2A174EB300595114 /* IssueListView.swift in Sources */,
 				4FE9E2822A2740A6006CC3C2 /* NetworkServiceError.swift in Sources */,
 				4F46D23A2A1671590003AEDD /* IssueListCollectionViewCell.swift in Sources */,
