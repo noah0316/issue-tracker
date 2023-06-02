@@ -22,7 +22,7 @@ public interface LabelRepository extends CrudRepository<Label, Long> {
             "label.label_id AS id, " +
             "label.title AS title, " +
             "label.description AS description, " +
-            "label.font_color AS fontColor, " +
+            "label.font_color, " +
             "label.background_color AS `background_color` " +
             "FROM label")
     List<LabelListDTO> getLabelList();
