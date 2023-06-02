@@ -9,6 +9,7 @@ import { fontSize } from '../../styles/font';
 
 export const IssueListContent = () => {
   const { issuesInfo } = useContext(IssueListContext);
+
   return (
     <MyIssueListContent>
       {issuesInfo

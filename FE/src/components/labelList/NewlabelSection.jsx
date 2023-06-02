@@ -4,16 +4,35 @@ import styled from 'styled-components';
 
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
-import { fetchPost } from '../../utils/fetch';
+import { fetchAll, fetchPost, fetchPut } from '../../utils/fetch';
 import { Button } from '../button/Button';
 import { LabelTag } from '../LabelTag';
 import { IconTextInput } from '../textForm/IconTextInput';
 
-export const NewLabelSection = ({ setValue, value }) => {
+export const NewLabelSection = ({
+  id,
+  labelSetValue,
+  countSetValue,
+  isEditLabel,
+  setIsEditLabel,
+  labelTitle,
+  labelDescription,
+  labelBackgroundColor,
+  labelFontColor
+}) => {
   const [labelName, setLabelName] = useState('레이블');
   const [explain, setExplain] = useState(null);
   const [bgColor, setBgColor] = useState(colors.gray300);
   const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    if (isEditLabel) {
+      setLabelName(labelTitle);
+      setExplain(labelDescription);
+      setBgColor(labelBackgroundColor);
+      setIsDark(labelFontColor);
+    }
+  }, []);
 
   const randomColor = () => {
     return '#' + Math.random().toString(16).substring(2, 8);
@@ -24,7 +43,8 @@ export const NewLabelSection = ({ setValue, value }) => {
     const labelData = {
       title: labelName,
       description: explain,
-      backgroundColor: bgColor
+      backgroundColor: bgColor,
+      fontColor: isDark ? colors.gray900 : colors.gray50
     };
 
     await fetchPost({ path: url, data: labelData });
@@ -34,21 +54,24 @@ export const NewLabelSection = ({ setValue, value }) => {
     setBgColor(colors.gray300);
   };
 
-  const saveLabel = (labelData) => {
-    setValue([
-      {
-        id: 22,
-        title: 'faker',
-        description: 'faker',
-        fontColor: null,
-        backgroundColor: '#7addfe'
-      }
-    ]);
+  const putLabel = async (id) => {
+    const url = `${process.env.REACT_APP_BASE_URI}/labels/${id}`;
+    const putData = {
+      title: labelName,
+      description: explain,
+      backgroundColor: bgColor,
+      fontColor: isDark ? colors.gray900 : colors.gray50
+    };
+
+    await fetchPut({ path: url, data: putData });
+
+    setIsEditLabel(false);
   };
 
   const handleChangeColor = () => {
     setBgColor(randomColor());
   };
+
   const labelInfo = {
     labelName: {
       inputValue: labelName,
@@ -78,14 +101,27 @@ export const NewLabelSection = ({ setValue, value }) => {
       buttonText: isDark ? 'dark text' : 'light text',
       isLeftPosition: false
     },
+
+    cancleBtn: {
+      size: 's',
+      color: 'outlineBlue',
+      iconType: 'xSquare',
+      iconWidth: '10',
+      isIcon: true,
+      buttonText: '취소',
+      isLeftPosition: true,
+      onClick: () => setIsEditLabel(false)
+    },
+
     completeBtn: {
       size: 's',
       color: 'containerBlue',
-      iconType: 'plus',
+      iconType: isEditLabel ? 'edit' : 'plus',
       iconWidth: '16',
       isIcon: true,
-      buttonText: '완료',
-      isLeftPosition: true
+      buttonText: isEditLabel ? '편집 완료' : '완료',
+      isLeftPosition: true,
+      onClick: isEditLabel ? () => putLabel(id) : () => postLabel()
     },
     labelTag: {
       tagType: 'labels',
@@ -98,7 +134,7 @@ export const NewLabelSection = ({ setValue, value }) => {
 
   return (
     <MyNewLabelSection>
-      <p>새로운 레이블 추가</p>
+      <p>{isEditLabel ? '레이블 편집' : '새로운 레이블 추가'}</p>
       <MyLabel>
         <MyViewLabel>
           <LabelTag {...labelInfo.labelTag} />
@@ -119,19 +155,20 @@ export const NewLabelSection = ({ setValue, value }) => {
         </MyNewLabel>
       </MyLabel>
       <MyNewLabelContent>
-        <Button {...labelInfo.completeBtn} onClick={postLabel} />
+        {isEditLabel && <Button {...labelInfo.cancleBtn} />}
+        <Button {...labelInfo.completeBtn} />
       </MyNewLabelContent>
     </MyNewLabelSection>
   );
 };
 
 const MyNewLabelSection = styled.div`
-  width: 1280px;
+  // width: 1280px;
+  width: 100%;
   height: 337px;
   background: ${colors.gray50};
   border-radius: 16px;
   border: 1px solid ${colors.gray300};
-  margin-bottom: 30px;
   & p {
     ${fontSize.L};
     ${fontType.BOLD};
@@ -175,4 +212,5 @@ const MyNewLabelContent = styled.div`
   justify-content: flex-end;
   margin-top: 20px;
   margin-right: 17px;
+  gap: 10px;
 `;
