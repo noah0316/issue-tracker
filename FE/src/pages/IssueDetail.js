@@ -55,7 +55,7 @@ export const IssueDetail = () => {
 
   useEffect(() => {
     initData();
-  }, [id]);
+  }, []);
 
   return (
     <IssueDetailContext.Provider value={{ issue, comments }}>
