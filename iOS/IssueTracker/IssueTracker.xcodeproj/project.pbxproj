@@ -25,6 +25,7 @@
 		4F46D24A2A1671BA0003AEDD /* MilestoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F46D2482A1671BA0003AEDD /* MilestoneCollectionViewCell.swift */; };
 		4F46D24B2A1671BA0003AEDD /* MilestoneCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F46D2492A1671BA0003AEDD /* MilestoneCollectionViewCell.xib */; };
 		4F99BDBF2A17ECB6008AE8D1 /* UICollectionReusableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F99BDBE2A17ECB6008AE8D1 /* UICollectionReusableView+Extension.swift */; };
+		4FA35F422A2995640089C6EB /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2972A2862FE006CC3C2 /* Label.swift */; };
 		4FA35F432A2995760089C6EB /* NetworkServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2812A2740A6006CC3C2 /* NetworkServiceError.swift */; };
 		4FC1714E2A1C5BD40090D4B0 /* NibFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1714D2A1C5BD40090D4B0 /* NibFactory.swift */; };
 		4FC171532A1DBC210090D4B0 /* IssueListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171522A1DBC210090D4B0 /* IssueListViewModel.swift */; };
@@ -80,6 +81,7 @@
 		4FE9E2842A2740E7006CC3C2 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2832A2740E7006CC3C2 /* NetworkRequest.swift */; };
 		4FE9E2862A2741F1006CC3C2 /* HTTPResponseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2852A2741F1006CC3C2 /* HTTPResponseStatus.swift */; };
 		4FE9E2882A274234006CC3C2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2872A274234006CC3C2 /* NetworkService.swift */; };
+		4FE9E2982A2862FE006CC3C2 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2972A2862FE006CC3C2 /* Label.swift */; };
 		4FE9E29F2A286BD9006CC3C2 /* DomainConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E29E2A286BD9006CC3C2 /* DomainConvertible.swift */; };
 		4FE9E2A12A288AD0006CC3C2 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2A02A288AD0006CC3C2 /* EndPoint.swift */; };
 		4FE9E2A32A28ACE8006CC3C2 /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4FE9E2A22A28ACE8006CC3C2 /* Debug.xcconfig */; };
@@ -150,6 +152,7 @@
 		4FE9E2832A2740E7006CC3C2 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		4FE9E2852A2741F1006CC3C2 /* HTTPResponseStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponseStatus.swift; sourceTree = "<group>"; };
 		4FE9E2872A274234006CC3C2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		4FE9E2972A2862FE006CC3C2 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		4FE9E29E2A286BD9006CC3C2 /* DomainConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainConvertible.swift; sourceTree = "<group>"; };
 		4FE9E2A02A288AD0006CC3C2 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		4FE9E2A22A28ACE8006CC3C2 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
@@ -189,6 +192,7 @@
 		4F021B2D2A17540100595114 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				4FE9E2952A2862EF006CC3C2 /* Label */,
 				4FC171662A1DDE550090D4B0 /* Milestone */,
 				4F021B322A17543D00595114 /* Common */,
 				4F021B2E2A17540500595114 /* Issue */,

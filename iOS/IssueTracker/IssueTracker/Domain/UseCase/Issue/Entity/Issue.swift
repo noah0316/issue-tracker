@@ -16,5 +16,6 @@ struct Issue: Identifiable, Hashable {
     let isOpen: Bool
     let milestone: Milestone
     let assignees: [User]?
+    let labels: [Label]?
     let author: User
 }
