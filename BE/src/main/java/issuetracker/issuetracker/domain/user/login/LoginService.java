@@ -26,7 +26,7 @@ public class LoginService {
 
     @Value("${OAUTH_GITHUB_CLIENT_SECRET}")
     private String clientSecret;
-    @Value("${OAUTH_REDIRECT_URL")
+    @Value("${OAUTH_REDIRECT_URL}")
     private String redirectUrl;
 
     public GithubToken getAccessToken(String code) {
@@ -41,6 +41,7 @@ public class LoginService {
         requestPayload.put("client_secret", clientSecret);
         requestPayload.put("code", code);
         requestPayload.put("redirect_url",redirectUrl);
+        System.out.println(redirectUrl);
         requestPayloads.setAll(requestPayload);
 
         HttpEntity<?> request = new HttpEntity<>(requestPayloads, headers);
