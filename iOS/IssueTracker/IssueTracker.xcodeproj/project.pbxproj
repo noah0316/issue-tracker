@@ -80,6 +80,7 @@
 		4FE9E2842A2740E7006CC3C2 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2832A2740E7006CC3C2 /* NetworkRequest.swift */; };
 		4FE9E2862A2741F1006CC3C2 /* HTTPResponseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2852A2741F1006CC3C2 /* HTTPResponseStatus.swift */; };
 		4FE9E2882A274234006CC3C2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2872A274234006CC3C2 /* NetworkService.swift */; };
+		4FE9E29F2A286BD9006CC3C2 /* DomainConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E29E2A286BD9006CC3C2 /* DomainConvertible.swift */; };
 		4FE9E2A12A288AD0006CC3C2 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2A02A288AD0006CC3C2 /* EndPoint.swift */; };
 		4FE9E2A32A28ACE8006CC3C2 /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4FE9E2A22A28ACE8006CC3C2 /* Debug.xcconfig */; };
 		4FF650C32A0D6A3800A9B220 /* ColorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF650C22A0D6A3800A9B220 /* ColorStyle.swift */; };
@@ -149,6 +150,7 @@
 		4FE9E2832A2740E7006CC3C2 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		4FE9E2852A2741F1006CC3C2 /* HTTPResponseStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponseStatus.swift; sourceTree = "<group>"; };
 		4FE9E2872A274234006CC3C2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		4FE9E29E2A286BD9006CC3C2 /* DomainConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainConvertible.swift; sourceTree = "<group>"; };
 		4FE9E2A02A288AD0006CC3C2 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		4FE9E2A22A28ACE8006CC3C2 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		4FF650C22A0D6A3800A9B220 /* ColorStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStyle.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 		4F021B2C2A1753F900595114 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				4FE9E29D2A286BC7006CC3C2 /* Protocol */,
 				4F021B2D2A17540100595114 /* UseCase */,
 			);
 			path = Domain;
@@ -523,6 +526,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		4FE9E29D2A286BC7006CC3C2 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				4FE9E29E2A286BD9006CC3C2 /* DomainConvertible.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		4FFC81572A0C80F5008C2575 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -734,6 +745,7 @@
 				4FC171982A1F2ECA0090D4B0 /* IssueListViewControllerFactory.swift in Sources */,
 				4F46D2462A16719A0003AEDD /* LabelCollectionViewCell.swift in Sources */,
 				4FDCA38D2A20552A00AF282A /* main.swift in Sources */,
+				4FE9E29F2A286BD9006CC3C2 /* DomainConvertible.swift in Sources */,
 				4FE9E2A12A288AD0006CC3C2 /* EndPoint.swift in Sources */,
 				4FDCA3962A20584100AF282A /* AppDependency.swift in Sources */,
 				4FDA41CF2A16837B00340387 /* IssueListViewController.swift in Sources */,
