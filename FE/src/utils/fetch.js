@@ -34,6 +34,7 @@ export const fetchDelete = async ({ path, data }) => {
       method: 'DELETE',
       body: JSON.stringify(data)
     });
+    return response;
   } catch (error) {
     // console.error('Error:', error);
   }

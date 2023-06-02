@@ -60,7 +60,7 @@ export const LabelList = () => {
   };
 
   const handleDelete = async (id) => {
-    const url = `13.209.232.172:8080/labels/${id}`;
+    const url = `http://13.209.232.172:8080/labels/${id}`;
     const idData = {
       labelId: id
     };
