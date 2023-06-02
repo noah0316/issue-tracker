@@ -11,8 +11,8 @@ import Foundation
 final class IssueCollection {
     private var issues: [Issue]
     
-    init() {
-        self.issues = [Issue]()
+    init(issues: [Issue] = [Issue]()) {
+        self.issues = issues
     }
     
     /// collection에 Issue 객체를 저장합니다.
