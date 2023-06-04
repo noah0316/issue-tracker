@@ -28,6 +28,7 @@
 		4FA35F422A2995640089C6EB /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2972A2862FE006CC3C2 /* Label.swift */; };
 		4FA35F432A2995760089C6EB /* NetworkServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2812A2740A6006CC3C2 /* NetworkServiceError.swift */; };
 		4FA35F472A2BA22C0089C6EB /* HTTPResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA35F462A2BA22C0089C6EB /* HTTPResponseError.swift */; };
+		4FA35F4B2A2BA7BD0089C6EB /* IssueRepositoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA35F4A2A2BA7BD0089C6EB /* IssueRepositoryError.swift */; };
 		4FC1714E2A1C5BD40090D4B0 /* NibFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1714D2A1C5BD40090D4B0 /* NibFactory.swift */; };
 		4FC171532A1DBC210090D4B0 /* IssueListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171522A1DBC210090D4B0 /* IssueListViewModel.swift */; };
 		4FC171562A1DBDC80090D4B0 /* IssueListViewModelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171552A1DBDC80090D4B0 /* IssueListViewModelable.swift */; };
