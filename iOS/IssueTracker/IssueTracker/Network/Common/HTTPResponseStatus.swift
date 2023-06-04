@@ -23,11 +23,13 @@ struct HTTPResponseStatus {
     }
     
     func makeNetworkServiceError() -> NetworkServiceError {
-        guard let networkServiceError = NetworkServiceError(rawValue: self.httpURLResponse.statusCode)
+        guard let httpResponseError = HTTPResponseError(rawValue: self.httpURLResponse.statusCode)
         else {
-            return NetworkServiceError.unknownError
+            return NetworkServiceError.httpResponseError(error: .unknownError)
         }
         
-        return networkServiceError
+        return NetworkServiceError.httpResponseError(
+            error: httpResponseError
+        )
     }
 }
