@@ -7,6 +7,9 @@ disabled_rules:
 indentation_width:
   indentation_width: 4
 
+line_length: 
+  ignores_comments: true
+
 force_unwrapping:
   severity: error
 
