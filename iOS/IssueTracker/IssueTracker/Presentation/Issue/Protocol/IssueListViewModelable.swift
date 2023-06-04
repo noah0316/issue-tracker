@@ -10,11 +10,14 @@ import Foundation
 
 protocol IssueListViewModelInput {
     func viewDidLoad()
+    func fetchIssues()
 }
 
 protocol IssueListViewModelOutput {
-    var issues: AnyPublisher<IssueCollection, Error> { get }
+    var issues: AnyPublisher<IssueCollection, Never> { get }
     var issueListLoadingStatus: AnyPublisher<LoadingStatus, Never> { get }
+    var alertErrorMessage: AnyPublisher<String, Never> { get }
+    var retriableError: AnyPublisher<Void, Never> { get }
 }
 
 protocol IssueListViewModelable {
