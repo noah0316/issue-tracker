@@ -27,11 +27,20 @@ struct IssueListViewControllerFactory: ViewControllerMakable {
 
 extension IssueListViewControllerFactory {
     private static func makeViewModel() -> IssueListViewModel {
-        // UseCase 구현체로 변경할 예정입니다.
-        let useCase = MockIssueListUseCase()
+        let useCase = Self.makeUseCase()
         let viewModel = IssueListViewModel(useCase: useCase)
         
         return viewModel
+    }
+    
+    private static func makeUseCase() -> IssueUseCase {
+        return IssueUseCaseImpl(issueRepository: Self.makeIssueRepository())
+    }
+    
+    private static func makeIssueRepository() -> IssueRepository {
+        return IssueRepositoryImpl(
+            networkRequester: NetworkService(session: URLSession(configuration: .default))
+        )
     }
     
     private static func makeTabBarItem() -> UITabBarItem {
