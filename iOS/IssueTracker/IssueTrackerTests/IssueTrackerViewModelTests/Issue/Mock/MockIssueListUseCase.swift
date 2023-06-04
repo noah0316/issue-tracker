@@ -15,10 +15,10 @@ final class MockIssueListUseCase: IssueUseCase {
         self.isFetchIssueListCalled = false
     }
     
-    func fetchIssues() -> AnyPublisher<IssueCollection, Error> {
+    func requestIssues() -> AnyPublisher<IssueCollection, IssueUseCaseError> {
         self.isFetchIssueListCalled = true
         return Future { promise in
-            promise(.success(Self.makeIssue()))
+            promise(.success(IssueCollection()))
         }.eraseToAnyPublisher()
     }
 }

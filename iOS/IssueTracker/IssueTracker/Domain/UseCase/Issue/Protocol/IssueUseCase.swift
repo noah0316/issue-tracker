@@ -9,5 +9,5 @@ import Combine
 import Foundation
 
 protocol IssueUseCase {
-    func fetchIssues() -> AnyPublisher<IssueCollection, Error>
+    func requestIssues() -> AnyPublisher<IssueCollection, IssueUseCaseError>
 }

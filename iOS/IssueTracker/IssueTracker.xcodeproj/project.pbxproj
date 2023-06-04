@@ -28,6 +28,7 @@
 		4FA35F422A2995640089C6EB /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2972A2862FE006CC3C2 /* Label.swift */; };
 		4FA35F432A2995760089C6EB /* NetworkServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2812A2740A6006CC3C2 /* NetworkServiceError.swift */; };
 		4FA35F472A2BA22C0089C6EB /* HTTPResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA35F462A2BA22C0089C6EB /* HTTPResponseError.swift */; };
+		4FA35F492A2BA3330089C6EB /* IssueUseCaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA35F482A2BA3330089C6EB /* IssueUseCaseError.swift */; };
 		4FA35F4B2A2BA7BD0089C6EB /* IssueRepositoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA35F4A2A2BA7BD0089C6EB /* IssueRepositoryError.swift */; };
 		4FC1714E2A1C5BD40090D4B0 /* NibFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1714D2A1C5BD40090D4B0 /* NibFactory.swift */; };
 		4FC171532A1DBC210090D4B0 /* IssueListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC171522A1DBC210090D4B0 /* IssueListViewModel.swift */; };
@@ -131,6 +132,7 @@
 		4F46D2492A1671BA0003AEDD /* MilestoneCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MilestoneCollectionViewCell.xib; sourceTree = "<group>"; };
 		4F99BDBE2A17ECB6008AE8D1 /* UICollectionReusableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionReusableView+Extension.swift"; sourceTree = "<group>"; };
 		4FA35F462A2BA22C0089C6EB /* HTTPResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponseError.swift; sourceTree = "<group>"; };
+		4FA35F482A2BA3330089C6EB /* IssueUseCaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueUseCaseError.swift; sourceTree = "<group>"; };
 		4FA35F4A2A2BA7BD0089C6EB /* IssueRepositoryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRepositoryError.swift; sourceTree = "<group>"; };
 		4FC1714D2A1C5BD40090D4B0 /* NibFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibFactory.swift; sourceTree = "<group>"; };
 		4FC171522A1DBC210090D4B0 /* IssueListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewModel.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 			children = (
 				4FC171592A1DCF6F0090D4B0 /* Protocol */,
 				4F021B2F2A17540C00595114 /* Entity */,
+				4FA35F482A2BA3330089C6EB /* IssueUseCaseError.swift */,
 			);
 			path = Issue;
 			sourceTree = "<group>";
@@ -825,6 +828,7 @@
 				4FE9E2982A2862FE006CC3C2 /* Label.swift in Sources */,
 				4F46D24A2A1671BA0003AEDD /* MilestoneCollectionViewCell.swift in Sources */,
 				4FC5A20C2A1B68430001393B /* LabelTag.swift in Sources */,
+				4FA35F492A2BA3330089C6EB /* IssueUseCaseError.swift in Sources */,
 				4FE9E2A92A2906F9006CC3C2 /* IssueRepository.swift in Sources */,
 				4FE9E29C2A28663B006CC3C2 /* IssueDTO.swift in Sources */,
 				4FE9E29A2A286563006CC3C2 /* MilestoneDTO.swift in Sources */,
