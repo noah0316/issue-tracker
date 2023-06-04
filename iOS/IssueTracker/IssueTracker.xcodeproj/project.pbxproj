@@ -525,14 +525,25 @@
 		4FE9E27D2A27400F006CC3C2 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				4FE9E27E2A27401A006CC3C2 /* Protocol */,
 				4FE9E28A2A283D4C006CC3C2 /* Common */,
 			);
 			path = Network;
 			sourceTree = "<group>";
 		};
+		4FE9E27E2A27401A006CC3C2 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				4FE9E27F2A27403D006CC3C2 /* NetworkRequestable.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		4FE9E2892A283CCD006CC3C2 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				4FE9E2A72A2906ED006CC3C2 /* Protocol */,
+				4FE9E2A42A29063D006CC3C2 /* Repository */,
 				4FE9E2902A284447006CC3C2 /* DTO */,
 			);
 			path = Data;

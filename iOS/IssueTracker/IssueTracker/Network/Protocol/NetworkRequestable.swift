@@ -9,5 +9,5 @@ import Combine
 import Foundation
 
 protocol NetworkRequestable {
-    func requestData(from networkRequest: NetworkRequest) -> AnyPublisher<Data, Error>
+    func requestData(from networkRequest: NetworkRequest) -> AnyPublisher<Data, NetworkServiceError>
 }
