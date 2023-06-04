@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -40,6 +41,18 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="q5N-id-xNU">
                                 <rect key="frame" x="178" y="420" width="37" height="37"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A5M-SG-HoK">
+                                <rect key="frame" x="171.66666666666666" y="421.33333333333331" width="49.666666666666657" height="34.333333333333314"/>
+                                <color key="tintColor" name="issueTrackerRed"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="goforward" catalog="system"/>
+                                <buttonConfiguration key="configuration" style="plain" image="goforward" catalog="system">
+                                    <backgroundConfiguration key="background"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="retryRequestIssues:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="3HW-SP-mMu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -50,11 +63,14 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="qXp-rD-hLg" secondAttribute="bottom" id="REL-eE-Sxx"/>
                             <constraint firstItem="qXp-rD-hLg" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="SIg-bF-idf"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="qXp-rD-hLg" secondAttribute="trailing" id="fDt-Ab-Ygz"/>
+                            <constraint firstItem="A5M-SG-HoK" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="fRU-WE-FZu"/>
+                            <constraint firstItem="A5M-SG-HoK" firstAttribute="centerY" secondItem="vDu-zF-Fre" secondAttribute="centerY" id="h3g-y1-XXu"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="issueListLoadingIndicatorView" destination="q5N-id-xNU" id="G2C-NJ-jI7"/>
                         <outlet property="issueListView" destination="qXp-rD-hLg" id="IFf-jP-xrx"/>
+                        <outlet property="retryRequestIssuesButton" destination="A5M-SG-HoK" id="sH0-cu-SjJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -63,6 +79,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="goforward" catalog="system" width="119" height="128"/>
+        <namedColor name="issueTrackerRed">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
