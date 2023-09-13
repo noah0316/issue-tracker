@@ -79,6 +79,22 @@
 		4FDCA3A32A205ACB00AF282A /* IssueListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F46D2382A1671590003AEDD /* IssueListCollectionViewCell.swift */; };
 		4FDCA3A42A205AD500AF282A /* UICollectionReusableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F99BDBE2A17ECB6008AE8D1 /* UICollectionReusableView+Extension.swift */; };
 		4FDCA3A52A205AE100AF282A /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC81732A0D51D0008C2575 /* FontStyle.swift */; };
+		4FE8BD092AB1C883009D9DFC /* IssueUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2AA2A29079C006CC3C2 /* IssueUseCaseImpl.swift */; };
+		4FE8BD0A2AB1C88A009D9DFC /* IssueRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2A82A2906F9006CC3C2 /* IssueRepository.swift */; };
+		4FE8BD0B2AB1C894009D9DFC /* HTTPResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA35F462A2BA22C0089C6EB /* HTTPResponseError.swift */; };
+		4FE8BD0C2AB1C8A9009D9DFC /* IssueRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E28C2A283D95006CC3C2 /* IssueRepositoryImpl.swift */; };
+		4FE8BD0D2AB1C8AE009D9DFC /* NetworkRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E27F2A27403D006CC3C2 /* NetworkRequestable.swift */; };
+		4FE8BD0E2AB1C8B5009D9DFC /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2832A2740E7006CC3C2 /* NetworkRequest.swift */; };
+		4FE8BD0F2AB1C8C2009D9DFC /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2872A274234006CC3C2 /* NetworkService.swift */; };
+		4FE8BD102AB1C8C9009D9DFC /* IssueDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E29B2A28663B006CC3C2 /* IssueDTO.swift */; };
+		4FE8BD112AB1C8CF009D9DFC /* IssueRepositoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA35F4A2A2BA7BD0089C6EB /* IssueRepositoryError.swift */; };
+		4FE8BD122AB1C8D8009D9DFC /* MilestoneDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2992A286563006CC3C2 /* MilestoneDTO.swift */; };
+		4FE8BD132AB1C8DF009D9DFC /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2912A286102006CC3C2 /* UserDTO.swift */; };
+		4FE8BD142AB1C8E3009D9DFC /* LabelDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2932A28621D006CC3C2 /* LabelDTO.swift */; };
+		4FE8BD152AB1C8EB009D9DFC /* IssueUseCaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA35F482A2BA3330089C6EB /* IssueUseCaseError.swift */; };
+		4FE8BD162AB1C8F0009D9DFC /* DomainConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E29E2A286BD9006CC3C2 /* DomainConvertible.swift */; };
+		4FE8BD172AB1C8F7009D9DFC /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2A02A288AD0006CC3C2 /* EndPoint.swift */; };
+		4FE8BD182AB1C902009D9DFC /* HTTPResponseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2852A2741F1006CC3C2 /* HTTPResponseStatus.swift */; };
 		4FE9E2802A27403D006CC3C2 /* NetworkRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E27F2A27403D006CC3C2 /* NetworkRequestable.swift */; };
 		4FE9E2822A2740A6006CC3C2 /* NetworkServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2812A2740A6006CC3C2 /* NetworkServiceError.swift */; };
 		4FE9E2842A2740E7006CC3C2 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9E2832A2740E7006CC3C2 /* NetworkRequest.swift */; };
@@ -863,17 +879,26 @@
 			files = (
 				4FDCA39D2A205A7B00AF282A /* ImageMapper.swift in Sources */,
 				4FC171802A1DE5BE0090D4B0 /* IssueListViewModel.swift in Sources */,
+				4FE8BD092AB1C883009D9DFC /* IssueUseCaseImpl.swift in Sources */,
 				4FC171832A1DE6540090D4B0 /* IssueUseCase.swift in Sources */,
 				4FDCA3A22A205AC000AF282A /* NibFactory.swift in Sources */,
 				4FDCA3A42A205AD500AF282A /* UICollectionReusableView+Extension.swift in Sources */,
+				4FE8BD182AB1C902009D9DFC /* HTTPResponseStatus.swift in Sources */,
+				4FE8BD142AB1C8E3009D9DFC /* LabelDTO.swift in Sources */,
 				4FC1717F2A1DE5780090D4B0 /* IssueListViewModelTest.swift in Sources */,
+				4FE8BD0B2AB1C894009D9DFC /* HTTPResponseError.swift in Sources */,
 				4FDCA3A52A205AE100AF282A /* FontStyle.swift in Sources */,
+				4FE8BD152AB1C8EB009D9DFC /* IssueUseCaseError.swift in Sources */,
 				4FDCA39C2A205A7300AF282A /* StoryBoardLiteral.swift in Sources */,
+				4FE8BD172AB1C8F7009D9DFC /* EndPoint.swift in Sources */,
 				4FC171822A1DE62C0090D4B0 /* MockIssueListUseCase.swift in Sources */,
 				4FDCA3A12A205AB600AF282A /* IssueListView.swift in Sources */,
 				4FDCA3A32A205ACB00AF282A /* IssueListCollectionViewCell.swift in Sources */,
+				4FE8BD162AB1C8F0009D9DFC /* DomainConvertible.swift in Sources */,
+				4FE8BD0F2AB1C8C2009D9DFC /* NetworkService.swift in Sources */,
 				4FDCA3A02A205AAC00AF282A /* IssueListViewController.swift in Sources */,
 				4FDCA39B2A205A6E00AF282A /* ViewControllerMakable.swift in Sources */,
+				4FE8BD0C2AB1C8A9009D9DFC /* IssueRepositoryImpl.swift in Sources */,
 				4FDCA3932A2055FB00AF282A /* AppDelegateTests.swift in Sources */,
 				4FC171872A1DE67A0090D4B0 /* User.swift in Sources */,
 				4FA35F422A2995640089C6EB /* Label.swift in Sources */,
@@ -881,15 +906,22 @@
 				4FDCA39A2A205A5200AF282A /* IssueListViewControllerFactory.swift in Sources */,
 				4FDCA3982A205A2900AF282A /* CompositionRoot.swift in Sources */,
 				4FDCA39F2A205AA300AF282A /* StringLiteral.swift in Sources */,
+				4FE8BD0D2AB1C8AE009D9DFC /* NetworkRequestable.swift in Sources */,
 				4FC171842A1DE6620090D4B0 /* IssueCollection.swift in Sources */,
 				4FC171892A1DFABF0090D4B0 /* LoadingStatus.swift in Sources */,
 				4FDCA3992A205A4800AF282A /* IssueTrackerTabBarController.swift in Sources */,
+				4FE8BD122AB1C8D8009D9DFC /* MilestoneDTO.swift in Sources */,
 				4FDCA3942A20580500AF282A /* AppDelegate.swift in Sources */,
+				4FE8BD132AB1C8DF009D9DFC /* UserDTO.swift in Sources */,
+				4FE8BD102AB1C8C9009D9DFC /* IssueDTO.swift in Sources */,
+				4FE8BD112AB1C8CF009D9DFC /* IssueRepositoryError.swift in Sources */,
+				4FE8BD0A2AB1C88A009D9DFC /* IssueRepository.swift in Sources */,
 				4FC171882A1DF22E0090D4B0 /* IssueListViewModelable.swift in Sources */,
 				4FA35F432A2995760089C6EB /* NetworkServiceError.swift in Sources */,
 				4FC171852A1DE66C0090D4B0 /* Issue.swift in Sources */,
 				4FDCA39E2A205A8700AF282A /* ColorStyle.swift in Sources */,
 				4FC171862A1DE6750090D4B0 /* Milestone.swift in Sources */,
+				4FE8BD0E2AB1C8B5009D9DFC /* NetworkRequest.swift in Sources */,
 				4FDCA3912A20559400AF282A /* AppDelegateTestDouble.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
